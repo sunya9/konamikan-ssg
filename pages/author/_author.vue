@@ -56,6 +56,7 @@ import { PostOrPage, Author } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorWeb from '~/components/AuthorWeb.vue'
+import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
@@ -79,9 +80,11 @@ import AuthorWeb from '~/components/AuthorWeb.vue'
       )
       if (!author) return error({ statusCode: 404 })
       return {
-        posts: posts.filter((post) =>
-          post.authors?.some((postAuthor) => postAuthor.slug === author.slug)
-        ),
+        posts: posts
+          .filter((post) =>
+            post.authors?.some((postAuthor) => postAuthor.slug === author.slug)
+          )
+          .map(reducePostFieldMapper),
         author
       }
     }
@@ -89,7 +92,7 @@ import AuthorWeb from '~/components/AuthorWeb.vue'
 })
 export default class AuthorPage extends Vue {
   author!: Author
-  posts!: PostOrPage[]
+  posts!: PostOrPageLight[]
   head() {
     const meta: object[] = [
       {

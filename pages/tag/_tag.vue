@@ -19,6 +19,7 @@ import { Component } from 'nuxt-property-decorator'
 import { PostOrPage, Tag } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
+import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
@@ -39,9 +40,11 @@ import AppHeader from '~/components/AppHeader.vue'
       const tag = tags.find((tag) => tag.slug === route.params.tag)
       if (!tag) return error({ statusCode: 404 })
       return {
-        posts: posts.filter((post) =>
-          post.tags?.some((postTag) => postTag.slug === tag.slug)
-        ),
+        posts: posts
+          .filter((post) =>
+            post.tags?.some((postTag) => postTag.slug === tag.slug)
+          )
+          .map(reducePostFieldMapper),
         tag
       }
     }
@@ -49,7 +52,7 @@ import AppHeader from '~/components/AppHeader.vue'
 })
 export default class TagPage extends Vue {
   tag!: Tag
-  posts!: PostOrPage[]
+  posts!: PostOrPageLight[]
   head() {
     const meta: object[] = [
       {

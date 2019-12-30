@@ -11,9 +11,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
-import { PostOrPage } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
+import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
@@ -26,12 +26,14 @@ import AppHeader from '~/components/AppHeader.vue'
       return res
     } else {
       const res = await $axios.$get(`/posts`)
-      return res
+      return {
+        posts: res.posts.map(reducePostFieldMapper)
+      }
     }
   }
 })
 export default class Archives extends Vue {
-  posts!: PostOrPage[]
+  posts!: PostOrPageLight[]
   head() {
     return {
       title: 'Archives'

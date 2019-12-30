@@ -64,3 +64,22 @@ export function $createSocialMediaMeta(socialMedia: SocialMedia) {
   }
   return res
 }
+
+export interface PostOrPageLight {
+  id: string
+  title: string
+  excerpt: string
+  // eslint-disable-next-line camelcase
+  published_at: string
+  url: string
+}
+
+export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
+  return {
+    id: post.id,
+    title: post.title || '',
+    excerpt: post.custom_excerpt || post.excerpt || '',
+    published_at: post.published_at || '',
+    url: post.url || ''
+  }
+}
