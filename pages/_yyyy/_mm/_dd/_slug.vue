@@ -60,7 +60,6 @@ import AuthorInfo from '~/components/AuthorInfo.vue'
     } else {
       const posts: PostObject = await $axios.$get(`/posts`)
       const post = posts.posts.find((post) => {
-        console.log($resolvePostUrl(post))
         return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
       })
       if (!post) return error({ statusCode: 404 })
