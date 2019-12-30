@@ -42,6 +42,7 @@ const config: Configuration = {
   },
 
   env: {
+    URL: process.env.URL!,
     APP_ID: process.env.APP_ID!,
     SEARCH_KEY: process.env.SEARCH_KEY!
   },
@@ -88,9 +89,7 @@ const config: Configuration = {
     ignoreNotFoundWarnings: true
   },
   generate: {
-    routes: () => [...extendRoutes],
-    subFolders: false,
-    interval: 10
+    routes: () => [...extendRoutes]
   },
   router: {
     linkActiveClass: 'is-active',
