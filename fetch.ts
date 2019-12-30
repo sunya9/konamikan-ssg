@@ -2,7 +2,6 @@ import { promises as fs } from 'fs'
 import { resolve } from 'path'
 import fetch from 'node-fetch'
 import {
-  PostOrPage,
   PostObject,
   TagsObject,
   AuthorsObject,
@@ -67,8 +66,19 @@ async function generateFiles() {
   }
 }
 
-function generateRoutes(posts: PostOrPage[]) {
-  const routes = posts.map((post) => `${$resolvePostUrl(post)}`)
+function generateRoutes(items: {
+  posts: PostObject
+  tags: TagsObject
+  pages: PagesObject
+  authors: AuthorsObject
+}) {
+  const postRoutes = items.posts.posts.map((post) => `${$resolvePostUrl(post)}`)
+  const tagRoutes = items.tags.tags.map((tag) => `/tag/${tag.slug}`)
+  // const pageRoutes = items.pages.pages.map((page) => `/page/${page.slug}`)
+  const authorRoutes = items.authors.authors.map(
+    (author) => `/author/${author.slug}`
+  )
+  const routes = [...postRoutes, ...tagRoutes, ...authorRoutes]
   const routesStr = JSON.stringify(routes)
   return fs.writeFile(resolve(dataDir, `routes.json`), routesStr, {
     encoding: 'utf8'
@@ -78,8 +88,13 @@ function generateRoutes(posts: PostOrPage[]) {
 async function main() {
   const res = await generateFiles()
   if (!res) return
-  const { posts } = res
-  await generateRoutes(posts.posts)
+  const items = {
+    posts: res.posts,
+    tags: res.tags,
+    pages: res.pages,
+    authors: res.authors
+  }
+  await generateRoutes(items)
 }
 
 main()
