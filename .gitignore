@@ -91,5 +91,5 @@ sw.*
 
 # custom
 .data
-static/rss
+static/rss.xml
 static/icon.png

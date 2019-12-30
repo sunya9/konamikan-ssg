@@ -1,4 +1,0 @@
-/rss
-  cache-control: public, max-age=0
-  content-encoding: gzip
-  content-type: text/xml; charset=utf-8

@@ -83,7 +83,7 @@ async function downloadStaticFiles(setting: Setting) {
   const staticDir = resolve(__dirname, 'static')
   const rssUrl = `${process.env.URL!}/rss/`
   const rssBody = await fetch(rssUrl).then((res) => res.buffer())
-  await fs.writeFile(resolve(staticDir, 'rss'), rssBody)
+  await fs.writeFile(resolve(staticDir, 'rss.xml'), rssBody)
   const faviconUrl = setting.icon!
   const faviconBody = await fetch(faviconUrl).then((res) => res.buffer())
   await fs.writeFile(resolve(staticDir, 'icon.png'), faviconBody)
