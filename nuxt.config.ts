@@ -104,10 +104,10 @@ const config: Configuration = {
       name: settings.title,
       description: settings.description,
       author: author.name,
-      lang: settings.lang
-      // ogTitle: settings.title,
-      // ogSiteName: settings.title,
-      // ogDescription: settings.description
+      lang: settings.lang,
+      ogTitle: null,
+      ogSiteName: settings.title,
+      ogDescription: null
     }
   }
 }
