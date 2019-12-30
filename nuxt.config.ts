@@ -101,7 +101,18 @@ const config: Configuration = {
     proxy: true
   },
   pwa: {
-    workbox: {},
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: '^https://private.unsweets.net/content/images/(.*)',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: '^https://images.unsplash.com/(.*)',
+          handler: 'cacheFirst'
+        }
+      ]
+    },
     meta: {
       name: settings.title,
       description: settings.description,
