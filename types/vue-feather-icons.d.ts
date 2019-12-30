@@ -8,4 +8,5 @@ declare module 'vue-feather-icons' {
   export const UserIcon: Component
   export const TagIcon: Component
   export const FileIcon: Component
+  export const RssIcon: Component
 }
