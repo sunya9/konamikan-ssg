@@ -62,7 +62,8 @@ const config: Configuration = {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '~/modules/generate-supporter'
   ],
   /*
    ** Nuxt.js modules
