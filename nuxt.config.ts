@@ -88,7 +88,9 @@ const config: Configuration = {
     ignoreNotFoundWarnings: true
   },
   generate: {
-    routes: () => [...extendRoutes]
+    routes: () => [...extendRoutes],
+    subFolders: false,
+    interval: 10
   },
   router: {
     linkActiveClass: 'is-active',
