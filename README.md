@@ -1,22 +1,17 @@
 # konamikan-ssg
 
-> generate static site for konamikan.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/60a8dba5-3b3f-46af-85cb-a554152ab5db/deploy-status)](https://app.netlify.com/sites/private-unsweets/deploys)
+
+generate static site for konamikan.
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
-$ yarn install
+$ yarn
 
-# serve with hot reload at localhost:3000
 $ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
 
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
