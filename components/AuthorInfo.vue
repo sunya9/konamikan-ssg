@@ -5,7 +5,7 @@
         <div class="media">
           <div class="media-left">
             <div class="image is-64x64">
-              <nuxt-link :to="`/authors/${author.slug}`">
+              <nuxt-link :to="`/author/${author.slug}`">
                 <img
                   class="is-rounded"
                   :src="author.profile_image"
@@ -18,7 +18,7 @@
           <div class="media-content">
             <div class="content is-small">
               <div class="title is-6">
-                <nuxt-link :to="`/authors/${author.slug}`">
+                <nuxt-link :to="`/author/${author.slug}`">
                   {{ author.name }}
                 </nuxt-link>
               </div>

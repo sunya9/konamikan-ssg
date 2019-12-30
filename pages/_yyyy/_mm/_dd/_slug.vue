@@ -18,7 +18,7 @@
               <nuxt-link
                 v-for="tag in post.tags"
                 :key="tag.id"
-                :to="`/tags/${tag.slug}`"
+                :to="`/tag/${tag.slug}`"
                 class="tag is-rounded is-medium"
               >
                 {{ tag.name }}
