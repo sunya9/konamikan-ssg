@@ -5,10 +5,15 @@ import api from '../api'
 
 const buildModule: Module<never> = function() {
   let server: http.Server
-  this.nuxt.hook('generate:before', () => {
+  this.nuxt.hook('generate:before', async () => {
     const app = express()
     app.use('/api', api.handler)
-    server = app.listen(3000)
+    await new Promise((resolve) => {
+      server = app.listen(3000, (err) => {
+        if (err) console.error(err)
+        resolve()
+      })
+    })
   })
   this.nuxt.hook('generate:done', () => server?.close())
 }
