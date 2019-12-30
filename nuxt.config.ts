@@ -104,7 +104,8 @@ const config: Configuration = {
     workbox: {
       runtimeCaching: [
         {
-          urlPattern: '^https://private.unsweets.net/content/images/(.*)',
+          urlPattern:
+            '^https://private-backend.unsweets.net/content/images/(.*)',
           handler: 'cacheFirst'
         },
         {
