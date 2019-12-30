@@ -44,7 +44,7 @@
     "vue-feather-icons": "5.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "1.1.2",
+    "@nuxtjs/eslint-config": "2.0.0",
     "@nuxtjs/eslint-config-typescript": "1.0.0",
     "@nuxtjs/eslint-module": "1.1.0",
     "@types/algoliasearch": "3.34.7",
