@@ -1,68 +1,61 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        konamikan-ssg
-      </h1>
-      <h2 class="subtitle">
-        generate static site for konamikan.
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
+  <div>
+    <app-header :title="title" :description="description" />
+    <main class="section">
+      <div class="container">
+        <div class="columns is-multiline">
+          <div v-for="post in posts" :key="post.uuid" class="column is-4">
+            <post-card :post="post" class="fix-height" />
+          </div>
+        </div>
+        <nuxt-link
+          to="/archives"
+          class="button is-fullwidth is-rounded is-outlined is-text"
         >
-          GitHub
-        </a>
+          Archives
+        </nuxt-link>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
+<script lang="ts">
+import { PostOrPage, PostObject } from '@tryghost/content-api'
+import { Component, Vue } from 'nuxt-property-decorator'
+import PostCard from '~/components/PostCard.vue'
+import AppHeader from '~/components/AppHeader.vue'
 
-export default {
+@Component({
   components: {
-    Logo
+    PostCard,
+    AppHeader
+  },
+  async asyncData({ app: { $axios }, $payloadURL, route }) {
+    if (process.static && process.client && $payloadURL) {
+      const res = await $axios.$get($payloadURL(route))
+      return res
+    } else {
+      const posts: PostObject = await $axios.$get('/posts')
+      return {
+        posts: posts.posts.slice(0, 9)
+      }
+    }
+  }
+})
+export default class Index extends Vue {
+  posts!: PostOrPage[]
+  title = this.$setting.title
+  description = this.$setting.description
+
+  head() {
+    return {
+      titleTemplate: null
+    }
   }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+<style scoped>
+.fix-height {
+  height: 100%;
 }
 </style>

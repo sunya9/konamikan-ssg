@@ -1,0 +1,19 @@
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+@import '~bulma/sass/utilities/initial-variables';
+$primary: $orange;
+$link: $orange;
+
+$scheme-main: $white-bis;
+$scheme-main-bis: $white-ter;
+@import 'bulma';
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
