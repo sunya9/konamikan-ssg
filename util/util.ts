@@ -12,7 +12,7 @@ export function $resolvePostUrl(
     .getDate()
     .toString()
     .padStart(2, '0')
-  return `/${year}/${month}/${day}/${post.slug}/`
+  return `/${year}/${month}/${day}/${post.slug}`
 }
 
 export function $createBaseMetadata(metadata: Metadata) {
