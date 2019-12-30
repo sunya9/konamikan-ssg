@@ -89,7 +89,8 @@ const config: Configuration = {
     ignoreNotFoundWarnings: true
   },
   generate: {
-    routes: () => [...extendRoutes]
+    routes: () => [...extendRoutes],
+    fallback: true
   },
   router: {
     linkActiveClass: 'is-active',
