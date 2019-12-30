@@ -68,7 +68,7 @@ async function generateFiles() {
 }
 
 function generateRoutes(posts: PostOrPage[]) {
-  const routes = posts.map((post) => `/${$resolvePostUrl(post)}`)
+  const routes = posts.map((post) => `${$resolvePostUrl(post)}`)
   const routesStr = JSON.stringify(routes)
   return fs.writeFile(resolve(dataDir, `routes.json`), routesStr, {
     encoding: 'utf8'
