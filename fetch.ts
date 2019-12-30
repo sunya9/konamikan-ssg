@@ -6,7 +6,8 @@ import {
   TagsObject,
   AuthorsObject,
   PagesObject,
-  SettingsObject
+  SettingsObject,
+  Setting
 } from '@tryghost/content-api'
 import { $resolvePostUrl } from './util/util'
 
@@ -40,29 +41,22 @@ async function request<T>(
 
 async function generateFiles() {
   await fs.mkdir(dataDir).catch(() => {})
-  try {
-    const [posts, tags, pages, authors, settings] = await Promise.all([
-      request<PostObject>('posts', {
-        limit: 'all',
-        include: ['tags', 'authors']
-      }).then(write('posts')),
-      request<TagsObject>('tags', { limit: 'all' }).then(write('tags')),
-      request<PagesObject>('pages', { limit: 'all' }).then(write('pages')),
-      request<AuthorsObject>('authors', { limit: 'all' }).then(
-        write('authors')
-      ),
-      request<SettingsObject>('settings').then(write('settings'))
-    ])
-    return {
-      posts,
-      tags,
-      pages,
-      authors,
-      settings
-    }
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e)
+  const [posts, tags, pages, authors, settings] = await Promise.all([
+    request<PostObject>('posts', {
+      limit: 'all',
+      include: ['tags', 'authors']
+    }).then(write('posts')),
+    request<TagsObject>('tags', { limit: 'all' }).then(write('tags')),
+    request<PagesObject>('pages', { limit: 'all' }).then(write('pages')),
+    request<AuthorsObject>('authors', { limit: 'all' }).then(write('authors')),
+    request<SettingsObject>('settings').then(write('settings'))
+  ])
+  return {
+    posts,
+    tags,
+    pages,
+    authors,
+    settings
   }
 }
 
@@ -85,15 +79,25 @@ function generateRoutes(items: {
   })
 }
 
+async function downloadStaticFiles(setting: Setting) {
+  const staticDir = resolve(__dirname, 'static')
+  const rssUrl = `${process.env.URL!}/rss/`
+  const rssBody = await fetch(rssUrl).then((res) => res.buffer())
+  await fs.writeFile(resolve(staticDir, 'rss'), rssBody)
+  const faviconUrl = setting.icon!
+  const faviconBody = await fetch(faviconUrl).then((res) => res.buffer())
+  await fs.writeFile(resolve(staticDir, 'icon.png'), faviconBody)
+}
+
 async function main() {
   const res = await generateFiles()
-  if (!res) return
   const items = {
     posts: res.posts,
     tags: res.tags,
     pages: res.pages,
     authors: res.authors
   }
+  await downloadStaticFiles(res.settings.settings)
   await generateRoutes(items)
 }
 

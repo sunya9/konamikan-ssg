@@ -91,3 +91,5 @@ sw.*
 
 # custom
 .data
+static/rss
+static/icon.png
