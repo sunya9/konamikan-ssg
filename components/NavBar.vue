@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar is-transparent">
     <div class="container">
       <div class="navbar-brand">
         <div v-if="homeButton" class="navbar-brand">
@@ -19,11 +19,11 @@
         </a>
       </div>
       <div
-        class="navbar-menu is-light"
-        :class="{ 'is-relative': !collapse, 'is-active fix-navbar': collapse }"
+        class="navbar-menu"
+        :class="{ 'is-relative': !collapse, 'fix-navbar': collapse }"
       >
         <div class="navbar-end">
-          <div class="navbar-item" :class="{ 'is-active': text }">
+          <div class="navbar-item" :class="{ 'is-active': activated && text }">
             <div class="control has-icons-right">
               <input
                 v-model="text"
@@ -43,8 +43,10 @@
               </span>
             </div>
             <div
-              v-if="text && activated"
               class="navbar-dropdown is-right is-boxed"
+              :class="{
+                'is-active': text && activated
+              }"
             >
               <template v-if="searchResults.length">
                 <nuxt-link
@@ -52,6 +54,8 @@
                   :key="index"
                   :to="createSearchLink(result)"
                   class="navbar-item"
+                  active-class=""
+                  exact-active-class=""
                   :class="{
                     'has-background-dark has-text-white':
                       index === selectedIndex
@@ -81,6 +85,12 @@
               </div>
             </div>
           </div>
+          <a href="/rss" class="navbar-item has-text-white-ter">
+            <span class="icon">
+              <rss-icon />
+            </span>
+            <span class="is-sr-only">RSS</span>
+          </a>
         </div>
       </div>
     </div>
@@ -88,7 +98,13 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { SearchIcon, UserIcon, TagIcon, FileIcon } from 'vue-feather-icons'
+import {
+  SearchIcon,
+  UserIcon,
+  TagIcon,
+  FileIcon,
+  RssIcon
+} from 'vue-feather-icons'
 import algoliasearch from 'algoliasearch/lite'
 import debounce from 'lodash/debounce'
 
@@ -108,7 +124,8 @@ interface SearchResult {
     SearchIcon,
     UserIcon,
     TagIcon,
-    FileIcon
+    FileIcon,
+    RssIcon
   }
 })
 export default class NavBar extends Vue {
@@ -144,7 +161,7 @@ export default class NavBar extends Vue {
           type: hit.type,
           html: hit._highlightResult,
           slug: hit.slug,
-          published_at: hit.published_at
+          url: hit.url
         }
       })
       this.selectedIndex = -1
@@ -186,7 +203,7 @@ export default class NavBar extends Vue {
     if (searchResult.type === 'post') {
       return this.$resolvePostUrl(searchResult)
     } else {
-      return `/${searchResult.type}s/${searchResult.slug}`
+      return `/${searchResult.type}/${searchResult.slug}`
     }
   }
 
