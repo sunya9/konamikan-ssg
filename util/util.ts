@@ -1,18 +1,7 @@
 import { PostOrPage, SocialMedia, Metadata } from '@tryghost/content-api'
 
-export function $resolvePostUrl(
-  post: Pick<PostOrPage, 'published_at' | 'slug'>
-) {
-  const dateStr = post.published_at
-  if (!dateStr) return ''
-  const date = new Date(dateStr)
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date
-    .getDate()
-    .toString()
-    .padStart(2, '0')
-  return `/${year}/${month}/${day}/${post.slug}`
+export function $resolvePostUrl(post: Pick<PostOrPage, 'url'>) {
+  return post.url?.replace(process.env.URL!, '') || ''
 }
 
 export function $createBaseMetadata(metadata: Metadata) {

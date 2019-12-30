@@ -45,7 +45,14 @@ import AuthorInfo from '~/components/AuthorInfo.vue'
     AppHeader,
     AuthorInfo
   },
-  async asyncData({ $payloadURL, route, app: { $axios }, route: { params } }) {
+  async asyncData({
+    $resolvePostUrl,
+    $payloadURL,
+    route,
+    app: { $axios },
+    route: { params },
+    error
+  }) {
     const { yyyy, mm, dd, slug } = params
     if (process.static && process.client && $payloadURL) {
       const res = await $axios.$get($payloadURL(route))
@@ -53,14 +60,10 @@ import AuthorInfo from '~/components/AuthorInfo.vue'
     } else {
       const posts: PostObject = await $axios.$get(`/posts`)
       const post = posts.posts.find((post) => {
-        const date = new Date(post.published_at || '')
-        const match =
-          date.getFullYear() === +yyyy &&
-          date.getMonth() + 1 === +mm &&
-          date.getDate() === +dd &&
-          post.slug === slug
-        return match
+        console.log($resolvePostUrl(post))
+        return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
       })
+      if (!post) return error({ statusCode: 404 })
       return {
         post
       }

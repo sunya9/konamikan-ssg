@@ -100,7 +100,7 @@ interface SearchResult {
   html: string
   slug: string
   // eslint-disable-next-line camelcase
-  published_at?: string
+  url?: string
 }
 
 @Component({
@@ -184,10 +184,7 @@ export default class NavBar extends Vue {
 
   createSearchLink(searchResult: SearchResult) {
     if (searchResult.type === 'post') {
-      return this.$resolvePostUrl({
-        published_at: searchResult.published_at,
-        slug: searchResult.slug
-      })
+      return this.$resolvePostUrl(searchResult)
     } else {
       return `/${searchResult.type}s/${searchResult.slug}`
     }

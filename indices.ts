@@ -17,7 +17,7 @@ async function main() {
         slug: post.slug,
         excerpt: post.excerpt,
         custom_excerpt: post.custom_excerpt,
-        published_at: post.published_at,
+        url: post.url,
         type: 'post'
       }))
     ),

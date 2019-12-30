@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { Setting } from '@tryghost/content-api'
 import { Route } from 'vue-router'
+import { Plugin } from '@nuxt/types'
 import setting from '~/.data/settings.json'
 import {
   $resolvePostUrl,
@@ -12,6 +13,11 @@ Vue.prototype.$resolvePostUrl = $resolvePostUrl
 Vue.prototype.$setting = setting.settings
 Vue.prototype.$createSocialMediaMeta = $createSocialMediaMeta
 Vue.prototype.$createBaseMetadata = $createBaseMetadata
+
+const plugin: Plugin = (context) => {
+  context.$resolvePostUrl = $resolvePostUrl
+}
+export default plugin
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -25,5 +31,6 @@ declare module 'vue/types/vue' {
 declare module '@nuxt/types' {
   interface Context {
     $payloadURL(route: Route): string
+    $resolvePostUrl: typeof $resolvePostUrl
   }
 }
