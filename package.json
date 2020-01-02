@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@nuxt/typescript-build": "0.5.5",
-    "@nuxt/typescript-runtime": "0.3.5",
+    "@nuxt/typescript-runtime": "0.3.6",
     "@nuxtjs/amp": "0.2.1",
     "@nuxtjs/axios": "5.9.0",
     "@nuxtjs/bulma": "1.2.6",
