@@ -101,7 +101,7 @@ const config: Configuration = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active'
   },
-  serverMiddleware: ['~/api/index', '~/api/headers'],
+  serverMiddleware: ['~/api/index.ts'],
   axios: {
     prefix: '/api',
     proxy: true
