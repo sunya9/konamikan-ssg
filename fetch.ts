@@ -7,8 +7,10 @@ import {
   AuthorsObject,
   PagesObject,
   SettingsObject,
-  Setting
+  Setting,
+  PostOrPage
 } from '@tryghost/content-api'
+import cheerio from 'cheerio'
 import { $resolvePostUrl } from './util/util'
 
 const dataDir = resolve(__dirname, '.data')
@@ -39,13 +41,36 @@ async function request<T>(
   return res.json()
 }
 
+function fixClasses(post: PostOrPage): PostOrPage {
+  if (!post.html) return post
+  const $ = cheerio.load(post.html, { decodeEntities: false })
+  $('.kg-bookmark-card').addClass('box')
+  $('.kg-bookmark-container').addClass('media')
+  $('.kg-bookmark-content').addClass('media-content')
+  $('.kg-bookmark-thumbnail').addClass('media-left')
+  const html = $.html()
+  return {
+    ...post,
+    html
+  }
+}
+
+function fixPostObject(postObject: PostObject): PostObject {
+  return {
+    ...postObject,
+    posts: postObject.posts.map(fixClasses)
+  }
+}
+
 async function generateFiles() {
   await fs.mkdir(dataDir).catch(() => {})
   const [posts, tags, pages, authors, settings] = await Promise.all([
     request<PostObject>('posts', {
       limit: 'all',
       include: ['tags', 'authors']
-    }).then(write('posts')),
+    })
+      .then(fixPostObject)
+      .then(write('posts')),
     request<TagsObject>('tags', { limit: 'all' }).then(write('tags')),
     request<PagesObject>('pages', { limit: 'all' }).then(write('pages')),
     request<AuthorsObject>('authors', { limit: 'all' }).then(write('authors')),
