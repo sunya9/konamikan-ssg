@@ -53,7 +53,7 @@ const config: Configuration = {
   /*
    ** Global CSS
    */
-  css: ['~/assets/css/main'],
+  css: ['~/assets/css/main', '~/assets/css/dark'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -80,10 +80,15 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
-    extractCSS: false
     /*
      ** You can extend webpack config here
      */
+    extractCSS: true,
+    postcss: {
+      plugins: {
+        'css-mqpacker': false
+      }
+    }
   },
   typescript: {
     ignoreNotFoundWarnings: true
@@ -96,7 +101,7 @@ const config: Configuration = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active'
   },
-  serverMiddleware: ['~/api/index.ts'],
+  serverMiddleware: ['~/api/index', '~/api/headers'],
   axios: {
     prefix: '/api',
     proxy: true
@@ -104,11 +109,6 @@ const config: Configuration = {
   pwa: {
     workbox: {
       runtimeCaching: [
-        {
-          urlPattern:
-            '^https://private-backend.unsweets.net/content/images/(.*)',
-          handler: 'cacheFirst'
-        },
         {
           urlPattern: '^https://images.unsplash.com/(.*)',
           handler: 'cacheFirst'
