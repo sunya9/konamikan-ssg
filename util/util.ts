@@ -72,6 +72,8 @@ export interface PostOrPageLight {
   // eslint-disable-next-line camelcase
   published_at: string
   url: string
+  // eslint-disable-next-line camelcase
+  feature_image: string
 }
 
 export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
@@ -80,6 +82,7 @@ export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
     title: post.title || '',
     excerpt: post.custom_excerpt || post.excerpt || '',
     published_at: post.published_at || '',
-    url: post.url || ''
+    url: post.url || '',
+    feature_image: post.feature_image || ''
   }
 }

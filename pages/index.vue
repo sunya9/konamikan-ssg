@@ -24,6 +24,7 @@ import { PostOrPage, PostObject } from '@tryghost/content-api'
 import { Component, Vue } from 'nuxt-property-decorator'
 import PostCard from '~/components/PostCard.vue'
 import AppHeader from '~/components/AppHeader.vue'
+import { reducePostFieldMapper } from '~/util/util'
 
 @Component({
   components: {
@@ -37,7 +38,7 @@ import AppHeader from '~/components/AppHeader.vue'
     } else {
       const posts: PostObject = await $axios.$get('/posts')
       return {
-        posts: posts.posts.slice(0, 9)
+        posts: posts.posts.slice(0, 9).map(reducePostFieldMapper)
       }
     }
   }
