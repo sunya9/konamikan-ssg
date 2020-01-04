@@ -107,13 +107,17 @@ const config: Configuration = {
     workbox: {
       runtimeCaching: [
         {
-          urlPattern:
-            '^https://private-backend.unsweets.net/content/images/(.*)',
+          urlPattern: '^https://images.unsplash.com/(.*)',
           handler: 'cacheFirst'
         },
         {
-          urlPattern: '^https://images.unsplash.com/(.*)',
-          handler: 'cacheFirst'
+          urlPattern: '\\.html$',
+          handler: 'networkFirst',
+          strategyOptions: {
+            cacheExpiration: {
+              maxAgeSeconds: 60 * 60 * 24
+            }
+          }
         }
       ]
     },
