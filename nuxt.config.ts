@@ -125,6 +125,12 @@ const config: Configuration = {
       ogTitle: null,
       ogSiteName: settings.title,
       ogDescription: null
+    },
+    manifest: {
+      name: settings.title,
+      lang: 'ja',
+      short_name: settings.title,
+      description: settings.description
     }
   }
 }
