@@ -112,8 +112,6 @@ export default class extends Vue {
 </script>
 <style scoped lang="scss">
 @import '~bulma/sass/utilities/all';
-@import '~bulma/sass/elements/box';
-@import '~bulma/sass/components/media';
 
 .fix-background {
   background-position: center;
@@ -144,29 +142,25 @@ export default class extends Vue {
   margin: auto;
 }
 /deep/ .kg-bookmark-card {
-  @extend .box;
   font-size: $size-small;
   margin: auto;
-  @include tablet {
+  @include desktop {
     max-width: 80%;
   }
 }
 /deep/ .kg-bookmark-container {
-  @extend .media;
   color: $text;
 }
 /deep/ .kg-bookmark-content {
-  @extend .media-content;
   order: 2;
 }
 /deep/ .kg-bookmark-thumbnail {
-  @extend .media-left;
   order: 1;
   img {
     height: 64px;
     max-width: 100%;
   }
-  @include tablet {
+  @include desktop {
     height: 128px;
   }
 }
@@ -179,7 +173,7 @@ export default class extends Vue {
 }
 /deep/ .kg-bookmark-description {
   display: none;
-  @include tablet {
+  @include desktop {
     display: block;
   }
 }
