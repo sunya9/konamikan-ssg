@@ -83,7 +83,6 @@ const config: Configuration = {
     /*
      ** You can extend webpack config here
      */
-    extractCSS: true
   },
   typescript: {
     ignoreNotFoundWarnings: true
