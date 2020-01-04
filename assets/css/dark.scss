@@ -1,0 +1,23 @@
+@import '~bulma/sass/utilities/initial-variables';
+
+@media (prefers-color-scheme: dark) {
+  $widescreen-enabled: false;
+  $fullhd-enabled: false;
+  $primary: $orange;
+  $link: $orange;
+  $link-hover: $grey-light;
+  $link-hover-border: $grey-darker;
+  $scheme-main: $black-bis;
+  $scheme-main-bis: $black-bis;
+  $scheme-main-ter: $black-ter;
+  $scheme-invert: $white;
+  $scheme-invert-ter: $white-ter;
+  $scheme-invert-bis: $white-bis;
+  $dark: $white-ter;
+  $light: $grey-darker;
+  $background: $black-ter;
+  $text: $grey-light;
+  $text-light: $grey-lighter;
+  $text-strong: $grey-lightest;
+  @import 'bulma';
+}
