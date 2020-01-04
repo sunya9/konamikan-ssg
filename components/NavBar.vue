@@ -10,12 +10,14 @@
         <a
           href="#"
           class="navbar-burger has-text-white"
+          aria-label="Menu"
+          :aria-expanded="collapse"
           :class="{ 'is-active': collapse }"
           @click.prevent="toggle"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
       </div>
       <div
@@ -25,9 +27,9 @@
         <div class="navbar-end">
           <div class="navbar-item" :class="{ 'is-active': activated && text }">
             <div class="control has-icons-right">
-              <label class="is-sr-only" :for="$id('search')">Search</label>
+              <label class="is-sr-only" for="search-form-input">Search</label>
               <input
-                :id="$id('search')"
+                id="search-form-input"
                 v-model="text"
                 type="search"
                 placeholder="Search..."
