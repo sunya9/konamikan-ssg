@@ -7,7 +7,7 @@
   $link: $orange;
   $link-hover: $grey-light;
   $link-hover-border: $grey-darker;
-  $scheme-main: $black-bis;
+  $scheme-main: $black-ter;
   $scheme-main-bis: $black-bis;
   $scheme-main-ter: $black-ter;
   $scheme-invert: $white;
@@ -19,5 +19,6 @@
   $text: $grey-light;
   $text-light: $grey-lighter;
   $text-strong: $grey-lightest;
+  $custom-colors: ("secondary": (rgba(#fff, .6), rgba(#000, .6)));
   @import 'bulma';
 }

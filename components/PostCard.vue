@@ -5,7 +5,7 @@
         <div
           class="image-2by1"
           :class="{
-            'has-background-white-bis no-image has-text-grey': !post.feature_image
+            'has-background-light no-image has-text-secondary': !post.feature_image
           }"
           :aria-labelledby="$id('title')"
           :aria-describedby="$id('description')"
@@ -26,7 +26,7 @@
             {{ post.title }}
           </nuxt-link>
         </h3>
-        <h4 class="subtitle is-6 has-text-black-ter">
+        <h4 class="subtitle is-6 has-text-secondary">
           <small>{{ $dayjs(post.published_at).format('YYYY/MM/DD') }}</small>
         </h4>
         <p :id="$id('description')">

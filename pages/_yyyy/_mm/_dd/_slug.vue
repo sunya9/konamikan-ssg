@@ -148,9 +148,6 @@ export default class extends Vue {
     max-width: 80%;
   }
 }
-/deep/ .kg-bookmark-container {
-  color: $text;
-}
 /deep/ .kg-bookmark-content {
   order: 2;
 }

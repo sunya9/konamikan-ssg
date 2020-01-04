@@ -1,11 +1,14 @@
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+$orange: hsl(14, 100%, 40%);
 @import '~bulma/sass/utilities/initial-variables';
 $primary: $orange;
 $link: $orange;
+$custom-colors: ("secondary": (rgba(#000, .6), rgba(#fff, .6)));
 
 $scheme-main: $white-bis;
 $scheme-main-bis: $white-ter;
+
 @import 'bulma';
 
 .page-enter-active,
