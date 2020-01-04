@@ -83,12 +83,7 @@ const config: Configuration = {
     /*
      ** You can extend webpack config here
      */
-    extractCSS: true,
-    postcss: {
-      plugins: {
-        'css-mqpacker': false
-      }
-    }
+    extractCSS: true
   },
   typescript: {
     ignoreNotFoundWarnings: true
@@ -109,6 +104,11 @@ const config: Configuration = {
   pwa: {
     workbox: {
       runtimeCaching: [
+        {
+          urlPattern:
+            '^https://private-backend.unsweets.net/content/images/(.*)',
+          handler: 'cacheFirst'
+        },
         {
           urlPattern: '^https://images.unsplash.com/(.*)',
           handler: 'cacheFirst'
