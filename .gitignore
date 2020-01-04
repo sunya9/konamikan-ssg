@@ -93,3 +93,4 @@ sw.*
 .data
 static/rss.xml
 static/icon.png
+static/content
