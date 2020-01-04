@@ -33,14 +33,14 @@ export default class PostsGroupedByYear extends Vue {
 @import '~bulma/sass/utilities/all';
 
 .oneline {
-  @include tablet {
+  @include desktop {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
   .excerpt {
     display: none;
-    @include tablet {
+    @include desktop {
       display: inline;
     }
   }
