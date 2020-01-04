@@ -134,7 +134,8 @@ const config: Configuration = {
       name: settings.title,
       lang: 'ja',
       short_name: settings.title,
-      description: settings.description
+      description: settings.description,
+      display: 'browser'
     }
   }
 }
