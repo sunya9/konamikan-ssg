@@ -21,7 +21,7 @@
     </div>
     <div class="card-content">
       <div class="content">
-        <h3 class="title is-5" :id="$id('title')">
+        <h3 :id="$id('title')" class="title is-5">
           <nuxt-link :to="$resolvePostUrl(post)">
             {{ post.title }}
           </nuxt-link>
