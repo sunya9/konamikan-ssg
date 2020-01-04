@@ -9,14 +9,22 @@
         </a>
       </div>
       <div v-if="author.facebook" class="level-item">
-        <a :href="`https://facebook.com/${author.facebook}`" :class="color">
+        <a
+          :href="`https://facebook.com/${author.facebook}`"
+          :class="color"
+          :aria-label="`Facebook account: @${author.facebook}`"
+        >
           <span class="icon" :class="size">
             <facebook-icon />
           </span>
         </a>
       </div>
       <div v-if="author.twitter" class="level-item">
-        <a :href="`https://twitter.com/${author.twitter}`" :class="color">
+        <a
+          :href="`https://twitter.com/${author.twitter}`"
+          :class="color"
+          :aria-label="`Twitter account: @${author.twitter}`"
+        >
           <span class="icon" :class="size">
             <twitter-icon />
           </span>

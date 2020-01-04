@@ -60,7 +60,7 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/ghost', '~/plugins/dayjs'],
+  plugins: ['~/plugins/ghost', '~/plugins/dayjs', '~/plugins/uniqueId'],
   /*
    ** Nuxt.js dev-modules
    */

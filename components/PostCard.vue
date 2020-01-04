@@ -1,7 +1,7 @@
 <template>
   <article class="card">
     <div class="card-image">
-      <nuxt-link :to="$resolvePostUrl(post)">
+      <nuxt-link :to="$resolvePostUrl(post)" :aria-labelledby="$id('title')">
         <div
           class="image-2by1"
           :class="{
@@ -19,7 +19,7 @@
     </div>
     <div class="card-content">
       <div class="content">
-        <h3 class="title is-5">
+        <h3 class="title is-5" :id="$id('title')">
           <nuxt-link :to="$resolvePostUrl(post)">
             {{ post.title }}
           </nuxt-link>

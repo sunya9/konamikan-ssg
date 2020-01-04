@@ -42,7 +42,8 @@
     "nuxt-property-decorator": "2.5.0",
     "sass-loader": "8.0.0",
     "ts-node": "8.5.4",
-    "vue-feather-icons": "5.0.0"
+    "vue-feather-icons": "5.0.0",
+    "vue-unique-id": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "2.0.0",

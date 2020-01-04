@@ -6,14 +6,20 @@
           <div class="level">
             <div class="level-left">
               <div v-if="twitter" class="level-item">
-                <a :href="`https://twitter.com/${twitter}`">
+                <a
+                  :href="`https://twitter.com/${twitter}`"
+                  :aria-label="`Twitter account: @${twitter}`"
+                >
                   <span class="icon">
                     <twitter-icon />
                   </span>
                 </a>
               </div>
               <div v-if="facebook" class="level-item">
-                <a :href="`https://facebook.com/${facebook}`">
+                <a
+                  :href="`https://facebook.com/${facebook}`"
+                  :aria-label="`Facebook account: @${facebook}`"
+                >
                   <span class="icon">
                     <facebook-icon />
                   </span>

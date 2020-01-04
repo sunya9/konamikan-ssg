@@ -25,7 +25,9 @@
         <div class="navbar-end">
           <div class="navbar-item" :class="{ 'is-active': activated && text }">
             <div class="control has-icons-right">
+              <label class="is-sr-only" :for="$id('search')">Search</label>
               <input
+                :id="$id('search')"
                 v-model="text"
                 type="search"
                 placeholder="Search..."
