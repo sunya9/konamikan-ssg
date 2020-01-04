@@ -43,10 +43,8 @@
               </span>
             </div>
             <div
+              v-if="text && activated"
               class="navbar-dropdown is-right is-boxed"
-              :class="{
-                'is-active': text && activated
-              }"
             >
               <template v-if="searchResults.length">
                 <nuxt-link
@@ -216,7 +214,7 @@ export default class NavBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
-@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/all';
 
 .search {
   background-color: rgba(#fff, 0.5);
@@ -237,5 +235,13 @@ export default class NavBar extends Vue {
   position: absolute;
   left: 0;
   right: 0;
+}
+.navbar-menu {
+  background-color: rgba(#fafafa, 0.4);
+  backdrop-filter: blur(4px);
+  @include desktop {
+    background-color: inherit;
+    backdrop-filter: blur(0);
+  }
 }
 </style>
