@@ -38,7 +38,10 @@ const config: Configuration = {
           settings.description || process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'dns-prefetch', href: '//private-backend.unsweets.net' }
+    ]
   },
 
   env: {
