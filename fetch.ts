@@ -218,7 +218,7 @@ async function downloadImages(post: PostObject): Promise<string[]> {
     ) {
       postImages.push(post.feature_image)
     }
-    return images.concat(postImages).concat()
+    return images.concat(postImages)
   }, [])
   const excludeCachedFilesPromise = await Promise.all(
     imageUrlsWithoutDomain.map(excludeCachedFile)
@@ -226,7 +226,10 @@ async function downloadImages(post: PostObject): Promise<string[]> {
   const downloadPromises = imageUrlsWithoutDomain
     .filter((_, index) => excludeCachedFilesPromise[index])
     .map(downloadImage)
-  await Promise.all(downloadPromises)
+  await downloadPromises.reduce<Promise<any>>(async (a, b) => {
+    await a
+    return b
+  }, Promise.resolve())
   return imageUrlsWithoutDomain.map(getCachedFilePath)
 }
 
