@@ -192,10 +192,10 @@ async function downloadImage(urlWithoutDomain: string): Promise<string> {
   } catch (e) {}
   await new Promise<never>((resolve, reject) => {
     const url = `${process.env.URL!}${urlWithoutDomain}`
-    const ws = oldFs.createWriteStream(filePath)
-    const stream = https.get(url, (res) => res.pipe(ws))
-    stream.on('finish', () => resolve())
-    stream.on('error', (err) => reject(err))
+    const ws = oldFs.createWriteStream(filePath, { highWaterMark: 1024 * 1024 })
+    https.get(url, (res) => res.pipe(ws))
+    ws.on('finish', () => resolve())
+    ws.on('error', (err) => reject(err))
   })
   return filePath
 }
