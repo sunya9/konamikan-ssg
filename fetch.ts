@@ -41,13 +41,20 @@ async function request<T>(
   return res.json()
 }
 
-function fixClasses(post: PostOrPage): PostOrPage {
+function fixPostOrPage(post: PostOrPage): PostOrPage {
   if (!post.html) return post
   const $ = cheerio.load(post.html, { decodeEntities: false })
   $('.kg-bookmark-card').addClass('box')
-  $('.kg-bookmark-container').addClass('media')
+  $('.kg-bookmark-container').addClass('media has-text-dark')
   $('.kg-bookmark-content').addClass('media-content')
   $('.kg-bookmark-thumbnail').addClass('media-left')
+  $('iframe,img').each((_, e) => {
+    const newSrc = $(e)
+      .attr('src')
+      ?.replace('http://', '//')
+    if (!newSrc) return
+    $(e).attr('src', newSrc)
+  })
   const html = $.html()
   return {
     ...post,
@@ -58,7 +65,7 @@ function fixClasses(post: PostOrPage): PostOrPage {
 function fixPostObject(postObject: PostObject): PostObject {
   return {
     ...postObject,
-    posts: postObject.posts.map(fixClasses)
+    posts: postObject.posts.map(fixPostOrPage)
   }
 }
 
