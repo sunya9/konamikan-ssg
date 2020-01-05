@@ -100,8 +100,7 @@ const config: Configuration = {
   },
   serverMiddleware: ['~/api/index.ts'],
   axios: {
-    prefix: '/api',
-    proxy: true
+    prefix: '/api'
   },
   pwa: {
     workbox: {
