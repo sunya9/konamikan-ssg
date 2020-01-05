@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import * as oldFs from 'fs'
+import * as URL from 'url'
 import { resolve, basename, dirname } from 'path'
 import * as https from 'https'
 import fetch from 'node-fetch'
@@ -15,7 +16,6 @@ import {
 import cheerio from 'cheerio'
 import * as fse from 'fs-extra'
 import escapeStringRegexp from 'escape-string-regexp'
-import { $resolvePostUrl } from './util/util'
 
 const { NETLIFY_BUILD_BASE } = process.env
 const fs = oldFs.promises
@@ -57,7 +57,7 @@ async function request<T>(
     }, {})
     .join('&')
   const res = await fetch(
-    `${process.env.URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html`
+    `${process.env.API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html`
   )
   return res.json()
 }
@@ -149,7 +149,10 @@ function generateRoutes(items: {
   pages: PagesObject
   authors: AuthorsObject
 }) {
-  const postRoutes = items.posts.posts.map((post) => `${$resolvePostUrl(post)}`)
+  const postRoutes = items.posts.posts.map((post) => {
+    if (!post.url) return ''
+    return new URL.URL(post.url).pathname
+  })
   const tagRoutes = items.tags.tags.map((tag) => `/tag/${tag.slug}`)
   // const pageRoutes = items.pages.pages.map((page) => `/page/${page.slug}`)
   const authorRoutes = items.authors.authors.map(
