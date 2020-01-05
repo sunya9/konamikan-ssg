@@ -10,7 +10,6 @@ import {
   AuthorsObject,
   PagesObject,
   SettingsObject,
-  Setting,
   PostOrPage
 } from '@tryghost/content-api'
 import cheerio from 'cheerio'
@@ -57,7 +56,7 @@ async function request<T>(
     }, {})
     .join('&')
   const res = await fetch(
-    `${process.env.API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html`
+    `${process.env.GHOST_API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html`
   )
   return res.json()
 }
@@ -194,7 +193,7 @@ async function downloadImage(urlWithoutDomain: string): Promise<string> {
     await fs.mkdir(dirPath, { recursive: true })
   } catch (e) {}
   await new Promise<never>((resolve, reject) => {
-    const url = `${process.env.URL!}${urlWithoutDomain}`
+    const url = `${process.env.GHOST_API_URL!}${urlWithoutDomain}`
     const ws = oldFs.createWriteStream(filePath, { highWaterMark: 1024 * 1024 })
     https.get(url, (res) => res.pipe(ws))
     ws.on('finish', () => resolve())
@@ -236,12 +235,12 @@ async function downloadImages(post: PostObject): Promise<string[]> {
   return imageUrlsWithoutDomain.map(getCachedFilePath)
 }
 
-async function downloadStaticFiles(postObject: PostObject, setting: Setting) {
+async function downloadStaticFiles(postObject: PostObject) {
   const staticDir = resolve(__dirname, 'static')
-  const rssUrl = `${process.env.URL!}/rss/`
+  const rssUrl = `${process.env.GHOST_API_URL!}/rss/`
   const rssBody = await fetch(rssUrl).then((res) => res.buffer())
   await fs.writeFile(resolve(staticDir, 'rss.xml'), rssBody)
-  const faviconUrl = setting.icon!
+  const faviconUrl = `${process.env.GHOST_API_URL!}/favicon.png`
   const faviconBody = await fetch(faviconUrl).then((res) => res.buffer())
   await fs.writeFile(resolve(staticDir, 'icon.png'), faviconBody)
   await downloadImages(postObject)
@@ -258,7 +257,7 @@ async function main() {
     pages: res.pages,
     authors: res.authors
   }
-  await downloadStaticFiles(items.posts, res.settings.settings)
+  await downloadStaticFiles(items.posts)
   await generateRoutes(items)
 }
 
