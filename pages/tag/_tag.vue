@@ -4,7 +4,7 @@
       home-button
       :title="tag.name"
       :description="tag.description"
-      :cover="tag.feature_image"
+      :cover="$resolveUrl(tag.feature_image)"
     />
     <main class="section">
       <div class="container">

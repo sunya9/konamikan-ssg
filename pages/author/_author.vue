@@ -4,7 +4,7 @@
       home-button
       :title="author.name"
       :description="author.bio"
-      :cover="author.cover_image"
+      :cover="$resolveUrl(author.cover_image)"
     >
       <div class="container has-text-centered">
         <div class="media">

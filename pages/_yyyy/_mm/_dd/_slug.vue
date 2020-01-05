@@ -4,7 +4,7 @@
       home-button
       :title="post.title"
       :description="post.custom_excerpt"
-      :cover="post.feature_image"
+      :cover="$resolveUrl(post.feature_image)"
     />
     <main class="section">
       <div class="container">

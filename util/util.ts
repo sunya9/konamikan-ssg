@@ -1,7 +1,11 @@
 import { PostOrPage, SocialMedia, Metadata } from '@tryghost/content-api'
 
 export function $resolvePostUrl(post: Pick<PostOrPage, 'url'>) {
-  return post.url?.replace(process.env.URL!, '') || ''
+  return $resolveUrl(post.url)
+}
+
+export function $resolveUrl(url: string | null | undefined): string {
+  return url?.replace(process.env.URL!, '') || ''
 }
 
 export function $createBaseMetadata(metadata: Metadata) {

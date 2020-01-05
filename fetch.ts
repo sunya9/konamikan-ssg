@@ -102,9 +102,6 @@ function fixPostOrPage(post: PostOrPage): PostOrPage {
     if (!newSrc) return
     $(e).attr('src', newSrc)
   })
-  if (post.feature_image && urlPrefixRegExp.test(post.feature_image)) {
-    post.feature_image = post.feature_image?.replace(urlPrefixRegExp, '')
-  }
   const html = $.html()
   return {
     ...post,
@@ -214,12 +211,6 @@ async function downloadImages(post: PostObject): Promise<string[]> {
       })
       .map((_, e) => $(e).attr('src'))
       .get()
-    if (
-      post.feature_image &&
-      absolutePathWithoutDomainRegExp.test(post.feature_image)
-    ) {
-      postImages.push(post.feature_image)
-    }
     return images.concat(postImages)
   }, [])
   const excludeCachedFilesPromise = await Promise.all(
@@ -235,7 +226,46 @@ async function downloadImages(post: PostObject): Promise<string[]> {
   return imageUrlsWithoutDomain.map(getCachedFilePath)
 }
 
-async function downloadStaticFiles(postObject: PostObject) {
+function nonNullableUrl(url: string | null | undefined): url is string {
+  return !!url
+}
+
+async function downloadCovers(
+  postObject: PostObject,
+  authorObject: AuthorsObject,
+  tagObject: TagsObject,
+  settingsObject: SettingsObject
+) {
+  const res: string[] = []
+  const postCoverUrls = postObject.posts
+    .map((post) => post.feature_image)
+    .filter(nonNullableUrl)
+  const authorCoverUrls = authorObject.authors
+    .map((author) => author.cover_image)
+    .filter(nonNullableUrl)
+  const tagCoverUrls = tagObject.tags
+    .map((tag) => tag.feature_image)
+    .filter(nonNullableUrl)
+  if (settingsObject.settings.cover_image) {
+    const coverUrl = settingsObject.settings.cover_image
+    res.push(coverUrl)
+  }
+  res.push(...postCoverUrls, ...authorCoverUrls, ...tagCoverUrls)
+  const promises = res
+    .map((url) => url.replace(urlPrefixRegExp, ''))
+    .filter((urlWithoutDomain) =>
+      absolutePathWithoutDomainRegExp.test(urlWithoutDomain)
+    )
+    .map(downloadImage)
+  await Promise.all(promises)
+}
+
+async function downloadStaticFiles(
+  postObject: PostObject,
+  authorObject: AuthorsObject,
+  tagObject: TagsObject,
+  settingsObject: SettingsObject
+) {
   const staticDir = resolve(__dirname, 'static')
   const rssUrl = `${process.env.GHOST_API_URL!}/rss/`
   const rssBody = await fetch(rssUrl).then((res) => res.buffer())
@@ -244,6 +274,7 @@ async function downloadStaticFiles(postObject: PostObject) {
   const faviconBody = await fetch(faviconUrl).then((res) => res.buffer())
   await fs.writeFile(resolve(staticDir, 'icon.png'), faviconBody)
   await downloadImages(postObject)
+  await downloadCovers(postObject, authorObject, tagObject, settingsObject)
   if (onNetlify) {
     await fse.copy(cacheStaticDir, staticDir, { recursive: true })
   }
@@ -257,7 +288,7 @@ async function main() {
     pages: res.pages,
     authors: res.authors
   }
-  await downloadStaticFiles(items.posts)
+  await downloadStaticFiles(res.posts, res.authors, res.tags, res.settings)
   await generateRoutes(items)
 }
 
