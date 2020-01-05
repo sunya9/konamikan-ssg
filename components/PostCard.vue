@@ -73,7 +73,7 @@ export default Vue.extend({
   bottom: 0;
   margin: auto;
   height: auto;
-  max-width: 100%;
+  width: 100%;
 }
 .no-image::after {
   content: 'No image';
