@@ -9,7 +9,7 @@ const buildModule: Module<never> = function() {
     const app = express()
     app.use('/api', api.handler)
     await new Promise((resolve) => {
-      server = app.listen(3000, (err) => {
+      server = app.listen(0, (err) => {
         if (err) console.error(err)
         resolve()
       })
