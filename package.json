@@ -42,7 +42,7 @@
     "nuxt": "2.11.0",
     "nuxt-payload-extractor": "0.0.14",
     "nuxt-property-decorator": "2.5.0",
-    "sass-loader": "8.0.0",
+    "sass-loader": "8.0.1",
     "ts-node": "8.6.0",
     "vue-feather-icons": "5.0.0",
     "vue-unique-id": "2.0.0"
