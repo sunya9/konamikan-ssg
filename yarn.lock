@@ -1045,10 +1045,10 @@
     consola "^2.11.3"
     defu "^1.0.0"
 
-"@nuxtjs/bulma@1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/bulma/-/bulma-1.2.6.tgz#0885722545e99907e994878b987e5c872eaae6e3"
-  integrity sha512-h/YPxtbo40OkxL/wQnDsh/9Vu6V0RGFu7uaR4NB77Qe4xDUZPZiA7DKTTBGrJ0gXsVZH2xOQadMT3GqyhdM9Ww==
+"@nuxtjs/bulma@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/bulma/-/bulma-1.2.7.tgz#f783f2d23556ebbba0c7d34dfaaf308425c362db"
+  integrity sha512-qu79pGLlgWdhKKOEAYdZ81dk4yguQhWhmlhm0y3mP+9wkNtgqP6DfQ+JHFLVeDoYxKE2KbBvhZgh/7qsrq90Aw==
   dependencies:
     bulma "^0.8.0"
 
