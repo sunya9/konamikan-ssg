@@ -40,7 +40,7 @@
     "node-fetch": "2.6.0",
     "node-sass": "4.13.1",
     "nuxt": "2.11.0",
-    "nuxt-payload-extractor": "0.0.14",
+    "nuxt-payload-extractor": "1.0.0",
     "nuxt-property-decorator": "2.5.1",
     "sass-loader": "8.0.2",
     "ts-node": "8.6.2",
