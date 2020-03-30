@@ -1112,10 +1112,10 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^4.0.0"
 
-"@nuxtjs/amp@0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/amp/-/amp-0.2.3.tgz#d0786a15bf592e9b5e960f1cc30da1b6d6771b85"
-  integrity sha512-eM7Vh9JPJ8OgsGLZOKqTKVjQS5b5XjpOzWwBbGYNbuvNpx9bOV5Qr8jdzIlD6ysTjX7iBL85xvQyzqCn7/a+AQ==
+"@nuxtjs/amp@0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/amp/-/amp-0.2.4.tgz#e6e7b3dc672cf603bac5ff9472fdea25f334da03"
+  integrity sha512-Dnv0Gr74ZAv2B84tMBE46AHOGyLsV9z/BQD3s4BYZ8aG7i4A1bYSg6Iz6rQKNinNxsma+l8y2rC5YxnmeX4bdQ==
   dependencies:
     amphtml-validator "^1.0.30"
     chalk "^3.0.0"
