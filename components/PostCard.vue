@@ -27,7 +27,9 @@
           </nuxt-link>
         </h3>
         <h4 class="subtitle is-6 has-text-secondary">
-          <small>{{ $dayjs(post.published_at).format('YYYY/MM/DD') }}</small>
+          <small v-if="post.published_at">
+            {{ $dayjs(post.published_at).format('YYYY/MM/DD') }}
+          </small>
         </h4>
         <p :id="$id('description')">
           {{ excerpt }}
