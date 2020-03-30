@@ -23,7 +23,7 @@
   "dependencies": {
     "@nuxt/typescript-build": "0.6.1",
     "@nuxt/typescript-runtime": "0.4.0",
-    "@nuxtjs/amp": "0.2.3",
+    "@nuxtjs/amp": "0.2.4",
     "@nuxtjs/axios": "5.9.5",
     "@nuxtjs/bulma": "1.2.7",
     "@nuxtjs/pwa": "3.0.0-beta.20",
