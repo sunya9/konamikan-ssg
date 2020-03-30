@@ -1,29 +1,28 @@
 <template>
-  <header key="header">
-    <div
-      class="hero is-medium fix-background"
-      :style="{
-        'background-image': `url(${cover || defaultCover})`
-      }"
-    >
-      <div class="hero-head">
-        <nav-bar :home-button="homeButton" />
-      </div>
-      <div class="hero-body fix-z-index">
-        <slot>
-          <div class="container has-text-centered">
-            <h1 class="title is-1 has-text-white">
-              {{ title }}
-            </h1>
-            <h2 class="subtitle has-text-white-bis">
-              {{ description }}
-            </h2>
-          </div>
-        </slot>
-      </div>
-      <div v-if="$slots.footer" class="hero-foot">
-        <slot name="footer" />
-      </div>
+  <header
+    key="header"
+    class="hero is-medium fix-background"
+    :style="{
+      'background-image': `url(${cover || defaultCover})`
+    }"
+  >
+    <div class="hero-head">
+      <nav-bar :home-button="homeButton" />
+    </div>
+    <div class="hero-body fix-z-index">
+      <slot>
+        <div class="container has-text-centered">
+          <h1 class="title is-1 has-text-white">
+            {{ title }}
+          </h1>
+          <h2 class="subtitle has-text-white-bis">
+            {{ description }}
+          </h2>
+        </div>
+      </slot>
+    </div>
+    <div v-if="$slots.footer" class="hero-foot fix-z-index">
+      <slot name="footer" />
     </div>
   </header>
 </template>
