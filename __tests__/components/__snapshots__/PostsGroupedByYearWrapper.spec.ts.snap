@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostsGroupedByYearWrapper normal 1`] = `
+<div>
+  <div class="content">
+    <h2 id="#2020"><span>2020</span> <small class="has-text-grey is-size-6">
+        1 posts
+      </small></h2>
+    <ul>
+      <li>
+        <div class="oneline"><a><span class="has-text-grey">
+          04/05
+        </span> <span>title</span> <span class="has-text-grey excerpt">
+          excerpt
+        </span></a></div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

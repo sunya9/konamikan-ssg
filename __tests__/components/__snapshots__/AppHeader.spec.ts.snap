@@ -1,0 +1,847 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppHeader normal 1`] = `
+<header
+  class="hero is-medium fix-background"
+  style="background-image: url(cover.png);"
+>
+  <div
+    class="hero-head"
+  >
+    <nav
+      class="navbar is-transparent"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="navbar-brand"
+        >
+          <!---->
+           
+          <a
+            aria-label="Menu"
+            class="navbar-burger has-text-white"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+         
+        <div
+          class="navbar-menu is-relative"
+        >
+          <div
+            class="navbar-end"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="control has-icons-right"
+              >
+                <label
+                  class="is-sr-only"
+                  for="search-form-input"
+                >
+                  Search
+                </label>
+                 
+                <input
+                  class="input is-small search"
+                  id="search-form-input"
+                  placeholder="Search..."
+                  type="search"
+                />
+                 
+                <span
+                  class="icon is-small is-right"
+                >
+                  <svg
+                    class="feather feather-search"
+                    fill="none"
+                    height="24px"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
+                    <line
+                      x1="21"
+                      x2="16.65"
+                      y1="21"
+                      y2="16.65"
+                    />
+                  </svg>
+                </span>
+              </div>
+               
+              <!---->
+            </div>
+             
+            <a
+              class="navbar-item has-text-white-ter"
+              href="/rss"
+            >
+              <span
+                class="icon"
+              >
+                <svg
+                  class="feather feather-rss"
+                  fill="none"
+                  height="24px"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 11a9 9 0 0 1 9 9"
+                  />
+                  <path
+                    d="M4 4a16 16 0 0 1 16 16"
+                  />
+                  <circle
+                    cx="5"
+                    cy="19"
+                    r="1"
+                  />
+                </svg>
+              </span>
+               
+              <span
+                class="is-sr-only"
+              >
+                RSS
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+   
+  <div
+    class="hero-body fix-z-index"
+  >
+    <div
+      class="container has-text-centered"
+    >
+      <h1
+        class="title is-1 has-text-white"
+      >
+        
+          title
+        
+      </h1>
+       
+      <h2
+        class="subtitle has-text-white-bis"
+      >
+        
+          description
+        
+      </h2>
+    </div>
+  </div>
+   
+  <!---->
+</header>
+`;
+
+exports[`AppHeader override cover 1`] = `
+<header
+  class="hero is-medium fix-background"
+  style="background-image: url(passCoverViaProps.png);"
+>
+  <div
+    class="hero-head"
+  >
+    <nav
+      class="navbar is-transparent"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="navbar-brand"
+        >
+          <!---->
+           
+          <a
+            aria-label="Menu"
+            class="navbar-burger has-text-white"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+         
+        <div
+          class="navbar-menu is-relative"
+        >
+          <div
+            class="navbar-end"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="control has-icons-right"
+              >
+                <label
+                  class="is-sr-only"
+                  for="search-form-input"
+                >
+                  Search
+                </label>
+                 
+                <input
+                  class="input is-small search"
+                  id="search-form-input"
+                  placeholder="Search..."
+                  type="search"
+                />
+                 
+                <span
+                  class="icon is-small is-right"
+                >
+                  <svg
+                    class="feather feather-search"
+                    fill="none"
+                    height="24px"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
+                    <line
+                      x1="21"
+                      x2="16.65"
+                      y1="21"
+                      y2="16.65"
+                    />
+                  </svg>
+                </span>
+              </div>
+               
+              <!---->
+            </div>
+             
+            <a
+              class="navbar-item has-text-white-ter"
+              href="/rss"
+            >
+              <span
+                class="icon"
+              >
+                <svg
+                  class="feather feather-rss"
+                  fill="none"
+                  height="24px"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 11a9 9 0 0 1 9 9"
+                  />
+                  <path
+                    d="M4 4a16 16 0 0 1 16 16"
+                  />
+                  <circle
+                    cx="5"
+                    cy="19"
+                    r="1"
+                  />
+                </svg>
+              </span>
+               
+              <span
+                class="is-sr-only"
+              >
+                RSS
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+   
+  <div
+    class="hero-body fix-z-index"
+  >
+    <div
+      class="container has-text-centered"
+    >
+      <h1
+        class="title is-1 has-text-white"
+      >
+        
+          
+        
+      </h1>
+       
+      <h2
+        class="subtitle has-text-white-bis"
+      >
+        
+          
+        
+      </h2>
+    </div>
+  </div>
+   
+  <!---->
+</header>
+`;
+
+exports[`AppHeader override default slot 1`] = `
+<header
+  class="hero is-medium fix-background"
+  style="background-image: url(cover.png);"
+>
+  <div
+    class="hero-head"
+  >
+    <nav
+      class="navbar is-transparent"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="navbar-brand"
+        >
+          <!---->
+           
+          <a
+            aria-label="Menu"
+            class="navbar-burger has-text-white"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+         
+        <div
+          class="navbar-menu is-relative"
+        >
+          <div
+            class="navbar-end"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="control has-icons-right"
+              >
+                <label
+                  class="is-sr-only"
+                  for="search-form-input"
+                >
+                  Search
+                </label>
+                 
+                <input
+                  class="input is-small search"
+                  id="search-form-input"
+                  placeholder="Search..."
+                  type="search"
+                />
+                 
+                <span
+                  class="icon is-small is-right"
+                >
+                  <svg
+                    class="feather feather-search"
+                    fill="none"
+                    height="24px"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
+                    <line
+                      x1="21"
+                      x2="16.65"
+                      y1="21"
+                      y2="16.65"
+                    />
+                  </svg>
+                </span>
+              </div>
+               
+              <!---->
+            </div>
+             
+            <a
+              class="navbar-item has-text-white-ter"
+              href="/rss"
+            >
+              <span
+                class="icon"
+              >
+                <svg
+                  class="feather feather-rss"
+                  fill="none"
+                  height="24px"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 11a9 9 0 0 1 9 9"
+                  />
+                  <path
+                    d="M4 4a16 16 0 0 1 16 16"
+                  />
+                  <circle
+                    cx="5"
+                    cy="19"
+                    r="1"
+                  />
+                </svg>
+              </span>
+               
+              <span
+                class="is-sr-only"
+              >
+                RSS
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+   
+  <div
+    class="hero-body fix-z-index"
+  >
+    default slot
+  </div>
+   
+  <!---->
+</header>
+`;
+
+exports[`AppHeader put footer slot 1`] = `
+<header
+  class="hero is-medium fix-background"
+  style="background-image: url(cover.png);"
+>
+  <div
+    class="hero-head"
+  >
+    <nav
+      class="navbar is-transparent"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="navbar-brand"
+        >
+          <!---->
+           
+          <a
+            aria-label="Menu"
+            class="navbar-burger has-text-white"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+         
+        <div
+          class="navbar-menu is-relative"
+        >
+          <div
+            class="navbar-end"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="control has-icons-right"
+              >
+                <label
+                  class="is-sr-only"
+                  for="search-form-input"
+                >
+                  Search
+                </label>
+                 
+                <input
+                  class="input is-small search"
+                  id="search-form-input"
+                  placeholder="Search..."
+                  type="search"
+                />
+                 
+                <span
+                  class="icon is-small is-right"
+                >
+                  <svg
+                    class="feather feather-search"
+                    fill="none"
+                    height="24px"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
+                    <line
+                      x1="21"
+                      x2="16.65"
+                      y1="21"
+                      y2="16.65"
+                    />
+                  </svg>
+                </span>
+              </div>
+               
+              <!---->
+            </div>
+             
+            <a
+              class="navbar-item has-text-white-ter"
+              href="/rss"
+            >
+              <span
+                class="icon"
+              >
+                <svg
+                  class="feather feather-rss"
+                  fill="none"
+                  height="24px"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 11a9 9 0 0 1 9 9"
+                  />
+                  <path
+                    d="M4 4a16 16 0 0 1 16 16"
+                  />
+                  <circle
+                    cx="5"
+                    cy="19"
+                    r="1"
+                  />
+                </svg>
+              </span>
+               
+              <span
+                class="is-sr-only"
+              >
+                RSS
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+   
+  <div
+    class="hero-body fix-z-index"
+  >
+    <div
+      class="container has-text-centered"
+    >
+      <h1
+        class="title is-1 has-text-white"
+      >
+        
+          
+        
+      </h1>
+       
+      <h2
+        class="subtitle has-text-white-bis"
+      >
+        
+          
+        
+      </h2>
+    </div>
+  </div>
+   
+  <div
+    class="hero-foot fix-z-index"
+  >
+    footer
+  </div>
+</header>
+`;
+
+exports[`AppHeader with home button 1`] = `
+<header
+  class="hero is-medium fix-background"
+  style="background-image: url(cover.png);"
+>
+  <div
+    class="hero-head"
+  >
+    <nav
+      class="navbar is-transparent"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="navbar-brand"
+        >
+          <div
+            class="navbar-brand"
+          >
+            <a
+              class="navbar-item has-text-white-bis"
+            >
+              
+          title
+        
+            </a>
+          </div>
+           
+          <a
+            aria-label="Menu"
+            class="navbar-burger has-text-white"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+             
+            <span
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+         
+        <div
+          class="navbar-menu is-relative"
+        >
+          <div
+            class="navbar-end"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="control has-icons-right"
+              >
+                <label
+                  class="is-sr-only"
+                  for="search-form-input"
+                >
+                  Search
+                </label>
+                 
+                <input
+                  class="input is-small search"
+                  id="search-form-input"
+                  placeholder="Search..."
+                  type="search"
+                />
+                 
+                <span
+                  class="icon is-small is-right"
+                >
+                  <svg
+                    class="feather feather-search"
+                    fill="none"
+                    height="24px"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
+                    <line
+                      x1="21"
+                      x2="16.65"
+                      y1="21"
+                      y2="16.65"
+                    />
+                  </svg>
+                </span>
+              </div>
+               
+              <!---->
+            </div>
+             
+            <a
+              class="navbar-item has-text-white-ter"
+              href="/rss"
+            >
+              <span
+                class="icon"
+              >
+                <svg
+                  class="feather feather-rss"
+                  fill="none"
+                  height="24px"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 11a9 9 0 0 1 9 9"
+                  />
+                  <path
+                    d="M4 4a16 16 0 0 1 16 16"
+                  />
+                  <circle
+                    cx="5"
+                    cy="19"
+                    r="1"
+                  />
+                </svg>
+              </span>
+               
+              <span
+                class="is-sr-only"
+              >
+                RSS
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+   
+  <div
+    class="hero-body fix-z-index"
+  >
+    <div
+      class="container has-text-centered"
+    >
+      <h1
+        class="title is-1 has-text-white"
+      >
+        
+          
+        
+      </h1>
+       
+      <h2
+        class="subtitle has-text-white-bis"
+      >
+        
+          
+        
+      </h2>
+    </div>
+  </div>
+   
+  <!---->
+</header>
+`;

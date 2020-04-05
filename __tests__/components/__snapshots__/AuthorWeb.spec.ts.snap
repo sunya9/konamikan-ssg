@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthorWeb normal 1`] = `
+<div class="level is-mobile">
+  <div class="level-left">
+    <!---->
+    <!---->
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`AuthorWeb override size 1`] = `
+<div class="level is-mobile">
+  <div class="level-left">
+    <!---->
+    <!---->
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`AuthorWeb override text color 1`] = `
+<div class="level is-mobile">
+  <div class="level-left">
+    <!---->
+    <!---->
+    <!---->
+  </div>
+</div>
+`;

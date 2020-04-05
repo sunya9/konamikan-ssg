@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`author page normal 1`] = `
+<div>
+  <header class="hero is-medium fix-background" style="background-image: url(cover.png);">
+    <div class="hero-head">
+      <nav class="navbar is-transparent">
+        <div class="container">
+          <div class="navbar-brand">
+            <div class="navbar-brand"><a class="navbar-item has-text-white-bis">
+                title
+              </a></div> <a href="#" aria-label="Menu" class="navbar-burger has-text-white"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a>
+          </div>
+          <div class="navbar-menu is-relative">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="control has-icons-right"><label for="search-form-input" class="is-sr-only">Search</label> <input id="search-form-input" type="search" placeholder="Search..." class="input is-small search"> <span class="icon is-small is-right"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span></div>
+                <!---->
+              </div> <a href="/rss" class="navbar-item has-text-white-ter"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></span> <span class="is-sr-only">RSS</span></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="hero-body fix-z-index">
+      <div class="container has-text-centered">
+        <div class="media">
+          <div class="media-left">
+            <div class="image is-128x128"><img src="" width="256" height="256" class="is-rounded"></div>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <h1 class="title is-1 has-text-white">
+                Tester
+              </h1>
+              <!---->
+              <p class="has-text-white-ter">
+
+              </p>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+  </header>
+  <main class="section">
+    <div class="container">
+      <div>
+        <div class="content">
+          <h2 id="#2020"><span>2020</span> <small class="has-text-grey is-size-6">
+              2 posts
+            </small></h2>
+          <ul>
+            <li>
+              <div class="oneline"><a><span class="has-text-grey">
+          04/05
+        </span> <span>title</span> <span class="has-text-grey excerpt">
+          excerpt
+        </span></a></div>
+            </li>
+            <li>
+              <div class="oneline"><a><span class="has-text-grey">
+          04/05
+        </span> <span>title</span> <span class="has-text-grey excerpt">
+          excerpt
+        </span></a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
