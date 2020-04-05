@@ -11,7 +11,8 @@
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "fetch": "ts-node --project tsconfig.node.json -r dotenv/config fetch",
     "indices": "ts-node --project tsconfig.node.json -r dotenv/config indices",
-    "test": "jest"
+    "test": "jest",
+    "test:update": "jest -u"
   },
   "lint-staged": {
     "*.{js,vue,ts}": "eslint"
