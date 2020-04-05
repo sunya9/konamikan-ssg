@@ -9,9 +9,9 @@ const client = algoliasearch(process.env.APP_ID!, process.env.ADMIN_KEY!)
 const index = client.initIndex('private')
 
 async function main() {
-  await index.clearIndex()
+  await index.clearObjects()
   await Promise.all([
-    index.addObjects(
+    index.saveObjects(
       (posts.posts as PostOrPage[]).map((post: PostOrPage) => ({
         name: post.title,
         slug: post.slug,
@@ -21,7 +21,7 @@ async function main() {
         type: 'post'
       }))
     ),
-    index.addObjects(
+    index.saveObjects(
       (tags.tags as Tag[]).map((tag) => ({
         name: tag.name,
         description: tag.description,
@@ -29,7 +29,7 @@ async function main() {
         type: 'tag'
       }))
     ),
-    index.addObjects(
+    index.saveObjects(
       (pages.pages as PostOrPage[]).map((post) => ({
         name: post.title,
         slug: post.slug,
@@ -38,7 +38,7 @@ async function main() {
         type: 'page'
       }))
     ),
-    index.addObjects(
+    index.saveObjects(
       (authors.authors as Author[]).map((author) => ({
         slug: author.slug,
         name: author.name,
