@@ -8,7 +8,7 @@ import pages from './.data/pages.json'
 const client = algoliasearch(process.env.APP_ID!, process.env.ADMIN_KEY!)
 const index = client.initIndex('private')
 
-async function main() {
+async function saveObjects() {
   await index.clearObjects()
   await Promise.all([
     index.saveObjects(
@@ -18,7 +18,8 @@ async function main() {
         excerpt: post.excerpt,
         custom_excerpt: post.custom_excerpt,
         url: post.url,
-        type: 'post'
+        type: 'post',
+        objectID: `post-${post.id}`
       }))
     ),
     index.saveObjects(
@@ -26,16 +27,18 @@ async function main() {
         name: tag.name,
         description: tag.description,
         slug: tag.slug,
-        type: 'tag'
+        type: 'tag',
+        objectID: `tag-${tag.id}`
       }))
     ),
     index.saveObjects(
-      (pages.pages as PostOrPage[]).map((post) => ({
-        name: post.title,
-        slug: post.slug,
-        excerpt: post.excerpt,
-        custom_excerpt: post.custom_excerpt,
-        type: 'page'
+      (pages.pages as PostOrPage[]).map((page) => ({
+        name: page.title,
+        slug: page.slug,
+        excerpt: page.excerpt,
+        custom_excerpt: page.custom_excerpt,
+        type: 'page',
+        objectID: `page-${page.id}`
       }))
     ),
     index.saveObjects(
@@ -47,10 +50,15 @@ async function main() {
         website: author.website,
         twitter: author.twitter,
         facebook: author.facebook,
-        type: 'author'
+        type: 'author',
+        objectID: `author-${author.id}`
       }))
     )
   ])
+}
+
+function main() {
+  saveObjects().catch((e) => console.error(e))
 }
 
 main()
