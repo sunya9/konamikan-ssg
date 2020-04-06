@@ -113,11 +113,9 @@ import debounce from 'lodash/debounce'
 const searchClient = algoliasearch(process.env.APP_ID!, process.env.SEARCH_KEY!)
 
 interface SearchResult {
-  type: string
+  type: 'post' | 'tag' | 'author' | 'page'
   name: string
-  html: string
   slug: string
-  // eslint-disable-next-line camelcase
   url?: string
 }
 
@@ -154,19 +152,11 @@ export default class NavBar extends Vue {
     if (!text) return
     this.processing = true
     try {
-      const res = await searchClient.search([
+      const res = await searchClient.search<SearchResult>([
         { indexName: 'private', query: text, params: {} }
       ])
       const [result] = res.results
-      this.searchResults = result.hits.slice(0, 5).map((hit) => {
-        return {
-          name: hit.name,
-          type: hit.type,
-          html: hit._highlightResult,
-          slug: hit.slug,
-          url: hit.url
-        }
-      })
+      this.searchResults = result.hits.slice(0, 5)
       this.selectedIndex = -1
     } finally {
       this.processing = false
