@@ -25,7 +25,11 @@
         :class="{ 'is-relative': !collapse, 'is-active fix-navbar': collapse }"
       >
         <div class="navbar-end">
-          <div class="navbar-item" :class="{ 'is-active': activated && text }">
+          <div
+            ref="searchForm"
+            class="navbar-item"
+            :class="{ 'is-active': activated && text }"
+          >
             <div class="control has-icons-right">
               <label class="is-sr-only" for="search-form-input">Search</label>
               <input
@@ -35,7 +39,6 @@
                 placeholder="Search..."
                 class="input is-small search"
                 @focus="activate"
-                @blur="deactivate"
                 @input="searchDebounce($event.target.value)"
                 @keydown.down.prevent="down"
                 @keydown.up.prevent="up"
@@ -140,12 +143,31 @@ export default class NavBar extends Vue {
   activated = false
   selectedIndex = -1
   processing = false
+
+  $refs!: {
+    searchForm: Element
+  }
+
   toggle() {
     this.collapse = !this.collapse
   }
 
+  deactivatedIfNeed(e: Event) {
+    e.stopPropagation()
+    if (!this.activated || !(e.target instanceof Element)) return
+    const el = e.target
+    if (this.$refs.searchForm.contains(el)) return
+    this.activated = false
+    this.selectedIndex = -1
+  }
+
   mounted() {
     this.searchDebounce = debounce(this.search, 300)
+    document.addEventListener('click', this.deactivatedIfNeed)
+  }
+
+  beforeDestroy() {
+    document.removeEventListener('click', this.deactivatedIfNeed)
   }
 
   async search(text: string) {
@@ -165,11 +187,6 @@ export default class NavBar extends Vue {
 
   activate() {
     this.activated = true
-  }
-
-  deactivate() {
-    this.activated = false
-    this.selectedIndex = -1
   }
 
   initSelectedIndex() {
