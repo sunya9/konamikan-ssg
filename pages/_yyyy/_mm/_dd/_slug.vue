@@ -38,6 +38,7 @@ import { PostOrPage, PostObject } from '@tryghost/content-api'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
+import 'prismjs/plugins/line-numbers/prism-line-numbers'
 import 'prismjs/components/prism-bash'
 
 @Component({
@@ -82,6 +83,10 @@ export default class extends Vue {
   async mounted() {
     await this.$nextTick()
     Prism.highlightAll()
+    const preEls = this.$el.querySelectorAll('pre[class*="language-"]')
+    Array.from(preEls).forEach((preEl) => {
+      preEl.classList.add('line-numbers')
+    })
     const scripts = this.$refs.content.querySelectorAll('script')
     if (!scripts) return
     Array.from(scripts).forEach((script) => {
@@ -111,6 +116,7 @@ export default class extends Vue {
 </script>
 <style lang="scss">
 @import '~prismjs/themes/prism-tomorrow';
+@import '~prismjs/plugins/line-numbers/prism-line-numbers';
 </style>
 <style scoped lang="scss">
 @import '~bulma/sass/utilities/all';
