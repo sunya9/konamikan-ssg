@@ -4,7 +4,12 @@ $orange: hsl(14, 100%, 40%);
 @import '~bulma/sass/utilities/initial-variables';
 $primary: $orange;
 $link: $orange;
-$custom-colors: ("secondary": (rgba(#000, .6), rgba(#fff, .6)));
+$custom-colors: (
+  'secondary': (
+    rgba(#000, 0.6),
+    rgba(#fff, 0.6)
+  )
+);
 
 $scheme-main: $white-bis;
 $scheme-main-bis: $white-ter;
@@ -19,4 +24,21 @@ $scheme-main-bis: $white-ter;
 .page-enter,
 .page-leave-active {
   opacity: 0;
+}
+
+// https://www.darraghoriordan.com/2019/01/20/bulma-prismjs-in-gatsby-css-conflicts/
+.token.tag,
+.token.content,
+.token.number {
+  display: inline;
+  padding: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  vertical-align: inherit;
+  border-radius: inherit;
+  font-weight: inherit;
+  white-space: inherit;
+  background: inherit;
+  margin: inherit;
 }
