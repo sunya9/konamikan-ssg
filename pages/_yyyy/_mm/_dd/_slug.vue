@@ -82,11 +82,12 @@ export default class extends Vue {
 
   async mounted() {
     await this.$nextTick()
-    Prism.highlightAll()
-    const preEls = this.$el.querySelectorAll('pre[class*="language-"]')
+    const preEls = this.$el.querySelectorAll('pre')
     Array.from(preEls).forEach((preEl) => {
       preEl.classList.add('line-numbers')
     })
+    Prism.highlightAll()
+
     const scripts = this.$refs.content.querySelectorAll('script')
     if (!scripts) return
     Array.from(scripts).forEach((script) => {
