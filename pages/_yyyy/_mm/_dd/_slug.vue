@@ -38,7 +38,6 @@ import { PostOrPage, PostObject } from '@tryghost/content-api'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
-import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/components/prism-bash'
 
 @Component({
@@ -110,6 +109,9 @@ export default class extends Vue {
   }
 }
 </script>
+<style lang="scss">
+@import '~prismjs/themes/prism-tomorrow';
+</style>
 <style scoped lang="scss">
 @import '~bulma/sass/utilities/all';
 
