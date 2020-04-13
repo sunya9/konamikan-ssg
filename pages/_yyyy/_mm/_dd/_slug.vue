@@ -35,8 +35,11 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { ChevronLeftIcon } from 'vue-feather-icons'
 import { PostOrPage, PostObject } from '@tryghost/content-api'
+import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/components/prism-bash'
 
 @Component({
   layout: 'no-header',
@@ -79,6 +82,7 @@ export default class extends Vue {
 
   async mounted() {
     await this.$nextTick()
+    Prism.highlightAll()
     window.scrollTo({
       top: this.$el.offsetTop,
       behavior: 'smooth'
