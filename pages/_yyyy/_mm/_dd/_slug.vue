@@ -83,10 +83,6 @@ export default class extends Vue {
   async mounted() {
     await this.$nextTick()
     Prism.highlightAll()
-    window.scrollTo({
-      top: this.$el.offsetTop,
-      behavior: 'smooth'
-    })
     const scripts = this.$refs.content.querySelectorAll('script')
     if (!scripts) return
     Array.from(scripts).forEach((script) => {
