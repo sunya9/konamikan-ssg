@@ -87,6 +87,13 @@ const config: Configuration = {
     /*
      ** You can extend webpack config here
      */
+    postcss: {
+      plugins: {
+        'extract-color-properties': {
+          excludeProperties: []
+        }
+      }
+    }
   },
   typescript: {
     ignoreNotFoundWarnings: true

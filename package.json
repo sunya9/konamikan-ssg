@@ -38,6 +38,7 @@
     "dotenv": "8.2.0",
     "escape-string-regexp": "2.0.0",
     "express": "4.17.1",
+    "extract-color-properties": "^1.0.3",
     "fs-extra": "8.1.0",
     "lodash": "4.17.15",
     "node-fetch": "2.6.0",
