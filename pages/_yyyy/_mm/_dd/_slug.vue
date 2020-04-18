@@ -238,6 +238,10 @@ export default class extends Vue {
 /deep/ .instagram-media {
   margin: auto !important;
 }
+.content /deep/ figure.kg-card {
+  margin-left: 0;
+  margin-right: 0;
+}
 .vertical-center {
   display: inline-flex;
   align-items: center;
