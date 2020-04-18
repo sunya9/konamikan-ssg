@@ -10,4 +10,5 @@ declare module 'vue-feather-icons' {
   export const TagIcon: Component
   export const FileIcon: Component
   export const RssIcon: Component
+  export const Share2Icon: Component
 }

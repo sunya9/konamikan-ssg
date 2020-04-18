@@ -13,9 +13,9 @@
               v-if="post.published_at"
               class="level-item has-text-centered content"
             >
-              <span class="tag is-rounded is-medium">
-                {{ $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss') }}
-              </span>
+              <span class="tag is-rounded is-medium">{{
+                $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss')
+              }}</span>
             </div>
           </div>
         </div>
@@ -29,15 +29,63 @@
             <div ref="content" v-html="post.html" />
           </div>
           <footer>
-            <div v-if="post.tags && post.tags.length" class="tags">
-              <nuxt-link
-                v-for="tag in post.tags"
-                :key="tag.id"
-                :to="`/tag/${tag.slug}`"
-                class="tag is-primary is-light"
-              >
-                {{ tag.name }}
-              </nuxt-link>
+            <div class="columns is-vcentered is-mobile">
+              <div class="column">
+                <div v-if="post.tags && post.tags.length" class="tags">
+                  <nuxt-link
+                    v-for="tag in post.tags"
+                    :key="tag.id"
+                    :to="`/tag/${tag.slug}`"
+                    class="tag is-primary is-light"
+                  >
+                    {{ tag.name }}
+                  </nuxt-link>
+                </div>
+              </div>
+              <div class="column has-text-right">
+                <div
+                  class="dropdown is-right"
+                  :class="{ 'is-active': shareDropdown }"
+                  @click.stop="toggleShareDropdown"
+                >
+                  <div class="dropdown-trigger">
+                    <button class="share-button">
+                      <div class="icon" aria-haspopup>
+                        <share-2-icon />
+                      </div>
+                    </button>
+                  </div>
+                  <div class="dropdown-menu is-right" role="menu">
+                    <div class="dropdown-content">
+                      <a
+                        :href="twitterShareUrl"
+                        class="dropdown-item"
+                        target="_new"
+                        @click="openAsNewWindow"
+                      >
+                        Twitter
+                      </a>
+                      <a
+                        :href="pnutShareUrl"
+                        class="dropdown-item"
+                        @click="openAsNewWindow"
+                      >
+                        Pnut
+                      </a>
+                      <client-only>
+                        <a
+                          v-if="supportWebShare"
+                          href="#"
+                          class="dropdown-item"
+                          @click.prevent="shareOnNativeApp"
+                        >
+                          Others
+                        </a>
+                      </client-only>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <author-info :author="post.primary_author" />
             <nav aria-label="この記事の前後の記事">
@@ -80,7 +128,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import { ChevronLeftIcon, ChevronRightIcon } from 'vue-feather-icons'
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Share2Icon
+} from 'vue-feather-icons'
 import { PostOrPage, PostObject } from '@tryghost/content-api'
 import mediumZoom from 'medium-zoom'
 import Prism from 'prismjs'
@@ -95,7 +147,8 @@ import 'prismjs/components/prism-bash'
     ChevronLeftIcon,
     ChevronRightIcon,
     AppHeader,
-    AuthorInfo
+    AuthorInfo,
+    Share2Icon
   },
   asyncData({
     $resolvePostUrl,
@@ -106,14 +159,16 @@ import 'prismjs/components/prism-bash'
   }) {
     const { yyyy, mm, dd, slug } = params
     return getPayload(async () => {
-      const posts: PostObject = await $axios.$get(`/posts`)
+      const posts: PostObject = await $axios.$get('/posts')
       const index = posts.posts.findIndex((post) => {
         return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
       })
       const newerPost = posts.posts[index - 1]
       const post = posts.posts[index]
       const olderPost = posts.posts[index + 1]
-      if (!post) return error({ statusCode: 404 })
+      if (!post) {
+        return error({ statusCode: 404 })
+      }
       return {
         post,
         newerPost,
@@ -131,6 +186,53 @@ export default class extends Vue {
   }
 
   $el!: HTMLDivElement
+  shareDropdown = false
+
+  toggleShareDropdown() {
+    this.shareDropdown = !this.shareDropdown
+  }
+
+  get postAbsUrl() {
+    return this.post.url
+  }
+
+  get twitterShareUrl() {
+    return `https://twitter.com/share?text=${this.post.title}&url=${this.postAbsUrl}`
+  }
+
+  get pnutShareUrl() {
+    return `https://beta.pnut.io/intent/post?text=${this.post.title}&url=${this.postAbsUrl}`
+  }
+
+  get supportWebShare() {
+    if (!process.client) {
+      return false
+    }
+    return !!navigator.share
+  }
+
+  async shareOnNativeApp() {
+    if (!this.supportWebShare) return
+    await navigator.share({
+      url: this.postAbsUrl,
+      title: this.post.title,
+      text: this.post.title
+    })
+  }
+
+  openAsNewWindow(e: Event) {
+    e.preventDefault()
+    if (!e.target) {
+      return
+    }
+    const a = e.target as HTMLAnchorElement
+    const url = a.href
+    window.open(
+      url,
+      a.target,
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600'
+    )
+  }
 
   async mounted() {
     await this.$nextTick()
@@ -142,13 +244,26 @@ export default class extends Vue {
     Prism.highlightAll()
 
     const scripts = this.$refs.content.querySelectorAll('script')
-    if (!scripts) return
+    if (!scripts) {
+      return
+    }
     Array.from(scripts).forEach((script) => {
-      if (!script.parentNode) return
+      if (!script.parentNode) {
+        return
+      }
       const node = document.createElement('script')
       node.src = script.src
       script.parentNode.replaceChild(node, script)
     })
+    document.addEventListener('click', this.closeShareDropdown)
+  }
+
+  beforeDestroy() {
+    document.removeEventListener('click', this.closeShareDropdown)
+  }
+
+  closeShareDropdown() {
+    this.shareDropdown = false
   }
 
   head() {
@@ -254,5 +369,13 @@ export default class extends Vue {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+}
+.share-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  outline: 0;
+  padding: 0;
 }
 </style>
