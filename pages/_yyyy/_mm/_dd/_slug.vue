@@ -44,8 +44,7 @@
               </div>
               <div class="column has-text-right">
                 <div
-                  class="dropdown is-right"
-                  :class="{ 'is-active': shareDropdown }"
+                  class="dropdown is-right is-active"
                   @click.stop="toggleShareDropdown"
                 >
                   <div class="dropdown-trigger">
@@ -55,35 +54,45 @@
                       </div>
                     </button>
                   </div>
-                  <div class="dropdown-menu is-right" role="menu">
-                    <div class="dropdown-content">
-                      <a
-                        :href="twitterShareUrl"
-                        class="dropdown-item"
-                        target="_new"
-                        @click="openAsNewWindow"
-                      >
-                        Twitter
-                      </a>
-                      <a
-                        :href="pnutShareUrl"
-                        class="dropdown-item"
-                        @click="openAsNewWindow"
-                      >
-                        Pnut
-                      </a>
-                      <client-only>
+                  <transition
+                    name="share-dropdown-transition"
+                    enter-active-class="animated fast flipInX"
+                    leave-active-class="animated fast flipOutX"
+                  >
+                    <div
+                      v-if="shareDropdown"
+                      class="dropdown-menu is-right"
+                      role="menu"
+                    >
+                      <div class="dropdown-content">
                         <a
-                          v-if="supportWebShare"
-                          href="#"
+                          :href="twitterShareUrl"
                           class="dropdown-item"
-                          @click.prevent="shareOnNativeApp"
+                          target="_new"
+                          @click="openAsNewWindow"
                         >
-                          Others
+                          Twitter
                         </a>
-                      </client-only>
+                        <a
+                          :href="pnutShareUrl"
+                          class="dropdown-item"
+                          @click="openAsNewWindow"
+                        >
+                          Pnut
+                        </a>
+                        <client-only>
+                          <a
+                            v-if="supportWebShare"
+                            href="#"
+                            class="dropdown-item"
+                            @click.prevent="shareOnNativeApp"
+                          >
+                            Others
+                          </a>
+                        </client-only>
+                      </div>
                     </div>
-                  </div>
+                  </transition>
                 </div>
               </div>
             </div>
@@ -215,8 +224,8 @@ export default class extends Vue {
     if (!this.supportWebShare) return
     await navigator.share({
       url: this.postAbsUrl,
-      title: this.post.title,
-      text: this.post.title
+      title: this.post.title!,
+      text: this.post.title!
     })
   }
 
