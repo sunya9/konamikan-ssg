@@ -18,6 +18,7 @@
           <h2 class="subtitle has-text-white-bis">
             {{ description }}
           </h2>
+          <slot name="extra" />
         </div>
       </slot>
     </div>
