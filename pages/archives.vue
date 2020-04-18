@@ -1,6 +1,10 @@
 <template>
   <div>
-    <app-header title="Archives" home-button />
+    <app-header
+      title="Archives"
+      home-button
+      description="過去の記事はこちらから。"
+    />
     <main class="section">
       <div class="container">
         <posts-grouped-by-year-wrapper :posts="posts" />
