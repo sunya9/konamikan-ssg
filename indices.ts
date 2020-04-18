@@ -58,6 +58,7 @@ async function saveObjects() {
 }
 
 function main() {
+  // eslint-disable-next-line no-console
   saveObjects().catch((e) => console.error(e))
 }
 
