@@ -30,6 +30,13 @@ exports[`article page normal 1`] = `
         <h2 class="subtitle has-text-white-bis">
 
         </h2>
+        <div class="container">
+          <div class="level">
+            <div class="level-item has-text-centered content"><span class="tag is-rounded is-medium">
+              2020/04/05 12:34:56
+            </span></div>
+          </div>
+        </div>
       </div>
     </div>
     <!---->

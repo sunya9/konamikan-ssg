@@ -5,7 +5,22 @@
       :title="post.title"
       :description="post.custom_excerpt"
       :cover="$resolveUrl(post.feature_image)"
-    />
+    >
+      <template v-slot:extra>
+        <div class="container">
+          <div class="level">
+            <div
+              v-if="post.published_at"
+              class="level-item has-text-centered content"
+            >
+              <span class="tag is-rounded is-medium">
+                {{ $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss') }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </app-header>
     <main class="section">
       <div class="container">
         <article>
