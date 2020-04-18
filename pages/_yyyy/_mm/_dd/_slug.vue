@@ -285,9 +285,23 @@ export default class extends Vue {
       ...this.$createBaseMetadata(this.post)
     ]
     const extendedMeta = this.$createSocialMediaMeta(this.post)
+    const link: object[] = []
+    if (this.newerPost)
+      link.push({
+        hid: 'prev',
+        rel: 'prev',
+        href: this.$resolvePostUrl(this.newerPost)
+      })
+    if (this.olderPost)
+      link.push({
+        hid: 'next',
+        rel: 'next',
+        href: this.$resolvePostUrl(this.olderPost)
+      })
     return {
       title: this.post.meta_title || this.post.title,
-      meta: [...baseMeta, ...extendedMeta]
+      meta: [...baseMeta, ...extendedMeta],
+      link
     }
   }
 }

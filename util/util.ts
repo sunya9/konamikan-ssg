@@ -1,4 +1,4 @@
-import { PostOrPage, SocialMedia, Metadata } from '@tryghost/content-api'
+import { PostOrPage, Metadata } from '@tryghost/content-api'
 
 export function $resolvePostUrl(post: Pick<PostOrPage, 'url'>) {
   return $resolveUrl(post.url)
@@ -20,52 +20,41 @@ export function $createBaseMetadata(metadata: Metadata) {
   return res
 }
 
-export function $createSocialMediaMeta(socialMedia: SocialMedia) {
+export function $createSocialMediaMeta(post: PostOrPage) {
   const res: object[] = []
-  if (socialMedia.og_description) {
-    res.push({
-      hid: 'og:description',
-      property: 'og:description',
-      content: socialMedia.og_description
-    })
-  }
-  if (socialMedia.og_image) {
-    res.push({
-      hid: 'og:image',
-      property: 'og:image',
-      content: socialMedia.og_image
-    })
-  }
-  if (socialMedia.og_title) {
-    res.push({
-      hid: 'og:title',
-      property: 'og:title',
-      content: socialMedia.og_title
-    })
-  }
-  if (socialMedia.twitter_description) {
-    res.push({
-      hid: 'twitter:description',
-      property: 'twitter:description',
-      content: socialMedia.twitter_description
-    })
-  }
-  if (socialMedia.twitter_image) {
-    res.push({ name: 'twitter:card', content: 'summary_large_image' })
-    res.push({
-      hid: 'twitter:image',
-      property: 'twitter:image',
-      content: socialMedia.twitter_image
-    })
-  }
+  const excerpt = post.custom_excerpt || post.excerpt
+  res.push({
+    hid: 'og:description',
+    property: 'og:description',
+    content: post.og_description || excerpt
+  })
+  res.push({
+    hid: 'twitter:description',
+    property: 'twitter:description',
+    content: post.twitter_description || excerpt
+  })
+  res.push({
+    hid: 'og:image',
+    property: 'og:image',
+    content: post.og_image || post.feature_image
+  })
+  res.push({ name: 'twitter:card', content: 'summary_large_image' })
+  res.push({
+    hid: 'twitter:image',
+    property: 'twitter:image',
+    content: post.twitter_image || post.feature_image
+  })
+  res.push({
+    hid: 'og:title',
+    property: 'og:title',
+    content: post.og_title || post.title
+  })
+  res.push({
+    hid: 'twitter:title',
+    property: 'twitter:title',
+    content: post.twitter_title || post.title
+  })
 
-  if (socialMedia.twitter_title) {
-    res.push({
-      hid: 'twitter:title',
-      property: 'twitter:title',
-      content: socialMedia.twitter_title
-    })
-  }
   return res
 }
 
