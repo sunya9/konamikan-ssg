@@ -15,7 +15,7 @@
           <h1 class="title is-1 has-text-white">
             {{ title }}
           </h1>
-          <h2 class="subtitle has-text-white-bis">
+          <h2 v-if="description" class="subtitle has-text-white-bis">
             {{ description }}
           </h2>
           <slot name="extra" />

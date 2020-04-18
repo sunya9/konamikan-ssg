@@ -327,13 +327,7 @@ exports[`AppHeader override cover 1`] = `
         
       </h1>
        
-      <h2
-        class="subtitle has-text-white-bis"
-      >
-        
-          
-        
-      </h2>
+      <!---->
        
     </div>
   </div>
@@ -650,13 +644,7 @@ exports[`AppHeader put footer slot 1`] = `
         
       </h1>
        
-      <h2
-        class="subtitle has-text-white-bis"
-      >
-        
-          
-        
-      </h2>
+      <!---->
        
     </div>
   </div>
@@ -835,13 +823,7 @@ exports[`AppHeader with home button 1`] = `
         
       </h1>
        
-      <h2
-        class="subtitle has-text-white-bis"
-      >
-        
-          
-        
-      </h2>
+      <!---->
        
     </div>
   </div>
