@@ -50,7 +50,7 @@ exports[`article page normal 1`] = `
           </div>
         </div>
         <footer>
-          <div class="tags"><a class="tag is-rounded is-medium">
+          <div class="tags"><a class="tag is-primary is-light">
               tag
             </a></div>
           <div class="columns">

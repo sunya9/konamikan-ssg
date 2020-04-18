@@ -34,7 +34,7 @@
                 v-for="tag in post.tags"
                 :key="tag.id"
                 :to="`/tag/${tag.slug}`"
-                class="tag is-rounded is-medium"
+                class="tag is-primary is-light"
               >
                 {{ tag.name }}
               </nuxt-link>
