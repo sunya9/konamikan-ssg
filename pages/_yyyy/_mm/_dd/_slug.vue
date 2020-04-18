@@ -40,6 +40,34 @@
               </nuxt-link>
             </div>
             <author-info :author="post.primary_author" />
+            <nav aria-label="この記事の前後の記事">
+              <ul class="columns is-vcentered is-mobile">
+                <li v-if="newerPost" class="column has-text-left">
+                  <nuxt-link
+                    class="vertical-center"
+                    :to="$resolvePostUrl(newerPost)"
+                    aria-label="新しい記事"
+                  >
+                    <span class="icon">
+                      <chevron-left-icon />
+                    </span>
+                    {{ newerPost.title }}
+                  </nuxt-link>
+                </li>
+                <li v-if="olderPost" class="column has-text-right">
+                  <nuxt-link
+                    class="vertical-center"
+                    :to="$resolvePostUrl(olderPost)"
+                    aria-label="古い記事"
+                  >
+                    <span>{{ olderPost.title }}</span>
+                    <span class="icon">
+                      <chevron-right-icon />
+                    </span>
+                  </nuxt-link>
+                </li>
+              </ul>
+            </nav>
           </footer>
         </article>
       </div>
@@ -48,7 +76,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import { ChevronLeftIcon } from 'vue-feather-icons'
+import { ChevronLeftIcon, ChevronRightIcon } from 'vue-feather-icons'
 import { PostOrPage, PostObject } from '@tryghost/content-api'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
@@ -60,6 +88,7 @@ import 'prismjs/components/prism-bash'
   layout: 'no-header',
   components: {
     ChevronLeftIcon,
+    ChevronRightIcon,
     AppHeader,
     AuthorInfo
   },
@@ -73,18 +102,25 @@ import 'prismjs/components/prism-bash'
     const { yyyy, mm, dd, slug } = params
     return getPayload(async () => {
       const posts: PostObject = await $axios.$get(`/posts`)
-      const post = posts.posts.find((post) => {
+      const index = posts.posts.findIndex((post) => {
         return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
       })
+      const newerPost = posts.posts[index - 1]
+      const post = posts.posts[index]
+      const olderPost = posts.posts[index + 1]
       if (!post) return error({ statusCode: 404 })
       return {
-        post
+        post,
+        newerPost,
+        olderPost
       }
     })
   }
 })
 export default class extends Vue {
   post!: PostOrPage
+  newerPost!: PostOrPage
+  olderPost!: PostOrPage
   $refs!: {
     content: HTMLDivElement
   }
@@ -201,5 +237,9 @@ export default class extends Vue {
 }
 /deep/ .instagram-media {
   margin: auto !important;
+}
+.vertical-center {
+  display: inline-flex;
+  align-items: center;
 }
 </style>

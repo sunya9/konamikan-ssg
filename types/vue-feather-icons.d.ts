@@ -3,6 +3,7 @@ declare module 'vue-feather-icons' {
   export const TwitterIcon: Component
   export const FacebookIcon: Component
   export const ChevronLeftIcon: Component
+  export const ChevronRightIcon: Component
   export const SearchIcon: Component
   export const GlobeIcon: Component
   export const UserIcon: Component
