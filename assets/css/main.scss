@@ -2,6 +2,8 @@ $widescreen-enabled: false;
 $fullhd-enabled: false;
 $orange: hsl(14, 100%, 40%);
 @import '~bulma/sass/utilities/initial-variables';
+@import '~animate.css';
+
 $primary: $orange;
 $link: $orange;
 $custom-colors: (
@@ -17,13 +19,17 @@ $scheme-main-bis: $white-ter;
 @import 'bulma';
 
 .page-enter-active,
-.page-leave-active {
+.page-leave-active,
+.layout-enter-active,
+.layout-leave-active {
   transition: opacity 0.2s;
 }
 
 .page-enter,
-.page-leave-active {
-  opacity: 0;
+.page-leave-active,
+.layout-enter,
+.layout-leave-active {
+  opacity: .3;
 }
 
 // https://www.darraghoriordan.com/2019/01/20/bulma-prismjs-in-gatsby-css-conflicts/
@@ -41,4 +47,8 @@ $scheme-main-bis: $white-ter;
   white-space: inherit;
   background: inherit;
   margin: inherit;
+}
+
+.medium-zoom-image {
+  z-index: 100;
 }

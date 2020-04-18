@@ -9,7 +9,11 @@ process.env.APP_ID = 'TEST'
 process.env.SEARCH_KEY = 'TEST'
 
 config.stubs = {
-  'nuxt-link': RouterLinkStub
+  'nuxt-link': RouterLinkStub,
+  ClientOnly: {
+    functional: true,
+    render: (h, context) => h('div', context.data, context.children)
+  }
 }
 
 Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true })

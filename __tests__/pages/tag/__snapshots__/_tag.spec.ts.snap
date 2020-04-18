@@ -27,9 +27,7 @@ exports[`tag page normal 1`] = `
         <h1 class="title is-1 has-text-white">
           tag
         </h1>
-        <h2 class="subtitle has-text-white-bis">
-
-        </h2>
+        <!---->
       </div>
     </div>
     <!---->

@@ -14,5 +14,8 @@ module.exports = {
     'prettier/vue'
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error'
+  }
 }

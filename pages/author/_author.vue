@@ -64,11 +64,8 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     AppHeader,
     AuthorWeb
   },
-  async asyncData({ app: { $axios }, $payloadURL, route, error }) {
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
+  asyncData({ app: { $axios }, getPayload, route, error }) {
+    return getPayload(async () => {
       const [postsWrapper, authorsWrapper] = await Promise.all([
         $axios.$get(`/posts`),
         $axios.$get(`/authors`)
@@ -87,7 +84,7 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
           .map(reducePostFieldMapper),
         author
       }
-    }
+    })
   }
 })
 export default class AuthorPage extends Vue {

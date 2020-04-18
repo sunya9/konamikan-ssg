@@ -13,9 +13,9 @@
               v-if="post.published_at"
               class="level-item has-text-centered content"
             >
-              <span class="tag is-rounded is-medium">
-                {{ $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss') }}
-              </span>
+              <span class="tag is-rounded is-medium">{{
+                $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss')
+              }}</span>
             </div>
           </div>
         </div>
@@ -29,17 +29,106 @@
             <div ref="content" v-html="post.html" />
           </div>
           <footer>
-            <div v-if="post.tags && post.tags.length" class="tags">
-              <nuxt-link
-                v-for="tag in post.tags"
-                :key="tag.id"
-                :to="`/tag/${tag.slug}`"
-                class="tag is-rounded is-medium"
-              >
-                {{ tag.name }}
-              </nuxt-link>
+            <div class="columns is-vcentered is-mobile">
+              <div class="column">
+                <div v-if="post.tags && post.tags.length" class="tags">
+                  <nuxt-link
+                    v-for="tag in post.tags"
+                    :key="tag.id"
+                    :to="`/tag/${tag.slug}`"
+                    class="tag is-primary is-light"
+                  >
+                    {{ tag.name }}
+                  </nuxt-link>
+                </div>
+              </div>
+              <div class="column has-text-right">
+                <div
+                  class="dropdown is-right is-active"
+                  @click.stop="toggleShareDropdown"
+                >
+                  <div class="dropdown-trigger">
+                    <button class="share-button">
+                      <div class="icon" aria-haspopup>
+                        <share-2-icon />
+                      </div>
+                    </button>
+                  </div>
+                  <transition
+                    name="share-dropdown-transition"
+                    enter-active-class="animated fast flipInX"
+                    leave-active-class="animated fast flipOutX"
+                  >
+                    <div
+                      v-if="shareDropdown"
+                      class="dropdown-menu is-right"
+                      role="menu"
+                    >
+                      <div class="dropdown-content">
+                        <a
+                          :href="twitterShareUrl"
+                          class="dropdown-item"
+                          target="_new"
+                          @click="openAsNewWindow"
+                        >
+                          Twitter
+                        </a>
+                        <a
+                          :href="pnutShareUrl"
+                          class="dropdown-item"
+                          @click="openAsNewWindow"
+                        >
+                          Pnut
+                        </a>
+                        <client-only>
+                          <a
+                            v-if="supportWebShare"
+                            href="#"
+                            class="dropdown-item"
+                            @click.prevent="shareOnNativeApp"
+                          >
+                            Others
+                          </a>
+                        </client-only>
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+              </div>
             </div>
             <author-info :author="post.primary_author" />
+            <nav aria-label="この記事の前後の記事">
+              <ul class="columns is-vcentered is-mobile">
+                <li v-if="newerPost" class="column has-text-left">
+                  <nuxt-link
+                    class="is-block"
+                    :to="$resolvePostUrl(newerPost)"
+                    aria-label="新しい記事"
+                  >
+                    <div class="vertical-center">
+                      <span class="icon">
+                        <chevron-left-icon />
+                      </span>
+                      <span>{{ newerPost.title }}</span>
+                    </div>
+                  </nuxt-link>
+                </li>
+                <li v-if="olderPost" class="column has-text-right">
+                  <nuxt-link
+                    class="is-block"
+                    :to="$resolvePostUrl(olderPost)"
+                    aria-label="古い記事"
+                  >
+                    <div class="vertical-center">
+                      <span>{{ olderPost.title }}</span>
+                      <span class="icon">
+                        <chevron-right-icon />
+                      </span>
+                    </div>
+                  </nuxt-link>
+                </li>
+              </ul>
+            </nav>
           </footer>
         </article>
       </div>
@@ -48,8 +137,13 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import { ChevronLeftIcon } from 'vue-feather-icons'
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Share2Icon
+} from 'vue-feather-icons'
 import { PostOrPage, PostObject } from '@tryghost/content-api'
+import mediumZoom from 'medium-zoom'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
@@ -60,43 +154,98 @@ import 'prismjs/components/prism-bash'
   layout: 'no-header',
   components: {
     ChevronLeftIcon,
+    ChevronRightIcon,
     AppHeader,
-    AuthorInfo
+    AuthorInfo,
+    Share2Icon
   },
-  async asyncData({
+  asyncData({
     $resolvePostUrl,
-    $payloadURL,
-    route,
+    getPayload,
     app: { $axios },
     route: { params },
     error
   }) {
     const { yyyy, mm, dd, slug } = params
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
-      const posts: PostObject = await $axios.$get(`/posts`)
-      const post = posts.posts.find((post) => {
+    return getPayload(async () => {
+      const posts: PostObject = await $axios.$get('/posts')
+      const index = posts.posts.findIndex((post) => {
         return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
       })
-      if (!post) return error({ statusCode: 404 })
-      return {
-        post
+      const newerPost = posts.posts[index - 1]
+      const post = posts.posts[index]
+      const olderPost = posts.posts[index + 1]
+      if (!post) {
+        return error({ statusCode: 404 })
       }
-    }
+      return {
+        post,
+        newerPost,
+        olderPost
+      }
+    })
   }
 })
 export default class extends Vue {
   post!: PostOrPage
+  newerPost!: PostOrPage
+  olderPost!: PostOrPage
   $refs!: {
     content: HTMLDivElement
   }
 
   $el!: HTMLDivElement
+  shareDropdown = false
+
+  toggleShareDropdown() {
+    this.shareDropdown = !this.shareDropdown
+  }
+
+  get postAbsUrl() {
+    return this.post.url
+  }
+
+  get twitterShareUrl() {
+    return `https://twitter.com/share?text=${this.post.title}&url=${this.postAbsUrl}`
+  }
+
+  get pnutShareUrl() {
+    return `https://beta.pnut.io/intent/post?text=${this.post.title}&url=${this.postAbsUrl}`
+  }
+
+  get supportWebShare() {
+    if (!process.client) {
+      return false
+    }
+    return !!navigator.share
+  }
+
+  async shareOnNativeApp() {
+    if (!this.supportWebShare) return
+    await navigator.share({
+      url: this.postAbsUrl,
+      title: this.post.title!,
+      text: this.post.title!
+    })
+  }
+
+  openAsNewWindow(e: Event) {
+    e.preventDefault()
+    if (!e.target) {
+      return
+    }
+    const a = e.target as HTMLAnchorElement
+    const url = a.href
+    window.open(
+      url,
+      a.target,
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600'
+    )
+  }
 
   async mounted() {
     await this.$nextTick()
+    mediumZoom('.content img')
     const preEls = this.$el.querySelectorAll('pre')
     Array.from(preEls).forEach((preEl) => {
       preEl.classList.add('line-numbers')
@@ -104,13 +253,26 @@ export default class extends Vue {
     Prism.highlightAll()
 
     const scripts = this.$refs.content.querySelectorAll('script')
-    if (!scripts) return
+    if (!scripts) {
+      return
+    }
     Array.from(scripts).forEach((script) => {
-      if (!script.parentNode) return
+      if (!script.parentNode) {
+        return
+      }
       const node = document.createElement('script')
       node.src = script.src
       script.parentNode.replaceChild(node, script)
     })
+    document.addEventListener('click', this.closeShareDropdown)
+  }
+
+  beforeDestroy() {
+    document.removeEventListener('click', this.closeShareDropdown)
+  }
+
+  closeShareDropdown() {
+    this.shareDropdown = false
   }
 
   head() {
@@ -123,9 +285,23 @@ export default class extends Vue {
       ...this.$createBaseMetadata(this.post)
     ]
     const extendedMeta = this.$createSocialMediaMeta(this.post)
+    const link: object[] = []
+    if (this.newerPost)
+      link.push({
+        hid: 'prev',
+        rel: 'prev',
+        href: this.$resolvePostUrl(this.newerPost)
+      })
+    if (this.olderPost)
+      link.push({
+        hid: 'next',
+        rel: 'next',
+        href: this.$resolvePostUrl(this.olderPost)
+      })
     return {
       title: this.post.meta_title || this.post.title,
-      meta: [...baseMeta, ...extendedMeta]
+      meta: [...baseMeta, ...extendedMeta],
+      link
     }
   }
 }
@@ -202,8 +378,27 @@ export default class extends Vue {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+  max-height: 50vh;
 }
 /deep/ .instagram-media {
   margin: auto !important;
+}
+.content /deep/ figure.kg-card {
+  margin-left: 0;
+  margin-right: 0;
+}
+.vertical-center {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.share-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  outline: 0;
+  padding: 0;
 }
 </style>

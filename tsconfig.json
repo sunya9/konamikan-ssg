@@ -15,8 +15,7 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"]
-    },
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/axios", "jest"]
+    }
   },
   "exclude": ["node_modules"]
 }

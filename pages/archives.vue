@@ -1,6 +1,10 @@
 <template>
   <div>
-    <app-header title="Archives" home-button />
+    <app-header
+      title="Archives"
+      home-button
+      description="過去の記事はこちらから。"
+    />
     <main class="section">
       <div class="container">
         <posts-grouped-by-year-wrapper :posts="posts" />
@@ -20,16 +24,13 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  async asyncData({ app: { $axios }, $payloadURL, route }) {
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
+  asyncData({ getPayload, app: { $axios } }) {
+    return getPayload(async () => {
       const res = await $axios.$get(`/posts`)
       return {
         posts: res.posts.map(reducePostFieldMapper)
       }
-    }
+    })
   }
 })
 export default class Archives extends Vue {
