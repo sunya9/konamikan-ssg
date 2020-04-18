@@ -55,7 +55,7 @@ exports[`article page normal 1`] = `
                 </a></div>
             </div>
             <div class="column has-text-right">
-              <div class="dropdown is-right">
+              <div class="dropdown is-right is-active">
                 <div class="dropdown-trigger"><button class="share-button">
                     <div aria-haspopup="" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2">
                         <circle cx="18" cy="5" r="3"></circle>
@@ -65,17 +65,7 @@ exports[`article page normal 1`] = `
                         <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                       </svg></div>
                   </button></div>
-                <div role="menu" class="dropdown-menu is-right">
-                  <div class="dropdown-content"><a href="https://twitter.com/share?text=title&amp;url=/article" target="_new" class="dropdown-item">
-                      Twitter
-                    </a> <a href="https://beta.pnut.io/intent/post?text=title&amp;url=/article" class="dropdown-item">
-                      Pnut
-                    </a>
-                    <div>
-                      <!---->
-                    </div>
-                  </div>
-                </div>
+                <!---->
               </div>
             </div>
           </div>
