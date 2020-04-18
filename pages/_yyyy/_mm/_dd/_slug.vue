@@ -44,26 +44,30 @@
               <ul class="columns is-vcentered is-mobile">
                 <li v-if="newerPost" class="column has-text-left">
                   <nuxt-link
-                    class="vertical-center"
+                    class="is-block"
                     :to="$resolvePostUrl(newerPost)"
                     aria-label="新しい記事"
                   >
-                    <span class="icon">
-                      <chevron-left-icon />
-                    </span>
-                    {{ newerPost.title }}
+                    <div class="vertical-center">
+                      <span class="icon">
+                        <chevron-left-icon />
+                      </span>
+                      <span>{{ newerPost.title }}</span>
+                    </div>
                   </nuxt-link>
                 </li>
                 <li v-if="olderPost" class="column has-text-right">
                   <nuxt-link
-                    class="vertical-center"
+                    class="is-block"
                     :to="$resolvePostUrl(olderPost)"
                     aria-label="古い記事"
                   >
-                    <span>{{ olderPost.title }}</span>
-                    <span class="icon">
-                      <chevron-right-icon />
-                    </span>
+                    <div class="vertical-center">
+                      <span>{{ olderPost.title }}</span>
+                      <span class="icon">
+                        <chevron-right-icon />
+                      </span>
+                    </div>
                   </nuxt-link>
                 </li>
               </ul>
@@ -78,6 +82,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { ChevronLeftIcon, ChevronRightIcon } from 'vue-feather-icons'
 import { PostOrPage, PostObject } from '@tryghost/content-api'
+import mediumZoom from 'medium-zoom'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
@@ -129,6 +134,7 @@ export default class extends Vue {
 
   async mounted() {
     await this.$nextTick()
+    mediumZoom('.content img')
     const preEls = this.$el.querySelectorAll('pre')
     Array.from(preEls).forEach((preEl) => {
       preEl.classList.add('line-numbers')
@@ -234,6 +240,8 @@ export default class extends Vue {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+  max-height: 50vh;
 }
 /deep/ .instagram-media {
   margin: auto !important;
@@ -245,5 +253,6 @@ export default class extends Vue {
 .vertical-center {
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
 }
 </style>

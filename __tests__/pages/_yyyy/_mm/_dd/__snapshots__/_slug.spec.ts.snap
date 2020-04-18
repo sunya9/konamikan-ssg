@@ -84,10 +84,12 @@ exports[`article page normal 1`] = `
           </div>
           <nav aria-label="この記事の前後の記事">
             <ul class="columns is-vcentered is-mobile">
-              <li class="column has-text-left"><a aria-label="新しい記事" class="vertical-center"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
-                  newerPost
+              <li class="column has-text-left"><a aria-label="新しい記事" class="is-block">
+                  <div class="vertical-center"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></span> <span>newerPost</span></div>
                 </a></li>
-              <li class="column has-text-right"><a aria-label="古い記事" class="vertical-center"><span>olderPost</span> <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span></a></li>
+              <li class="column has-text-right"><a aria-label="古い記事" class="is-block">
+                  <div class="vertical-center"><span>olderPost</span> <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                </a></li>
             </ul>
           </nav>
         </footer>

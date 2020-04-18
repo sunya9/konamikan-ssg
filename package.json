@@ -41,6 +41,7 @@
     "extract-color-properties": "^1.0.3",
     "fs-extra": "8.1.0",
     "lodash": "4.17.15",
+    "medium-zoom": "^1.0.5",
     "node-fetch": "2.6.0",
     "node-sass": "4.13.1",
     "nuxt": "2.11.0",
