@@ -10,6 +10,7 @@ const buildModule: Module<never> = function() {
     app.use('/api', api.handler)
     await new Promise((resolve) => {
       server = app.listen(3000, (err) => {
+        // eslint-disable-next-line no-console
         if (err) console.error(err)
         resolve()
       })

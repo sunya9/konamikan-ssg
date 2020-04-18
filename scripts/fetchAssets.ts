@@ -51,7 +51,9 @@ async function downloadImage(urlWithoutDomain: string): Promise<string> {
   try {
     const dirPath = path.dirname(filePath)
     await fs.mkdir(dirPath, { recursive: true })
-  } catch (e) {}
+  } catch (e) {
+    console.error(e)
+  }
   await new Promise<never>((resolve, reject) => {
     const url = `${process.env.GHOST_API_URL!}${urlWithoutDomain}`
     const ws = oldFs.createWriteStream(filePath, { highWaterMark: 1024 * 1024 })

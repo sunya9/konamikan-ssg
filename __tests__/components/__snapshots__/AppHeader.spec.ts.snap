@@ -163,6 +163,7 @@ exports[`AppHeader normal 1`] = `
           description
         
       </h2>
+       
     </div>
   </div>
    
@@ -333,6 +334,7 @@ exports[`AppHeader override cover 1`] = `
           
         
       </h2>
+       
     </div>
   </div>
    
@@ -655,6 +657,7 @@ exports[`AppHeader put footer slot 1`] = `
           
         
       </h2>
+       
     </div>
   </div>
    
@@ -839,6 +842,7 @@ exports[`AppHeader with home button 1`] = `
           
         
       </h2>
+       
     </div>
   </div>
    
