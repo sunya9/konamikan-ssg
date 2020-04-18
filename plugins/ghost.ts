@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { Setting } from '@tryghost/content-api'
-import { Route } from 'vue-router'
 import { Plugin } from '@nuxt/types'
 import setting from '~/.data/settings.json'
 import {
@@ -34,7 +33,6 @@ declare module 'vue/types/vue' {
 
 declare module '@nuxt/types' {
   interface Context {
-    $payloadURL(route: Route): string
     $resolvePostUrl: typeof $resolvePostUrl
     $resolveUrl: typeof $resolveUrl
   }

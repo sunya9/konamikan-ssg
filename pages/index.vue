@@ -31,16 +31,13 @@ import { reducePostFieldMapper } from '~/util/util'
     PostCard,
     AppHeader
   },
-  async asyncData({ app: { $axios }, $payloadURL, route }) {
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
+  asyncData({ app: { $axios }, getPayload }) {
+    return getPayload(async () => {
       const posts: PostObject = await $axios.$get('/posts')
       return {
         posts: posts.posts.slice(0, 9).map(reducePostFieldMapper)
       }
-    }
+    })
   }
 })
 export default class Index extends Vue {

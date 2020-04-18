@@ -26,11 +26,8 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  async asyncData({ app: { $axios }, $payloadURL, route, error }) {
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
+  asyncData({ app: { $axios }, getPayload, route, error }) {
+    return getPayload(async () => {
       const [postsWrapper, tagsWrapper] = await Promise.all([
         $axios.$get(`/posts`),
         $axios.$get(`/tags`)
@@ -47,7 +44,7 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
           .map(reducePostFieldMapper),
         tag
       }
-    }
+    })
   }
 })
 export default class TagPage extends Vue {

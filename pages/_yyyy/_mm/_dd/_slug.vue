@@ -63,19 +63,15 @@ import 'prismjs/components/prism-bash'
     AppHeader,
     AuthorInfo
   },
-  async asyncData({
+  asyncData({
     $resolvePostUrl,
-    $payloadURL,
-    route,
+    getPayload,
     app: { $axios },
     route: { params },
     error
   }) {
     const { yyyy, mm, dd, slug } = params
-    if (process.static && process.client && $payloadURL) {
-      const res = await $axios.$get($payloadURL(route))
-      return res
-    } else {
+    return getPayload(async () => {
       const posts: PostObject = await $axios.$get(`/posts`)
       const post = posts.posts.find((post) => {
         return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
@@ -84,7 +80,7 @@ import 'prismjs/components/prism-bash'
       return {
         post
       }
-    }
+    })
   }
 })
 export default class extends Vue {
