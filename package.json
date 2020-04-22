@@ -9,8 +9,8 @@
     "pregenerate": "yarn run fetch",
     "generate": "nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "fetch": "ts-node --project tsconfig.node.json -r dotenv/config fetch",
-    "indices": "ts-node --project tsconfig.node.json -r dotenv/config indices",
+    "fetch": "ts-node --project tsconfig.node.json fetch",
+    "indices": "ts-node --project tsconfig.node.json indices",
     "test": "jest",
     "test:update": "jest -u"
   },
@@ -36,7 +36,6 @@
     "cheerio": "1.0.0-rc.3",
     "css-mqpacker": "7.0.0",
     "dayjs": "1.8.23",
-    "dotenv": "8.2.0",
     "escape-string-regexp": "2.0.0",
     "express": "4.17.1",
     "extract-color-properties": "1.0.3",

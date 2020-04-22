@@ -2,11 +2,8 @@ import * as fs from 'fs'
 import { resolve } from 'path'
 import { Author, Setting } from '@tryghost/content-api'
 import { Configuration } from '@nuxt/types'
-import dotenv from 'dotenv'
 import setting from './.data/settings.json'
 import authors from './.data/authors.json'
-
-dotenv.config()
 
 const author: Author = authors.authors[0]
 
