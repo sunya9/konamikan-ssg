@@ -6,7 +6,7 @@ import authors from './.data/authors.json'
 import pages from './.data/pages.json'
 
 const client = algoliasearch(process.env.APP_ID!, process.env.ADMIN_KEY!)
-const index = client.initIndex('private')
+const index = client.initIndex(process.env.ALGOLIA_INDEX || 'private')
 
 async function saveObjects() {
   await index.clearObjects()
