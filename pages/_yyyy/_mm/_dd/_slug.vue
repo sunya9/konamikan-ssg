@@ -222,11 +222,13 @@ export default class extends Vue {
 
   async shareOnNativeApp() {
     if (!this.supportWebShare) return
-    await navigator.share({
-      url: this.postAbsUrl,
-      title: this.post.title!,
-      text: this.post.title!
-    })
+    await navigator
+      .share({
+        url: this.postAbsUrl,
+        title: this.post.title!,
+        text: this.post.title!
+      })
+      .catch(() => {})
   }
 
   openAsNewWindow(e: Event) {
