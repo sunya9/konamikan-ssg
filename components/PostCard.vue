@@ -13,7 +13,7 @@
           <img
             v-if="post.feature_image"
             class="image-2by1-inner"
-            :src="post.feature_image"
+            :src="optimizeImage(post.feature_image)"
             alt=""
           />
         </div>
@@ -41,6 +41,9 @@
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
 import { PostOrPage } from '@tryghost/content-api'
+import { URL } from 'iso-url'
+
+const unsplashUrlRegExp = /^https:\/\/images\.unsplash\.com\//
 
 export default Vue.extend({
   props: {
@@ -52,6 +55,14 @@ export default Vue.extend({
   computed: {
     excerpt(): string {
       return this.post.custom_excerpt || this.post.excerpt || ''
+    }
+  },
+  methods: {
+    optimizeImage(url: string) {
+      if (!unsplashUrlRegExp.test(url)) return url
+      const optimizedUrl = new URL(url)
+      optimizedUrl.searchParams.set('w', '600')
+      return optimizedUrl.toString()
     }
   }
 })
