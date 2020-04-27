@@ -63,7 +63,7 @@
     "@nuxtjs/eslint-module": "1.2.0",
     "@sentry/cli": "1.52.1",
     "@types/algoliasearch": "3.34.10",
-    "@types/cheerio": "0.22.17",
+    "@types/cheerio": "0.22.18",
     "@types/fs-extra": "8.1.0",
     "@types/jest": "25.2.1",
     "@types/lodash": "4.14.150",
