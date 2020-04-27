@@ -40,7 +40,7 @@
     "express": "4.17.1",
     "extract-color-properties": "1.0.3",
     "fs-extra": "8.1.0",
-    "iso-url": "^0.4.7",
+    "iso-url": "0.4.7",
     "lodash": "4.17.15",
     "medium-zoom": "1.0.5",
     "node-fetch": "2.6.0",
