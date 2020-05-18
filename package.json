@@ -64,7 +64,7 @@
     "@sentry/cli": "1.53.0",
     "@types/algoliasearch": "3.34.10",
     "@types/cheerio": "0.22.18",
-    "@types/fs-extra": "8.1.0",
+    "@types/fs-extra": "8.1.1",
     "@types/jest": "25.2.3",
     "@types/lodash": "4.14.150",
     "@types/node-fetch": "2.5.7",
