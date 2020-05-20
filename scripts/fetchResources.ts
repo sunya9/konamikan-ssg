@@ -78,7 +78,10 @@ function addClasses($: CheerioStatic) {
 
 function fixPostOrPage(post: PostOrPage): PostOrPage {
   if (!post.html) return post
-  const $ = cheerio.load(post.html, { decodeEntities: false })
+  const $ = cheerio.load(post.html, {
+    decodeEntities: false,
+    _useHtmlParser2: true
+  })
   addClasses($)
   getTargetImgList($).each((_, e) => {
     const newSrc = $(e)
