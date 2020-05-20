@@ -80,7 +80,8 @@ const config: Configuration = {
     '@nuxtjs/pwa',
     'nuxt-payload-extractor',
     '@nuxtjs/axios',
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Build configuration
@@ -151,6 +152,11 @@ const config: Configuration = {
   sentry: {
     dsn: 'https://7642264ea97649a18dea1c78159a5d21@sentry.io/5180766',
     disabled: process.env.NODE_ENV !== 'production'
+  },
+  sitemap: {
+    hostname: process.env.URL,
+    gzip: true,
+    routes: [...extendRoutes]
   }
 }
 
