@@ -149,6 +149,9 @@ import AppHeader from '~/components/AppHeader.vue'
 import AuthorInfo from '~/components/AuthorInfo.vue'
 import 'prismjs/plugins/line-numbers/prism-line-numbers'
 import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-scss'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-typescript'
 
 @Component({
   layout: 'no-header',
@@ -402,5 +405,11 @@ export default class extends Vue {
   color: inherit;
   outline: 0;
   padding: 0;
+}
+/deep/ pre[class*='language-'] {
+  margin-left: calc((100% - 100vw) / 2);
+  margin-right: calc((100% - 100vw) / 2);
+  padding-left: calc((100vw - 100%) / 2 + 3.8em);
+  padding-right: calc((100vw - 100%) / 2);
 }
 </style>
