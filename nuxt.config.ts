@@ -81,7 +81,8 @@ const config: Configuration = {
     'nuxt-payload-extractor',
     '@nuxtjs/axios',
     '@nuxtjs/sentry',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
   /*
    ** Build configuration
@@ -157,6 +158,10 @@ const config: Configuration = {
     hostname: process.env.URL,
     gzip: true,
     routes: [...extendRoutes]
+  },
+  robots: {
+    UserAgent: '*',
+    Allow: '/'
   }
 }
 
