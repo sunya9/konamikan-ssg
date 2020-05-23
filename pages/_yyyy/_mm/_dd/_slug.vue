@@ -339,60 +339,67 @@ export default class extends Vue {
   position: relative;
   z-index: 2;
 }
-
-/deep/ .kg-image {
-  max-height: 50vh;
-}
-/deep/ .twitter-tweet {
-  margin: auto;
-}
-/deep/ .kg-bookmark-card {
-  font-size: $size-small;
-  margin: auto;
-  @include desktop {
-    max-width: 80%;
+.content {
+  /deep/ .kg-image {
+    max-height: 50vh;
   }
-}
-/deep/ .kg-bookmark-content {
-  order: 2;
-}
-/deep/ .kg-bookmark-thumbnail {
-  order: 1;
-  img {
-    height: 64px;
-    max-width: 100%;
+  /deep/ .twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
   }
-  @include desktop {
-    height: 128px;
+  /deep/ .kg-bookmark-card {
+    font-size: $size-small;
+    margin-left: auto;
+    margin-right: auto;
+    @include desktop {
+      max-width: 80%;
+    }
   }
-}
-/deep/ .kg-bookmark-title {
-  font-size: $size-normal;
-}
-/deep/ .kg-bookmark-publisher,
-/deep/ .kg-bookmark-metadata {
-  display: none;
-}
-/deep/ .kg-bookmark-description {
-  display: none;
-  @include desktop {
+  /deep/ .kg-bookmark-content {
+    order: 2;
+  }
+  /deep/ .kg-bookmark-thumbnail {
+    order: 1;
+    img {
+      height: 64px;
+      max-width: 100%;
+    }
+    @include desktop {
+      height: 128px;
+    }
+  }
+  /deep/ .kg-bookmark-title {
+    font-size: $size-normal;
+  }
+  /deep/ .kg-bookmark-publisher,
+  /deep/ .kg-bookmark-metadata {
+    display: none;
+  }
+  /deep/ .kg-bookmark-description {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+  /deep/ img {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 50vh;
+  }
+  /deep/ .instagram-media {
+    margin: auto !important;
+  }
+  /deep/ iframe {
+    min-width: auto !important;
+  }
+  /deep/ figure {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-/deep/ img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  max-height: 50vh;
-}
-/deep/ .instagram-media {
-  margin: auto !important;
-}
-.content /deep/ figure.kg-card {
-  margin-left: 0;
-  margin-right: 0;
-}
+
 .vertical-center {
   display: inline-flex;
   align-items: center;
