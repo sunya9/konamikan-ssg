@@ -87,7 +87,7 @@
     "jest-serializer-vue": "2.0.2",
     "jsdom": "16.2.2",
     "jsdom-global": "3.0.2",
-    "lint-staged": "10.2.2",
+    "lint-staged": "10.2.11",
     "prettier": "1.19.1",
     "ts-jest": "25.5.1",
     "typescript": "3.8.3",
