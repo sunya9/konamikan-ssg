@@ -12,7 +12,8 @@
     "fetch": "ts-node --project tsconfig.node.json fetch",
     "indices": "ts-node --project tsconfig.node.json indices",
     "test": "jest",
-    "test:update": "jest -u"
+    "test:update": "jest -u",
+    "test:generate-mock": "ts-node --project tsconfig.node.json ./scripts/generateMockData"
   },
   "lint-staged": {
     "*.{js,vue,ts}": "eslint"
