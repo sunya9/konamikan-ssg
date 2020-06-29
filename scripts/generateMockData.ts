@@ -1,6 +1,6 @@
 import * as path from 'path'
 
-import { writeFile } from 'fs-extra'
+import { writeFile, mkdir } from 'fs-extra'
 import { post } from '../__tests__/fixtures/postOrPage'
 import { tag } from '../__tests__/fixtures/tag'
 import { author } from '../__tests__/fixtures/author'
@@ -19,6 +19,7 @@ const files = [
 ]
 
 async function main() {
+  await mkdir(dataDir)
   const promises = files.map((fileInfo) =>
     writeFile(
       path.resolve(dataDir, fileInfo.name),
