@@ -39,3 +39,5 @@ jobs:
         run: yarn test
       - name: Build
         run: yarn test:build
+        env:
+          URL: https://private.unsweets.net
