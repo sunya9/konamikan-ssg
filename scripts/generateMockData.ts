@@ -1,6 +1,6 @@
 import * as path from 'path'
 
-import { writeFile, mkdir } from 'fs-extra'
+import { writeFile, mkdirp } from 'fs-extra'
 import { post } from '../__tests__/fixtures/postOrPage'
 import { tag } from '../__tests__/fixtures/tag'
 import { author } from '../__tests__/fixtures/author'
@@ -14,12 +14,13 @@ const files = [
   { name: 'authors.json', data: { authors: [author] } },
   { name: 'routes.json', data: routes },
   { name: 'posts.json', data: { posts: [post] } },
+  { name: 'pages.json', data: { pages: [post] } },
   { name: 'tags.json', data: { tags: [tag] } },
   { name: 'settings.json', data: { settings: $setting } }
 ]
 
 async function main() {
-  await mkdir(dataDir)
+  await mkdirp(dataDir)
   const promises = files.map((fileInfo) =>
     writeFile(
       path.resolve(dataDir, fileInfo.name),
