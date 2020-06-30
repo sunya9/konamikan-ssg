@@ -4,7 +4,7 @@
     <main class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <div v-for="post in posts" :key="post.uuid" class="column is-4">
+          <div v-for="post in posts" :key="post.id" class="column is-4">
             <post-card :post="post" class="fix-height" />
           </div>
         </div>
@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import { PostOrPage, PostObject } from '@tryghost/content-api'
+import { PostObject } from '@tryghost/content-api'
 import { Component, Vue } from 'nuxt-property-decorator'
 import PostCard from '~/components/PostCard.vue'
 import AppHeader from '~/components/AppHeader.vue'
-import { reducePostFieldMapper } from '~/util/util'
+import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
@@ -39,7 +39,7 @@ import { reducePostFieldMapper } from '~/util/util'
   }
 })
 export default class Index extends Vue {
-  posts!: PostOrPage[]
+  posts!: PostOrPageLight[]
   title = this.$setting.title
   description = this.$setting.description
 
