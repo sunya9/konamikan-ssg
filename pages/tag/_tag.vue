@@ -26,25 +26,23 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  asyncData({ app: { $axios }, getPayload, route, error }) {
-    return getPayload(async () => {
-      const [postsWrapper, tagsWrapper] = await Promise.all([
-        $axios.$get(`/posts`),
-        $axios.$get(`/tags`)
-      ])
-      const posts: PostOrPage[] = postsWrapper.posts
-      const tags: Tag[] = tagsWrapper.tags
-      const tag = tags.find((tag) => tag.slug === route.params.tag)
-      if (!tag) return error({ statusCode: 404 })
-      return {
-        posts: posts
-          .filter((post) =>
-            post.tags?.some((postTag) => postTag.slug === tag.slug)
-          )
-          .map(reducePostFieldMapper),
-        tag
-      }
-    })
+  async asyncData({ app: { $axios }, route, error }) {
+    const [postsWrapper, tagsWrapper] = await Promise.all([
+      $axios.$get(`/posts`),
+      $axios.$get(`/tags`)
+    ])
+    const posts: PostOrPage[] = postsWrapper.posts
+    const tags: Tag[] = tagsWrapper.tags
+    const tag = tags.find((tag) => tag.slug === route.params.tag)
+    if (!tag) return error({ statusCode: 404 })
+    return {
+      posts: posts
+        .filter((post) =>
+          post.tags?.some((postTag) => postTag.slug === tag.slug)
+        )
+        .map(reducePostFieldMapper),
+      tag
+    }
   }
 })
 export default class TagPage extends Vue {

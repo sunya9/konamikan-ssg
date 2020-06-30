@@ -64,27 +64,23 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     AppHeader,
     AuthorWeb
   },
-  asyncData({ app: { $axios }, getPayload, route, error }) {
-    return getPayload(async () => {
-      const [postsWrapper, authorsWrapper] = await Promise.all([
-        $axios.$get(`/posts`),
-        $axios.$get(`/authors`)
-      ])
-      const posts: PostOrPage[] = postsWrapper.posts
-      const authors: Author[] = authorsWrapper.authors
-      const author = authors.find(
-        (author) => author.slug === route.params.author
-      )
-      if (!author) return error({ statusCode: 404 })
-      return {
-        posts: posts
-          .filter((post) =>
-            post.authors?.some((postAuthor) => postAuthor.slug === author.slug)
-          )
-          .map(reducePostFieldMapper),
-        author
-      }
-    })
+  async asyncData({ app: { $axios }, route, error }) {
+    const [postsWrapper, authorsWrapper] = await Promise.all([
+      $axios.$get(`/posts`),
+      $axios.$get(`/authors`)
+    ])
+    const posts: PostOrPage[] = postsWrapper.posts
+    const authors: Author[] = authorsWrapper.authors
+    const author = authors.find((author) => author.slug === route.params.author)
+    if (!author) return error({ statusCode: 404 })
+    return {
+      posts: posts
+        .filter((post) =>
+          post.authors?.some((postAuthor) => postAuthor.slug === author.slug)
+        )
+        .map(reducePostFieldMapper),
+      author
+    }
   }
 })
 export default class AuthorPage extends Vue {

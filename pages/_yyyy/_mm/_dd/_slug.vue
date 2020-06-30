@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="post">
     <app-header
       home-button
       :title="post.title"
@@ -162,31 +162,28 @@ import 'prismjs/components/prism-typescript'
     AuthorInfo,
     Share2Icon
   },
-  asyncData({
+  async asyncData({
     $resolvePostUrl,
-    getPayload,
     app: { $axios },
     route: { params },
     error
   }) {
     const { yyyy, mm, dd, slug } = params
-    return getPayload(async () => {
-      const posts: PostObject = await $axios.$get('/posts')
-      const index = posts.posts.findIndex((post) => {
-        return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
-      })
-      const newerPost = posts.posts[index - 1]
-      const post = posts.posts[index]
-      const olderPost = posts.posts[index + 1]
-      if (!post) {
-        return error({ statusCode: 404 })
-      }
-      return {
-        post,
-        newerPost,
-        olderPost
-      }
+    const posts: PostObject = await $axios.$get('/posts')
+    const index = posts.posts.findIndex((post) => {
+      return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
     })
+    const newerPost = posts.posts[index - 1]
+    const post = posts.posts[index]
+    const olderPost = posts.posts[index + 1]
+    if (!post) {
+      return error({ statusCode: 404 })
+    }
+    return {
+      post,
+      newerPost,
+      olderPost
+    }
   }
 })
 export default class extends Vue {
@@ -251,6 +248,7 @@ export default class extends Vue {
   async mounted() {
     await this.$nextTick()
     mediumZoom('.content img')
+    if (!this.$el) return
     const preEls = this.$el.querySelectorAll('pre')
     Array.from(preEls).forEach((preEl) => {
       preEl.classList.add('line-numbers')

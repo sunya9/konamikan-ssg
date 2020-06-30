@@ -8,6 +8,7 @@
     "dev": "nuxt-ts",
     "pregenerate": "yarn run fetch",
     "generate": "nuxt-ts generate",
+    "export": "nuxt-ts export",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "fetch": "ts-node --project tsconfig.node.json fetch",
     "indices": "ts-node --project tsconfig.node.json indices",

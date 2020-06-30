@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import { resolve } from 'path'
 import { Author, Setting } from '@tryghost/content-api'
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import setting from './.data/settings.json'
 import authors from './.data/authors.json'
 
@@ -16,8 +16,9 @@ const extendRoutesStr = fs.readFileSync(resolve(dataDir, 'routes.json'), {
 })
 const extendRoutes = JSON.parse(extendRoutesStr)
 
-const config: Configuration = {
+const config: NuxtConfig = {
   mode: 'universal',
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -57,12 +58,7 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/ghost',
-    '~/plugins/dayjs',
-    '~/plugins/uniqueId',
-    '~/plugins/getPayload'
-  ],
+  plugins: ['~/plugins/ghost', '~/plugins/dayjs', '~/plugins/uniqueId'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -78,7 +74,7 @@ const config: Configuration = {
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // '@nuxtjs/bulma',
     '@nuxtjs/pwa',
-    'nuxt-payload-extractor',
+    // 'nuxt-payload-extractor',
     '@nuxtjs/axios',
     '@nuxtjs/sentry',
     '@nuxtjs/sitemap',
@@ -110,7 +106,7 @@ const config: Configuration = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active'
   },
-  serverMiddleware: ['~/api/index.ts'],
+  // serverMiddleware: ['~/api/index.ts'],
   axios: {
     prefix: '/api',
     proxy: true
