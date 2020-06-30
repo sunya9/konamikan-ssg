@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post">
+  <div>
     <app-header
       home-button
       :title="post.title"
