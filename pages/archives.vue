@@ -24,13 +24,11 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  asyncData({ getPayload, app: { $axios } }) {
-    return getPayload(async () => {
-      const res = await $axios.$get(`/posts`)
-      return {
-        posts: res.posts.map(reducePostFieldMapper)
-      }
-    })
+  async asyncData({ app: { $axios } }) {
+    const res = await $axios.$get(`/posts`)
+    return {
+      posts: res.posts.map(reducePostFieldMapper)
+    }
   }
 })
 export default class Archives extends Vue {
