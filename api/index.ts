@@ -19,7 +19,6 @@ app.get('/:resource', (req, res) => {
   const { resource } = req.params
   const items = ghost[resource]
   if (!items) return
-  // res.
   res.json(items)
 })
 
