@@ -22,14 +22,14 @@ $scheme-main-bis: $white-ter;
 .page-leave-active,
 .layout-enter-active,
 .layout-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.05s;
 }
 
 .page-enter,
 .page-leave-active,
 .layout-enter,
 .layout-leave-active {
-  opacity: .3;
+  opacity: .5;
 }
 
 // https://www.darraghoriordan.com/2019/01/20/bulma-prismjs-in-gatsby-css-conflicts/
