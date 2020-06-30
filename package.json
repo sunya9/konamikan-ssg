@@ -14,7 +14,7 @@
     "test": "jest",
     "test:update": "jest -u",
     "pretest:build": "ts-node --project tsconfig.node.json ./scripts/generateMockData",
-    "test:build": "nuxt-ts generate"
+    "test:build": "nuxt-ts build"
   },
   "lint-staged": {
     "*.{js,vue,ts}": "eslint"
