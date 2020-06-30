@@ -10315,11 +10315,6 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-payload-extractor@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/nuxt-payload-extractor/-/nuxt-payload-extractor-1.0.0.tgz#50251ad397014ae04b4edf37169ccb41f153f0a6"
-  integrity sha512-OqntZtaWYQ60Sg03b5MewLfn05CodjP0EEPgcEKOc635Lcj/l6njyDoCu5dzCqISf86jFNpThYLjFGvPeuDt5Q==
-
 nuxt-property-decorator@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/nuxt-property-decorator/-/nuxt-property-decorator-2.5.1.tgz#5fd2103993330930930ee78d80c6e67f254734f2"
