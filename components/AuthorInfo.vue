@@ -11,6 +11,7 @@
                   :src="author.profile_image"
                   width="128"
                   height="128"
+                  loading="lazy"
                 />
               </nuxt-link>
             </div>
