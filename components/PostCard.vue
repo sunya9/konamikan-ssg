@@ -15,6 +15,7 @@
             class="image-2by1-inner"
             :src="optimizeImage(post.feature_image)"
             alt=""
+            loading="lazy"
           />
         </div>
       </nuxt-link>
