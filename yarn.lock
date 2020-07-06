@@ -2671,7 +2671,7 @@
     "@types/webpack-dev-middleware" "^3.7.1"
     "@types/webpack-hot-middleware" "^2.25.3"
 
-"@nuxt/types@^2.13.2":
+"@nuxt/types@2.13.2":
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-2.13.2.tgz#dbb917ca01cf0e0153c189e1e9fa0d09be4476e8"
   integrity sha512-NX8vpcVJ7MSUUlpI7Nm950ayuFSSJGOtlFxwH2K7jOGzb1q0AcvKKA2PSjWlVVPhTA+d3+VFNBRdK7q43u7EPA==
@@ -10325,7 +10325,7 @@ nuxt-property-decorator@2.5.1:
     vuex "^3.1.1"
     vuex-class "^0.3.2"
 
-nuxt@^2.13.2:
+nuxt@2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.13.2.tgz#099c079d4b835ba7830c85749557a62189cadbcb"
   integrity sha512-vEO0fglwPgrcJmKMJUdih3vwLMjDETXcVqx+kgK4aVzzykFw6Jvt6r8vDuPnLjE/O2I5DBr1+hfb7dRbowHnBg==
@@ -13601,10 +13601,10 @@ ts-jest@25.5.1:
     semver "6.x"
     yargs-parser "18.x"
 
-ts-loader@^6.2.2:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.2.2.tgz#dffa3879b01a1a1e0a4b85e2b8421dc0dfff1c58"
-  integrity sha512-HDo5kXZCBml3EUPcc7RlZOV/JGlLHwppTLEHb3SHnr5V7NXD4klMEkrhJe5wgRbaWsSXi+Y1SIBN/K9B6zWGWQ==
+ts-loader@7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.5.tgz#789338fb01cb5dc0a33c54e50558b34a73c9c4c5"
+  integrity sha512-zXypEIT6k3oTc+OZNx/cqElrsbBtYqDknf48OZos0NQ3RTt045fBIU8RRSu+suObBzYB355aIPGOe/3kj9h7Ig==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
@@ -13612,10 +13612,10 @@ ts-loader@^6.2.2:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
-ts-loader@^7.0.5:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.5.tgz#789338fb01cb5dc0a33c54e50558b34a73c9c4c5"
-  integrity sha512-zXypEIT6k3oTc+OZNx/cqElrsbBtYqDknf48OZos0NQ3RTt045fBIU8RRSu+suObBzYB355aIPGOe/3kj9h7Ig==
+ts-loader@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.2.2.tgz#dffa3879b01a1a1e0a4b85e2b8421dc0dfff1c58"
+  integrity sha512-HDo5kXZCBml3EUPcc7RlZOV/JGlLHwppTLEHb3SHnr5V7NXD4klMEkrhJe5wgRbaWsSXi+Y1SIBN/K9B6zWGWQ==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
