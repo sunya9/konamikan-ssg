@@ -49,7 +49,7 @@
     "medium-zoom": "1.0.5",
     "node-fetch": "2.6.0",
     "node-sass": "4.13.1",
-    "nuxt": "2.13.2",
+    "nuxt": "2.13.3",
     "nuxt-property-decorator": "2.5.1",
     "prismjs": "1.20.0",
     "sass-loader": "8.0.2",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@babel/core": "7.10.4",
     "@babel/preset-env": "7.10.4",
-    "@nuxt/types": "2.13.2",
+    "@nuxt/types": "2.13.3",
     "@nuxtjs/eslint-config": "2.0.2",
     "@nuxtjs/eslint-config-typescript": "1.0.2",
     "@nuxtjs/eslint-module": "1.2.0",
