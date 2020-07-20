@@ -32,7 +32,7 @@
     "@nuxtjs/bulma": "1.3.0",
     "@nuxtjs/pwa": "3.0.0-beta.20",
     "@nuxtjs/robots": "2.4.2",
-    "@nuxtjs/sentry": "4.0.0",
+    "@nuxtjs/sentry": "4.1.3",
     "@nuxtjs/sitemap": "2.3.0",
     "@tryghost/content-api": "1.3.8",
     "algoliasearch": "4.1.0",
