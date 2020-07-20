@@ -92,7 +92,7 @@
     "prettier": "1.19.1",
     "ts-jest": "25.5.1",
     "ts-loader": "7.0.5",
-    "typescript": "3.9.6",
+    "typescript": "3.9.7",
     "vue-jest": "3.0.6"
   }
 }
