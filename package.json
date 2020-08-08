@@ -51,7 +51,7 @@
     "node-sass": "4.13.1",
     "nuxt": "2.14.0",
     "nuxt-property-decorator": "2.5.1",
-    "prismjs": "1.20.0",
+    "prismjs": "1.21.0",
     "sass-loader": "8.0.2",
     "ts-node": "8.6.2",
     "vue-feather-icons": "5.0.0",
