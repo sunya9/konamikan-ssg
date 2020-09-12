@@ -47,7 +47,7 @@
     "iso-url": "0.4.7",
     "lodash": "4.17.20",
     "medium-zoom": "1.0.6",
-    "node-fetch": "2.6.0",
+    "node-fetch": "2.6.1",
     "node-sass": "4.13.1",
     "nuxt": "2.14.4",
     "nuxt-property-decorator": "2.5.1",
