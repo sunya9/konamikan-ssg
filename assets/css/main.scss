@@ -52,3 +52,10 @@ $scheme-main-bis: $white-ter;
 .medium-zoom-image {
   z-index: 100;
 }
+
+
+.is-text-truncated {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

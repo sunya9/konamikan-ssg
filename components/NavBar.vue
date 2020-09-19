@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-transparent">
+  <nav class="navbar ">
     <div class="container">
       <div class="navbar-brand">
         <div v-if="homeButton" class="navbar-brand">
@@ -38,8 +38,9 @@
                 type="search"
                 placeholder="Search..."
                 class="input is-small search"
+                autocomplete="off"
                 @focus="activate"
-                @input="searchDebounce($event.target.value)"
+                @input="inputQuery"
                 @keydown.down.prevent="down"
                 @keydown.up.prevent="up"
                 @keydown.esc.prevent="$event.target.blur()"
@@ -52,32 +53,48 @@
             <div
               v-if="text && activated"
               class="navbar-dropdown is-right is-boxed"
+              style="max-width: 300px"
             >
-              <template v-if="searchResults.length">
-                <nuxt-link
-                  v-for="(result, index) in searchResults"
-                  :key="index"
-                  :to="createSearchLink(result.item)"
-                  class="navbar-item"
-                  active-class=""
-                  exact-active-class=""
-                  :class="{
-                    'has-background-dark has-text-white':
-                      index === selectedIndex
-                  }"
-                >
-                  <span class="icon is-small">
-                    <user-icon v-if="result.item.type === 'author'" />
-                    <tag-icon v-else-if="result.item.type === 'tag'" />
-                    <file-icon v-else />
-                  </span>
-                  <h6>&nbsp;{{ result.item.title }}</h6>
-                </nuxt-link>
+              <template v-if="searchResults.state === 'fulfilled'">
+                <template v-for="(result, index) in searchResults.data">
+                  <nuxt-link
+                    :key="result.refIndex"
+                    :to="createSearchLink(result.item)"
+                    class="navbar-item"
+                    active-class=""
+                    exact-active-class=""
+                    :class="{
+                      'has-background-dark has-text-white':
+                        index === selectedIndex
+                    }"
+                  >
+                    <div style="overflow: hidden">
+                      <div class="is-flex mb-1">
+                        <span class="icon is-small search-icon">
+                          <user-icon v-if="result.item.type === 'author'" />
+                          <tag-icon v-else-if="result.item.type === 'tag'" />
+                          <file-icon v-else />
+                        </span>
+                        <span class="is-text-truncated">
+                          &nbsp;{{ result.item.title }}
+                        </span>
+                      </div>
+
+                      <matched-text :matches="result.matches" />
+                    </div>
+                  </nuxt-link>
+                  <div
+                    :key="`${result.refIndex}-divider`"
+                    class="dropdown-divider"
+                  />
+                </template>
+                <div v-if="!searchResults.data.length" class="navbar-item">
+                  No hits.
+                </div>
               </template>
-              <div v-else-if="processing" class="navbar-item">
+              <div v-else class="navbar-item">
                 <progress class="progress is-small is-primary" max="100" />
               </div>
-              <div v-else class="navbar-item">No hits.</div>
             </div>
           </div>
           <a href="/rss" class="navbar-item has-text-white-ter">
@@ -103,6 +120,8 @@ import {
 import algoliasearch from 'algoliasearch/lite'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
+import { DebouncedFunc } from 'lodash'
+import MatchedText from './MatchedText'
 import { FuseItem } from '~/entity/fuseItem'
 
 const searchClient = algoliasearch(process.env.APP_ID!, process.env.SEARCH_KEY!)
@@ -114,13 +133,27 @@ interface SearchResult {
   url?: string
 }
 
+type Result =
+  | {
+      state: 'pending'
+    }
+  | {
+      state: 'fulfilled'
+      data: Fuse.FuseResult<FuseItem>[]
+    }
+  | {
+      state: 'reject'
+      error: Error
+    }
+
 @Component({
   components: {
     SearchIcon,
     UserIcon,
     TagIcon,
     FileIcon,
-    RssIcon
+    RssIcon,
+    MatchedText
   }
 })
 export default class NavBar extends Vue {
@@ -130,11 +163,13 @@ export default class NavBar extends Vue {
   collapse = false
   text = ''
   searchClient = searchClient
-  searchDebounce!: Function
-  searchResults: Fuse.FuseResult<FuseItem>[] = []
+  searchDebounce!: DebouncedFunc<NavBar['search']>
+  searchResults: Result = {
+    state: 'pending'
+  }
+
   activated = false
   selectedIndex = -1
-  processing = false
 
   $refs!: {
     searchForm: Element
@@ -154,7 +189,7 @@ export default class NavBar extends Vue {
   }
 
   mounted() {
-    this.searchDebounce = debounce(this.search, 300)
+    this.searchDebounce = debounce(this.search, 500)
     document.addEventListener('click', this.deactivatedIfNeed)
   }
 
@@ -163,8 +198,8 @@ export default class NavBar extends Vue {
   }
 
   async search(text: string) {
-    if (!text) return
-    this.processing = true
+    await this.$nextTick()
+    await new Promise((resolve) => setTimeout(resolve, 500))
     try {
       const result = await this.$axios.$get<Fuse.FuseResult<FuseItem>[]>(
         '/search',
@@ -174,11 +209,27 @@ export default class NavBar extends Vue {
           }
         }
       )
-      this.searchResults = result
+      this.searchResults = {
+        state: 'fulfilled',
+        data: result
+      }
       this.selectedIndex = -1
-    } finally {
-      this.processing = false
+    } catch (e) {
+      this.searchResults = {
+        state: 'reject',
+        error: e
+      }
     }
+  }
+
+  inputQuery(e: Event) {
+    if (!(e.target instanceof HTMLInputElement)) return
+    const text = e.target.value
+    this.searchResults = {
+      state: 'pending'
+    }
+    if (!text) return
+    this.searchDebounce(text)
   }
 
   activate() {
@@ -194,8 +245,9 @@ export default class NavBar extends Vue {
   }
 
   down() {
-    if (this.initSelectedIndex()) return
-    if (this.searchResults.length - 1 === this.selectedIndex) return
+    if (this.initSelectedIndex() || this.searchResults.state !== 'fulfilled')
+      return
+    if (this.searchResults.data.length - 1 === this.selectedIndex) return
     this.selectedIndex++
   }
 
@@ -210,7 +262,8 @@ export default class NavBar extends Vue {
   }
 
   go() {
-    const selectedLink = this.searchResults[this.selectedIndex]
+    if (this.searchResults.state !== 'fulfilled') return
+    const selectedLink = this.searchResults.data[this.selectedIndex]
     if (!selectedLink) return
     this.$router.push(this.createSearchLink(selectedLink.item))
   }
@@ -246,5 +299,13 @@ export default class NavBar extends Vue {
     background-color: inherit;
     backdrop-filter: blur(0);
   }
+}
+.search-icon {
+  width: auto;
+  height: auto;
+  line-height: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
