@@ -47,7 +47,7 @@ async function request<T>(
     }, {})
     .join('&')
   const res = await fetch(
-    `${process.env.GHOST_API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html`
+    `${process.env.GHOST_API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html,plaintext`
   )
   return res.json()
 }
