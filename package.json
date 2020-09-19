@@ -55,6 +55,7 @@
     "prismjs": "1.21.0",
     "sass-loader": "8.0.2",
     "ts-node": "8.6.2",
+    "unicode-substring": "^1.0.0",
     "vue-feather-icons": "5.0.0",
     "vue-unique-id": "3.0.0"
   },
