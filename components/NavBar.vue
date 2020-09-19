@@ -57,7 +57,7 @@
                 <nuxt-link
                   v-for="(result, index) in searchResults"
                   :key="index"
-                  :to="createSearchLink(result)"
+                  :to="createSearchLink(result.item)"
                   class="navbar-item"
                   active-class=""
                   exact-active-class=""
@@ -67,27 +67,17 @@
                   }"
                 >
                   <span class="icon is-small">
-                    <user-icon v-if="result.type === 'author'" />
-                    <tag-icon v-else-if="result.type === 'tag'" />
+                    <user-icon v-if="result.item.type === 'author'" />
+                    <tag-icon v-else-if="result.item.type === 'tag'" />
                     <file-icon v-else />
                   </span>
-                  <span>&nbsp;{{ result.name }}</span>
+                  <h6>&nbsp;{{ result.item.title }}</h6>
                 </nuxt-link>
               </template>
               <div v-else-if="processing" class="navbar-item">
                 <progress class="progress is-small is-primary" max="100" />
               </div>
               <div v-else class="navbar-item">No hits.</div>
-              <hr class="navbar-divider" />
-              <div class="navbar-item has-text-centered">
-                <div style="margin-left: auto">
-                  <img
-                    src="~/assets/images/search-by-algolia-light-background.svg"
-                    alt="search by algolia"
-                    width="120"
-                  />
-                </div>
-              </div>
             </div>
           </div>
           <a href="/rss" class="navbar-item has-text-white-ter">
@@ -112,6 +102,8 @@ import {
 } from 'vue-feather-icons'
 import algoliasearch from 'algoliasearch/lite'
 import debounce from 'lodash/debounce'
+import Fuse from 'fuse.js'
+import { FuseItem } from '~/entity/fuseItem'
 
 const searchClient = algoliasearch(process.env.APP_ID!, process.env.SEARCH_KEY!)
 
@@ -139,7 +131,7 @@ export default class NavBar extends Vue {
   text = ''
   searchClient = searchClient
   searchDebounce!: Function
-  searchResults: SearchResult[] = []
+  searchResults: Fuse.FuseResult<FuseItem>[] = []
   activated = false
   selectedIndex = -1
   processing = false
@@ -174,11 +166,15 @@ export default class NavBar extends Vue {
     if (!text) return
     this.processing = true
     try {
-      const res = await searchClient.search<SearchResult>([
-        { indexName: 'private', query: text, params: {} }
-      ])
-      const [result] = res.results
-      this.searchResults = result.hits.slice(0, 5)
+      const result = await this.$axios.$get<Fuse.FuseResult<FuseItem>[]>(
+        '/search',
+        {
+          params: {
+            q: text
+          }
+        }
+      )
+      this.searchResults = result
       this.selectedIndex = -1
     } finally {
       this.processing = false
@@ -209,18 +205,14 @@ export default class NavBar extends Vue {
     this.selectedIndex--
   }
 
-  createSearchLink(searchResult: SearchResult) {
-    if (searchResult.type === 'post') {
-      return this.$resolvePostUrl(searchResult)
-    } else {
-      return `/${searchResult.type}/${searchResult.slug}`
-    }
+  createSearchLink(searchResult: FuseItem) {
+    return this.$resolvePostUrl(searchResult)
   }
 
   go() {
     const selectedLink = this.searchResults[this.selectedIndex]
     if (!selectedLink) return
-    this.$router.push(this.createSearchLink(selectedLink))
+    this.$router.push(this.createSearchLink(selectedLink.item))
   }
 }
 </script>

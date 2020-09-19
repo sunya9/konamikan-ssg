@@ -105,7 +105,12 @@ const config: NuxtConfig = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active'
   },
-  // serverMiddleware: ['~/api/index.ts'],
+  serverMiddleware: [
+    {
+      path: '/api/search',
+      handler: '~/api/search.ts'
+    }
+  ],
   axios: {
     prefix: '/api',
     proxy: true
