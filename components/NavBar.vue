@@ -117,14 +117,11 @@ import {
   FileIcon,
   RssIcon
 } from 'vue-feather-icons'
-import algoliasearch from 'algoliasearch/lite'
 import debounce from 'lodash/debounce'
 import Fuse from 'fuse.js'
 import { DebouncedFunc } from 'lodash'
 import MatchedText from './MatchedText'
 import { FuseItem } from '~/entity/fuseItem'
-
-const searchClient = algoliasearch(process.env.APP_ID!, process.env.SEARCH_KEY!)
 
 interface SearchResult {
   type: 'post' | 'tag' | 'author' | 'page'
@@ -162,7 +159,6 @@ export default class NavBar extends Vue {
 
   collapse = false
   text = ''
-  searchClient = searchClient
   searchDebounce!: DebouncedFunc<NavBar['search']>
   searchResults: Result = {
     state: 'pending'
