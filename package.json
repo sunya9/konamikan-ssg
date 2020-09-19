@@ -44,6 +44,7 @@
     "express": "4.17.1",
     "extract-color-properties": "1.0.3",
     "fs-extra": "8.1.0",
+    "fuse.js": "^6.4.1",
     "iso-url": "0.4.7",
     "lodash": "4.17.20",
     "medium-zoom": "1.0.6",
