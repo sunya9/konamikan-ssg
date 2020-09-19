@@ -9,7 +9,7 @@ exports[`AppHeader normal 1`] = `
     class="hero-head"
   >
     <nav
-      class="navbar is-transparent"
+      class="navbar "
     >
       <div
         class="container"
@@ -58,6 +58,7 @@ exports[`AppHeader normal 1`] = `
                 </label>
                  
                 <input
+                  autocomplete="off"
                   class="input is-small search"
                   id="search-form-input"
                   placeholder="Search..."
@@ -180,7 +181,7 @@ exports[`AppHeader override cover 1`] = `
     class="hero-head"
   >
     <nav
-      class="navbar is-transparent"
+      class="navbar "
     >
       <div
         class="container"
@@ -229,6 +230,7 @@ exports[`AppHeader override cover 1`] = `
                 </label>
                  
                 <input
+                  autocomplete="off"
                   class="input is-small search"
                   id="search-form-input"
                   placeholder="Search..."
@@ -345,7 +347,7 @@ exports[`AppHeader override default slot 1`] = `
     class="hero-head"
   >
     <nav
-      class="navbar is-transparent"
+      class="navbar "
     >
       <div
         class="container"
@@ -394,6 +396,7 @@ exports[`AppHeader override default slot 1`] = `
                 </label>
                  
                 <input
+                  autocomplete="off"
                   class="input is-small search"
                   id="search-form-input"
                   placeholder="Search..."
@@ -497,7 +500,7 @@ exports[`AppHeader put footer slot 1`] = `
     class="hero-head"
   >
     <nav
-      class="navbar is-transparent"
+      class="navbar "
     >
       <div
         class="container"
@@ -546,6 +549,7 @@ exports[`AppHeader put footer slot 1`] = `
                 </label>
                  
                 <input
+                  autocomplete="off"
                   class="input is-small search"
                   id="search-form-input"
                   placeholder="Search..."
@@ -666,7 +670,7 @@ exports[`AppHeader with home button 1`] = `
     class="hero-head"
   >
     <nav
-      class="navbar is-transparent"
+      class="navbar "
     >
       <div
         class="container"
@@ -725,6 +729,7 @@ exports[`AppHeader with home button 1`] = `
                 </label>
                  
                 <input
+                  autocomplete="off"
                   class="input is-small search"
                   id="search-form-input"
                   placeholder="Search..."
