@@ -2,5 +2,6 @@
   "version": 2,
   "rewrites": [
     { "source": "/rss", "destination": "/rss.xml" }
-  ]
+  ],
+  "trailingSlash": false
 }
