@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavBar normal 1`] = `
-<nav class="navbar ">
+<nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
       <!----> <a href="#" aria-label="Menu" class="navbar-burger has-text-white"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
@@ -18,7 +18,7 @@ exports[`NavBar normal 1`] = `
 `;
 
 exports[`NavBar with home button 1`] = `
-<nav class="navbar ">
+<nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
       <div class="navbar-brand"><a class="navbar-item has-text-white-bis">

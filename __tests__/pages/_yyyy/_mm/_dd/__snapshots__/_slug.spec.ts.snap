@@ -4,7 +4,7 @@ exports[`article page normal 1`] = `
 <div>
   <header class="hero is-medium fix-background" style="background-image: url(cover.png);">
     <div class="hero-head">
-      <nav class="navbar ">
+      <nav class="navbar is-transparent">
         <div class="container">
           <div class="navbar-brand">
             <div class="navbar-brand"><a class="navbar-item has-text-white-bis">

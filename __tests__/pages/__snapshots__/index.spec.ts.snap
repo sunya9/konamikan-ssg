@@ -4,7 +4,7 @@ exports[`index page normal 1`] = `
 <div>
   <header class="hero is-medium fix-background" style="background-image: url(cover.png);">
     <div class="hero-head">
-      <nav class="navbar ">
+      <nav class="navbar is-transparent">
         <div class="container">
           <div class="navbar-brand">
             <!----> <a href="#" aria-label="Menu" class="navbar-burger has-text-white"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
