@@ -16,7 +16,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
-import { PostOrPage, Tag } from '@tryghost/content-api'
+import { PostObject, Tag, TagsObject } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
@@ -26,13 +26,13 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  async asyncData({ app: { $axios }, route, error }) {
+  async asyncData({ $http, route, error }) {
     const [postsWrapper, tagsWrapper] = await Promise.all([
-      $axios.$get(`/posts`),
-      $axios.$get(`/tags`)
+      $http.$get<PostObject>('/resources/posts'),
+      $http.$get<TagsObject>('/resources/tags')
     ])
-    const posts: PostOrPage[] = postsWrapper.posts
-    const tags: Tag[] = tagsWrapper.tags
+    const posts = postsWrapper.posts
+    const tags = tagsWrapper.tags
     const tag = tags.find((tag) => tag.slug === route.params.tag)
     if (!tag) return error({ statusCode: 404 })
     return {

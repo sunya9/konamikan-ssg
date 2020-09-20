@@ -15,6 +15,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
+import { PostObject } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
@@ -24,8 +25,8 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostsGroupedByYearWrapper,
     AppHeader
   },
-  async asyncData({ app: { $axios } }) {
-    const res = await $axios.$get(`/posts`)
+  async asyncData({ $http }) {
+    const res = await $http.$get<PostObject>('/resources/posts')
     return {
       posts: res.posts.map(reducePostFieldMapper)
     }

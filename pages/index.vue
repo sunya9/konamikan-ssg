@@ -31,10 +31,16 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     PostCard,
     AppHeader
   },
-  async asyncData({ app: { $axios } }) {
-    const posts: PostObject = await $axios.$get('/posts')
-    return {
-      posts: posts.posts.slice(0, 9).map(reducePostFieldMapper)
+  async asyncData({ $http, error }) {
+    try {
+      const posts = await $http.$get<PostObject>('/resources/posts')
+      return {
+        posts: posts.posts.slice(0, 9).map(reducePostFieldMapper)
+      }
+    } catch (e) {
+      error({
+        message: e.message
+      })
     }
   }
 })

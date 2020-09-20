@@ -162,14 +162,9 @@ import 'prismjs/components/prism-typescript'
     AuthorInfo,
     Share2Icon
   },
-  async asyncData({
-    $resolvePostUrl,
-    app: { $axios },
-    route: { params },
-    error
-  }) {
+  async asyncData({ $resolvePostUrl, $http, route: { params }, error }) {
     const { yyyy, mm, dd, slug } = params
-    const posts: PostObject = await $axios.$get('/posts')
+    const posts = await $http.$get<PostObject>('/resources/posts')
     const index = posts.posts.findIndex((post) => {
       return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
     })
