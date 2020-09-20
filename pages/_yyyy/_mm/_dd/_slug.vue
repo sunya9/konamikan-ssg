@@ -29,70 +29,74 @@
             <div ref="content" v-html="post.html" />
           </div>
           <footer>
-            <div class="columns is-vcentered is-mobile">
-              <div class="column">
-                <div v-if="post.tags && post.tags.length" class="tags">
-                  <nuxt-link
-                    v-for="tag in post.tags"
-                    :key="tag.id"
-                    :to="`/tag/${tag.slug}`"
-                    class="tag is-primary is-light"
-                  >
-                    {{ tag.name }}
-                  </nuxt-link>
+            <div class="level is-mobile">
+              <div class="level-left">
+                <div class="level-item">
+                  <div v-if="post.tags && post.tags.length" class="tags">
+                    <nuxt-link
+                      v-for="tag in post.tags"
+                      :key="tag.id"
+                      :to="`/tag/${tag.slug}`"
+                      class="tag is-primary is-light"
+                    >
+                      {{ tag.name }}
+                    </nuxt-link>
+                  </div>
                 </div>
               </div>
-              <div class="column has-text-right">
-                <div
-                  class="dropdown is-right is-active"
-                  @click.stop="toggleShareDropdown"
-                >
-                  <div class="dropdown-trigger">
-                    <button class="share-button">
-                      <div class="icon" aria-haspopup>
-                        <share-2-icon />
-                      </div>
-                    </button>
-                  </div>
-                  <transition
-                    name="share-dropdown-transition"
-                    enter-active-class="animated fast flipInX"
-                    leave-active-class="animated fast flipOutX"
+              <div class="level-right">
+                <div class="level-item">
+                  <div
+                    class="dropdown is-right is-active"
+                    @click.stop="toggleShareDropdown"
                   >
-                    <div
-                      v-if="shareDropdown"
-                      class="dropdown-menu is-right"
-                      role="menu"
-                    >
-                      <div class="dropdown-content">
-                        <a
-                          :href="twitterShareUrl"
-                          class="dropdown-item"
-                          target="_new"
-                          @click="openAsNewWindow"
-                        >
-                          Twitter
-                        </a>
-                        <a
-                          :href="pnutShareUrl"
-                          class="dropdown-item"
-                          @click="openAsNewWindow"
-                        >
-                          Pnut
-                        </a>
-                        <client-only>
-                          <a
-                            v-if="supportWebShare"
-                            href="#"
-                            class="dropdown-item"
-                            @click.prevent="shareOnNativeApp"
-                          >
-                            Others
-                          </a>
-                        </client-only>
-                      </div>
+                    <div class="dropdown-trigger">
+                      <button class="share-button">
+                        <div class="icon" aria-haspopup>
+                          <share-2-icon />
+                        </div>
+                      </button>
                     </div>
-                  </transition>
+                    <transition
+                      name="share-dropdown-transition"
+                      enter-active-class="animated fast flipInX"
+                      leave-active-class="animated fast flipOutX"
+                    >
+                      <div
+                        v-if="shareDropdown"
+                        class="dropdown-menu is-right"
+                        role="menu"
+                      >
+                        <div class="dropdown-content">
+                          <a
+                            :href="twitterShareUrl"
+                            class="dropdown-item"
+                            target="_new"
+                            @click="openAsNewWindow"
+                          >
+                            Twitter
+                          </a>
+                          <a
+                            :href="pnutShareUrl"
+                            class="dropdown-item"
+                            @click="openAsNewWindow"
+                          >
+                            Pnut
+                          </a>
+                          <client-only>
+                            <a
+                              v-if="supportWebShare"
+                              href="#"
+                              class="dropdown-item"
+                              @click.prevent="shareOnNativeApp"
+                            >
+                              Others
+                            </a>
+                          </client-only>
+                        </div>
+                      </div>
+                    </transition>
+                  </div>
                 </div>
               </div>
             </div>
