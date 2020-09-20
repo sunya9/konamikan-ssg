@@ -17,7 +17,7 @@ const extendRoutesStr = fs.readFileSync(resolve(dataDir, 'routes.json'), {
 const extendRoutes = JSON.parse(extendRoutesStr)
 
 const config: NuxtConfig = {
-  mode: 'universal',
+  ssr: true,
   target: 'static',
   /*
    ** Headers of the page
