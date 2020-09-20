@@ -1,14 +1,16 @@
 import * as http from 'http'
 import { Module } from '@nuxt/types'
 import express from 'express'
-import api from '../api'
+import api from '../api/resources/[resource]'
 
 const buildModule: Module<never> = function() {
   if (!this.nuxt.options.dev) {
     let server: http.Server
     this.nuxt.hook('export:before', async () => {
       const app = express()
-      app.use('/api', api.handler)
+      const router = express.Router()
+      router.get('/api/resources/:resource', api)
+      app.use('/', router)
       await new Promise((resolve) => {
         server = app.listen(3000, (err) => {
           // eslint-disable-next-line no-console
@@ -18,9 +20,6 @@ const buildModule: Module<never> = function() {
       })
     })
     this.nuxt.hook('generate:done', () => server?.close())
-  } else {
-    // add server middleware dynamically because contents of ../api is overwritten when set in nuxt.config.ts directly
-    this.addServerMiddleware('~/api/index.ts')
   }
 }
 
