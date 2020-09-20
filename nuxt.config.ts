@@ -97,7 +97,8 @@ const config: NuxtConfig = {
   },
   generate: {
     routes: () => [...extendRoutes],
-    fallback: true
+    fallback: true,
+    crawler: false
   },
   router: {
     linkActiveClass: 'is-active',
