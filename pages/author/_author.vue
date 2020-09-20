@@ -53,7 +53,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
-import { PostOrPage, Author } from '@tryghost/content-api'
+import { Author, AuthorsObject, PostObject } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorWeb from '~/components/AuthorWeb.vue'
@@ -65,13 +65,13 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     AppHeader,
     AuthorWeb
   },
-  async asyncData({ app: { $axios }, route, error }) {
+  async asyncData({ $http, route, error }) {
     const [postsWrapper, authorsWrapper] = await Promise.all([
-      $axios.$get(`/posts`),
-      $axios.$get(`/authors`)
+      $http.$get<PostObject>('/resources/posts'),
+      $http.$get<AuthorsObject>('/resources/authors')
     ])
-    const posts: PostOrPage[] = postsWrapper.posts
-    const authors: Author[] = authorsWrapper.authors
+    const posts = postsWrapper.posts
+    const authors = authorsWrapper.authors
     const author = authors.find((author) => author.slug === route.params.author)
     if (!author) return error({ statusCode: 404 })
     return {

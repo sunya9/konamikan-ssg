@@ -18,8 +18,8 @@
     },
     "types": [
       "@nuxt/types",
-      "@nuxtjs/axios",
-      "jest"
+      "jest",
+      "@nuxt/http"
     ]
   },
   "exclude": ["node_modules"]

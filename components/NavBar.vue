@@ -197,10 +197,10 @@ export default class NavBar extends Vue {
     await this.$nextTick()
     await new Promise((resolve) => setTimeout(resolve, 500))
     try {
-      const result = await this.$axios.$get<Fuse.FuseResult<FuseItem>[]>(
+      const result = await this.$http.$get<Fuse.FuseResult<FuseItem>[]>(
         '/search',
         {
-          params: {
+          searchParams: {
             q: text
           }
         }
