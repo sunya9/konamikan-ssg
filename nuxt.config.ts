@@ -43,9 +43,7 @@ const config: NuxtConfig = {
   },
 
   env: {
-    URL: process.env.URL!,
-    APP_ID: process.env.APP_ID!,
-    SEARCH_KEY: process.env.SEARCH_KEY!
+    URL: process.env.URL!
   },
   /*
    ** Customize the progress-bar color
@@ -74,10 +72,10 @@ const config: NuxtConfig = {
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // '@nuxtjs/bulma',
     '@nuxtjs/pwa',
-    '@nuxtjs/axios',
     '@nuxtjs/sentry',
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxt/http'
   ],
   /*
    ** Build configuration
@@ -108,13 +106,15 @@ const config: NuxtConfig = {
   serverMiddleware: [
     {
       path: '/api/search',
-      handler: '~/api/search.ts'
+      handler: '~/api/search.ts',
+      prefix: false
+    },
+    {
+      path: '/api/resources',
+      handler: '~/api/resources/[resource].ts',
+      prefix: false
     }
   ],
-  axios: {
-    prefix: '/api',
-    proxy: true
-  },
   pwa: {
     workbox: {
       runtimeCaching: [
