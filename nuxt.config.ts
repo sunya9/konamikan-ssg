@@ -162,6 +162,10 @@ const config: NuxtConfig = {
   robots: {
     UserAgent: '*',
     Allow: '/'
+  },
+  http: {
+    baseURL: 'http://localhost:3000/api',
+    browserBaseURL: '/api'
   }
 }
 
