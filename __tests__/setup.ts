@@ -4,10 +4,6 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import { $setting } from './fixtures/setting'
 
-// environemnt variables
-process.env.APP_ID = 'TEST'
-process.env.SEARCH_KEY = 'TEST'
-
 config.stubs = {
   'nuxt-link': RouterLinkStub,
   ClientOnly: {
