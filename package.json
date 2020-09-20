@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nuxt-ts",
     "prebuild": "yarn run fetch",
-    "build": "nuxt-ts build && nuxt-ts export",
+    "build": "nuxt-ts build && nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "fetch": "ts-node --project tsconfig.node.json fetch",
     "test": "jest",

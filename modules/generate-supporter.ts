@@ -6,7 +6,7 @@ import api from '../api/resources/[resource]'
 const buildModule: Module<never> = function() {
   if (!this.nuxt.options.dev) {
     let server: http.Server
-    this.nuxt.hook('export:before', async () => {
+    this.nuxt.hook('generate:before', async () => {
       const app = express()
       const router = express.Router()
       router.get('/api/resources/:resource', api)
