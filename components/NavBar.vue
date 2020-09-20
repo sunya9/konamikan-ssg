@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar ">
+  <nav class="navbar is-transparent">
     <div class="container">
       <div class="navbar-brand">
         <div v-if="homeButton" class="navbar-brand">
