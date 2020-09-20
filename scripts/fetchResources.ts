@@ -105,7 +105,11 @@ function fixPostObject(postObject: PostObject): PostObject {
 }
 
 export async function fetchResources(): Promise<Resources> {
-  await fs.mkdir(configuration.dataDir).catch(() => {})
+  await Promise.all([
+    fs.mkdir(configuration.dataDir).catch(() => {}),
+    fs.mkdir(configuration.staticDir).catch(() => {}),
+    fs.mkdir(configuration.cacheStaticDir).catch(() => {})
+  ])
   const [
     postObject,
     tagsObject,
