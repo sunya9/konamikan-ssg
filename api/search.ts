@@ -34,8 +34,8 @@ const fuse = new Fuse(list, {
 })
 
 const middleware: ServerMiddleware = (req, res) => {
-  if (!req.originalUrl) throw new Error('url not found')
-  const url = new URL(`http://localhost${req.originalUrl}`)
+  if (!req.url) throw new Error('url not found')
+  const url = new URL(`http://localhost${req.url}`)
   const q = url.searchParams.get('q')
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.end(JSON.stringify(search(q)))
