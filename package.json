@@ -6,14 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "prebuild": "yarn run fetch",
+    "prebuild": "yarn fetch",
     "build": "nuxt-ts build && nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "fetch": "ts-node --project tsconfig.node.json fetch",
     "test": "jest",
     "test:update": "jest -u",
     "pretest:build": "ts-node --project tsconfig.node.json ./scripts/generateMockData",
-    "test:build": "nuxt-ts build"
+    "test:build": "nuxt-ts build",
+    "vercel-build": "yarn fetch"
   },
   "lint-staged": {
     "*.{js,vue,ts}": "eslint"
