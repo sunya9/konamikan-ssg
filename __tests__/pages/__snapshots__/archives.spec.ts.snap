@@ -45,16 +45,12 @@ exports[`archives page normal 1`] = `
             <li>
               <div class="oneline"><a><span class="has-text-grey">
           04/05
-        </span> <span>title</span> <span class="has-text-grey excerpt">
-          excerpt
-        </span></a></div>
+        </span> <span>title</span></a></div>
             </li>
             <li>
               <div class="oneline"><a><span class="has-text-grey">
           04/05
-        </span> <span>title</span> <span class="has-text-grey excerpt">
-          excerpt
-        </span></a></div>
+        </span> <span>title</span></a></div>
             </li>
           </ul>
         </div>

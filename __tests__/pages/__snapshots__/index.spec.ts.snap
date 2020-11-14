@@ -33,49 +33,16 @@ exports[`index page normal 1`] = `
   </header>
   <main class="section">
     <div class="container">
-      <div class="columns is-multiline">
-        <div class="column is-4">
-          <article class="card fix-height">
-            <div class="card-image"><a>
-                <div aria-labelledby="__test__title" aria-describedby="__test__description" class="image-2by1 has-background-light no-image has-text-secondary">
-                  <!---->
-                </div>
-              </a></div>
-            <div class="card-content">
-              <div class="content">
-                <h3 id="__test__title" class="title is-5"><a>
-                    title
-                  </a></h3>
-                <h4 class="subtitle is-6 has-text-secondary"><small>
-                    2020/04/05
-                  </small></h4>
-                <p id="__test__description">
-                  excerpt
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="column is-4">
-          <article class="card fix-height">
-            <div class="card-image"><a>
-                <div aria-labelledby="__test__title" aria-describedby="__test__description" class="image-2by1"><img src="feature_image.png" alt="" loading="lazy" class="image-2by1-inner"></div>
-              </a></div>
-            <div class="card-content">
-              <div class="content">
-                <h3 id="__test__title" class="title is-5"><a>
-                    title
-                  </a></h3>
-                <h4 class="subtitle is-6 has-text-secondary"><small>
-                    2020/04/05
-                  </small></h4>
-                <p id="__test__description">
-                  excerpt
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
+      <div class="content">
+        <h2>Recent posts</h2>
+        <ul>
+          <li><a><span class="has-text-grey">
+                04/05
+              </span> <span>title</span></a></li>
+          <li><a><span class="has-text-grey">
+                04/05
+              </span> <span>title</span></a></li>
+        </ul>
       </div> <a class="button is-fullwidth is-rounded is-outlined is-text">
         Archives
       </a>
