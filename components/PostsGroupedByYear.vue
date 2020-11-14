@@ -7,9 +7,6 @@
             {{ $dayjs(post.published_at).format('MM/DD') }}
           </span>
           <span>{{ post.title }}</span>
-          <span v-if="post.excerpt" class="has-text-grey excerpt">
-            {{ post.custom_excerpt || post.excerpt }}
-          </span>
         </nuxt-link>
       </div>
     </li>
@@ -37,12 +34,6 @@ export default class PostsGroupedByYear extends Vue {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-  }
-  .excerpt {
-    display: none;
-    @include desktop {
-      display: inline;
-    }
   }
 }
 </style>

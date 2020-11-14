@@ -3,10 +3,18 @@
     <app-header :title="title" :description="description" />
     <main class="section">
       <div class="container">
-        <div class="columns is-multiline">
-          <div v-for="post in posts" :key="post.id" class="column is-4">
-            <post-card :post="post" class="fix-height" />
-          </div>
+        <div class="content">
+          <h2>Recent posts</h2>
+          <ul>
+            <li v-for="post in posts" :key="post.id">
+              <nuxt-link :to="$resolvePostUrl(post)">
+                <span v-if="post.published_at" class="has-text-grey">
+                  {{ $dayjs(post.published_at).format('MM/DD') }}
+                </span>
+                <span>{{ post.title }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
         </div>
         <nuxt-link
           to="/archives"
@@ -22,13 +30,11 @@
 <script lang="ts">
 import { PostObject } from '@tryghost/content-api'
 import { Component, Vue } from 'nuxt-property-decorator'
-import PostCard from '~/components/PostCard.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
-    PostCard,
     AppHeader
   },
   async asyncData({ $http, error }) {
