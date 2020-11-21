@@ -1,6 +1,6 @@
 <template>
-  <div class="columns">
-    <div class="column is-half is-offset-one-quarter">
+  <div class="columns is-centered">
+    <div class="column is-10">
       <div class="box">
         <div class="media">
           <div class="media-left">
