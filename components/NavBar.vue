@@ -123,13 +123,6 @@ import { DebouncedFunc } from 'lodash'
 import MatchedText from './MatchedText'
 import { FuseItem } from '~/entity/fuseItem'
 
-interface SearchResult {
-  type: 'post' | 'tag' | 'author' | 'page'
-  name: string
-  slug: string
-  url?: string
-}
-
 type Result =
   | {
       state: 'pending'
@@ -254,7 +247,14 @@ export default class NavBar extends Vue {
   }
 
   createSearchLink(searchResult: FuseItem) {
-    return this.$resolvePostUrl(searchResult)
+    if (searchResult.type === 'post') {
+      return this.$resolvePostUrl({
+        slug: searchResult.slug,
+        published_at: searchResult.published_at
+      })
+    } else {
+      return this.$resolveUrl(searchResult.url)
+    }
   }
 
   go() {

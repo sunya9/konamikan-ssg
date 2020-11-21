@@ -10,18 +10,22 @@ const list: FuseItem[] = [
     title: post.title,
     content: post.plaintext,
     url: post.url,
-    type: 'post'
+    type: 'post',
+    slug: post.slug,
+    published_at: post.published_at
   })),
   ...tags.tags.map<FuseItem>((tag) => ({
     title: tag.name,
     content: tag.description || '',
     url: tag.url,
-    type: 'tag'
+    type: 'tag',
+    slug: tag.slug
   })),
   ...authors.authors.map<FuseItem>((author) => ({
     title: author.name,
     content: author.bio,
     url: author.url,
+    slug: author.slug,
     type: 'author'
   }))
 ]

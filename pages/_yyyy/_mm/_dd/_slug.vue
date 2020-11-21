@@ -13,9 +13,9 @@
               v-if="post.published_at"
               class="level-item has-text-centered content"
             >
-              <span class="tag is-rounded is-medium">{{
-                $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss')
-              }}</span>
+              <span class="tag is-rounded is-medium">
+                {{ $dayjs(post.published_at).format('YYYY/MM/DD hh:mm:ss') }}
+              </span>
             </div>
           </div>
         </div>
@@ -166,12 +166,15 @@ import 'prismjs/components/prism-typescript'
     AuthorInfo,
     Share2Icon
   },
-  async asyncData({ $resolvePostUrl, $http, route: { params }, error }) {
-    const { yyyy, mm, dd, slug } = params
+  async asyncData({
+    $http,
+    route: {
+      params: { slug }
+    },
+    error
+  }) {
     const posts = await $http.$get<PostObject>('/resources/posts')
-    const index = posts.posts.findIndex((post) => {
-      return $resolvePostUrl(post) === `/${yyyy}/${mm}/${dd}/${slug}/`
-    })
+    const index = posts.posts.findIndex((post) => post.slug === slug)
     const newerPost = posts.posts[index - 1]
     const post = posts.posts[index]
     const olderPost = posts.posts[index + 1]

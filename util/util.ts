@@ -1,7 +1,10 @@
 import { PostOrPage, Metadata } from '@tryghost/content-api'
+import dayjs from 'dayjs'
 
-export function $resolvePostUrl(post: Pick<PostOrPage, 'url'>) {
-  return $resolveUrl(post.url)
+export function $resolvePostUrl(
+  post: Pick<PostOrPage, 'published_at' | 'slug'>
+) {
+  return `/${dayjs(post.published_at!!).format('YYYY/MM/DD')}/${post.slug}`
 }
 
 export function $resolveUrl(url: string | null | undefined): string {
@@ -67,6 +70,7 @@ export interface PostOrPageLight {
   url: string
   // eslint-disable-next-line camelcase
   feature_image: string
+  slug: string
 }
 
 export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
@@ -76,6 +80,7 @@ export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
     excerpt: post.custom_excerpt || post.excerpt || '',
     published_at: post.published_at || '',
     url: post.url || '',
-    feature_image: post.feature_image || ''
+    feature_image: post.feature_image || '',
+    slug: post.slug
   }
 }
