@@ -1,13 +1,13 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
-import * as URL from 'url'
+import { $resolvePostUrl } from '../util/util'
 import { configuration } from './configuration'
 import { Resources } from '~/types/fetch'
 
 export function generateRoutes(items: Resources) {
   const postRoutes = items.postObject.posts.map((post) => {
     if (!post.url) return ''
-    return new URL.URL(post.url).pathname
+    return $resolvePostUrl(post)
   })
   const tagRoutes = items.tagsObject.tags.map((tag) => `/tag/${tag.slug}`)
   // const pageRoutes = items.pages.pages.map((page) => `/page/${page.slug}`)
