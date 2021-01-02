@@ -38,7 +38,7 @@
     "animate.css": "3.7.2",
     "cheerio": "1.0.0-rc.3",
     "css-mqpacker": "7.0.0",
-    "dayjs": "1.8.35",
+    "dayjs": "^1.9.8",
     "escape-string-regexp": "2.0.0",
     "express": "4.17.1",
     "extract-color-properties": "1.0.3",
