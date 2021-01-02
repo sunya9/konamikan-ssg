@@ -249,8 +249,7 @@ export default class NavBar extends Vue {
   createSearchLink(searchResult: FuseItem) {
     if (searchResult.type === 'post') {
       return this.$resolvePostUrl({
-        slug: searchResult.slug,
-        published_at: searchResult.published_at
+        slug: searchResult.slug
       })
     } else {
       return this.$resolveUrl(searchResult.url)
