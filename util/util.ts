@@ -1,10 +1,7 @@
 import { PostOrPage, Metadata } from '@tryghost/content-api'
-import dayjs from 'dayjs'
 
-export function $resolvePostUrl(
-  post: Pick<PostOrPage, 'published_at' | 'slug'>
-) {
-  return `/${dayjs(post.published_at!!).format('YYYY/MM/DD')}/${post.slug}`
+export function $resolvePostUrl(post: Pick<PostOrPage, 'slug'>) {
+  return `/blog/${post.slug}`
 }
 
 export function $resolveUrl(url: string | null | undefined): string {

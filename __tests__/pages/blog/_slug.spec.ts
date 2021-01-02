@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { PostOrPage } from '@tryghost/content-api'
 import { post } from '@/__tests__/fixtures/postOrPage'
-import Article from '@/pages/_yyyy/_mm/_dd/_slug.vue'
+import Article from '@/pages/blog/_slug.vue'
 
 describe('article page', () => {
   it('normal', () => {
