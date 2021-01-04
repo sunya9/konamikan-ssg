@@ -59,8 +59,8 @@
     "vue-unique-id": "3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.11.6",
-    "@babel/preset-env": "7.11.5",
+    "@babel/core": "7.12.10",
+    "@babel/preset-env": "7.12.11",
     "@nuxt/types": "2.14.5",
     "@nuxtjs/eslint-config": "2.0.2",
     "@nuxtjs/eslint-config-typescript": "1.0.2",
