@@ -2391,7 +2391,7 @@
     html-minifier "^4.0.0"
     node-html-parser "^1.3.1"
 
-"@nuxt/http@^0.5.12":
+"@nuxt/http@0.5.12":
   version "0.5.12"
   resolved "https://registry.yarnpkg.com/@nuxt/http/-/http-0.5.12.tgz#7385a72d9e9d15c969705ccd67512957b85475aa"
   integrity sha512-h8fOmUw7DgQidTAuCM8wkx8kNOIye87ukE7GaQvB3FasU6wQZN4hTU2gM55dwOPasafEWHfa19ac8AmJ9h1OdA==
@@ -5798,7 +5798,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-dayjs@^1.9.8:
+dayjs@1.9.8:
   version "1.9.8"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.8.tgz#9a65fbdca037e3d5835f98672da6e796f757cd58"
   integrity sha512-F42qBtJRa30FKF7XDnOQyNUTsaxDkuaZRj/i7BejSHC34LlLfPoIU4aeopvWfM+m1dJ6/DHKAWLg2ur+pLgq1w==
@@ -7273,7 +7273,7 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-fuse.js@^6.4.1:
+fuse.js@6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.4.1.tgz#76f1b4ab9cd021b854a68381b35628033d27507e"
   integrity sha512-+hAS7KYgLXontDh/vqffs7wIBw0ceb9Sx8ywZQhOsiQGcSO5zInGhttWOUYQYlvV/yYMJOacQ129Xs3mP3+oZQ==
@@ -10112,7 +10112,7 @@ nuxt-property-decorator@2.7.2:
     vuex-class "^0.3.2"
     vuex-module-decorators "^0.16.1"
 
-nuxt@^2.14.7:
+nuxt@2.14.7:
   version "2.14.7"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.14.7.tgz#041bb3f5c659b1fec80042d974f68a0ed4e93aa9"
   integrity sha512-0pmMDgSqyLacHJ0otGgfFC4cnMIiAfkK5JQ0TU4cHckwt1d0emgABqqWFuO9S45VI5sHHBFADDkbUnJt3JqbLg==
@@ -13564,7 +13564,7 @@ unicode-property-aliases-ecmascript@^1.0.4:
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-1.0.5.tgz#a9cc6cc7ce63a0a3023fc99e341b94431d405a57"
   integrity sha512-L5RAqCfXqAwR3RriF8pM0lU0w4Ryf/GgzONwi6KnL1taJQa7x1TCxdJnILX59WIGOwR57IVxn7Nej0fz1Ny6fw==
 
-unicode-substring@^1.0.0:
+unicode-substring@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unicode-substring/-/unicode-substring-1.0.0.tgz#659fb839078e7bee84b86c27210ac4db215bf885"
   integrity sha512-2acGIOTaqS/GWocwKdyL1Vk9MHglCss1mR0CL2o/YJTwKrAt6JbTrw4X187VkSDmFcpJ8n2i3/+gJSYEdvXJMg==
