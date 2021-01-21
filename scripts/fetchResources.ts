@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import {
   PostObject,
   TagsObject,
@@ -14,7 +14,7 @@ import { configuration } from './configuration'
 import { urlPrefixRegExp, httpRegExp } from './regexpUtil'
 import { Resources } from '~/types/fetch'
 
-function getTargetImgList($: CheerioStatic): Cheerio {
+function getTargetImgList($: cheerio.Selector): cheerio.Cheerio {
   return $('img').filter((_, e) => {
     const src = $(e).attr('src')
     if (!src) return false
@@ -64,7 +64,7 @@ function normalizeSrc(src: string | undefined): string {
   return src
 }
 
-function addClasses($: CheerioStatic) {
+function addClasses($: cheerio.Selector) {
   $('.kg-bookmark-card').addClass('box')
   $('.kg-bookmark-container').addClass('media has-text-dark')
   $('.kg-bookmark-content').addClass('media-content')
