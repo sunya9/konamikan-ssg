@@ -249,7 +249,12 @@ export default class extends Vue {
 
   async mounted() {
     await this.$nextTick()
-    mediumZoom('.content img')
+    Array.from(this.$el.querySelectorAll('img'))
+      .filter((el) =>
+        el.parentElement?.classList.contains('kg-bookmark-thumbnail')
+      )
+      .forEach((el) => el.classList.add('medium-zoom-exclude'))
+    mediumZoom('.content img:not(.medium-zoom-exclude)')
     if (!this.$el) return
     const preEls = this.$el.querySelectorAll('pre')
     Array.from(preEls).forEach((preEl) => {
@@ -363,9 +368,10 @@ export default class extends Vue {
     img {
       height: 64px;
       max-width: 100%;
+      margin-bottom: 1rem;
     }
     @include desktop {
-      height: 128px;
+      max-height: 128px;
     }
   }
   /deep/ .kg-bookmark-title {

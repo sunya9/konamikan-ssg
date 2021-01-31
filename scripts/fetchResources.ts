@@ -62,7 +62,8 @@ function normalizeSrc(src: string | undefined): string {
 function addClasses($: cheerio.Selector) {
   $('.kg-bookmark-card').addClass('box')
   $('.kg-bookmark-container').addClass('media has-text-dark')
-  $('.kg-bookmark-content').addClass('media-content')
+  $('.kg-bookmark-title').addClass('has-text-weight-medium')
+  $('.kg-bookmark-content').addClass('media-content has-text-left')
   $('.kg-bookmark-thumbnail').addClass('media-left')
   $('iframe,img').each((_, e) => {
     const currentSrc = $(e).attr('src')
