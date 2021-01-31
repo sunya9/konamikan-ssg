@@ -1,6 +1,6 @@
-import { Setting } from '@tryghost/content-api'
+import { Settings } from '@tryghost/content-api'
 
-export const $setting: Setting = {
+export const $setting: Settings = {
   title: 'title',
   description: 'description',
   logo: '',

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Setting } from '@tryghost/content-api'
+import { Settings } from '@tryghost/content-api'
 import { Plugin } from '@nuxt/types'
 import setting from '~/.data/settings.json'
 import {
@@ -25,7 +25,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $resolvePostUrl: typeof $resolvePostUrl
     $resolveUrl: typeof $resolveUrl
-    $setting: Setting
+    $setting: Settings
     $createSocialMediaMeta: typeof $createSocialMediaMeta
     $createBaseMetadata: typeof $createBaseMetadata
   }

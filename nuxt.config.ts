@@ -1,13 +1,13 @@
 import * as fs from 'fs'
 import { resolve } from 'path'
-import { Author, Setting } from '@tryghost/content-api'
+import { Author, Settings } from '@tryghost/content-api'
 import { NuxtConfig } from '@nuxt/types'
 import setting from './.data/settings.json'
 import authors from './.data/authors.json'
 
 const author: Author = authors.authors[0]
 
-const settings: Setting = (setting as any).settings
+const settings: Settings = (setting as any).settings
 
 const dataDir = resolve(__dirname, '.data')
 
