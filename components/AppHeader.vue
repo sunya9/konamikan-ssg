@@ -1,7 +1,7 @@
 <template>
   <header
     key="header"
-    class="hero is-medium fix-background"
+    class="hero is-medium fix-background lazy-bg"
     :style="{
       'background-image': `url(${cover || defaultCover})`
     }"
@@ -54,6 +54,24 @@ export default class Header extends Vue {
   get isIndex(): boolean {
     return this.$route.name === 'index'
   }
+
+  mounted() {
+    lazyBg(this.$el)
+  }
+}
+
+function lazyBg(parentEl: Element) {
+  if (!('IntersectionObserver' in window)) return
+
+  const lazyBgObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return
+      entry.target.classList.remove('lazy-bg')
+      lazyBgObserver.unobserve(entry.target)
+    })
+  })
+
+  lazyBgObserver.observe(parentEl)
 }
 </script>
 <style scoped>
@@ -76,5 +94,8 @@ export default class Header extends Vue {
 }
 .fix-z-index {
   z-index: 2;
+}
+.lazy-bg {
+  background: none !important;
 }
 </style>
