@@ -15,7 +15,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
-import { PostObject } from '@tryghost/content-api'
+import { PostOrPage } from '@tryghost/content-api'
 import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
@@ -26,9 +26,9 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
     AppHeader
   },
   async asyncData({ $http }) {
-    const res = await $http.$get<PostObject>('/resources/posts')
+    const posts = await $http.$get<PostOrPage[]>('/resources/posts')
     return {
-      posts: res.posts.map(reducePostFieldMapper)
+      posts: posts.map(reducePostFieldMapper)
     }
   }
 })

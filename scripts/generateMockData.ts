@@ -4,19 +4,19 @@ import { writeFile, mkdirp } from 'fs-extra'
 import { post } from '../__tests__/fixtures/postOrPage'
 import { tag } from '../__tests__/fixtures/tag'
 import { author } from '../__tests__/fixtures/author'
-import { $setting } from '../__tests__/fixtures/setting'
+import { $settings } from '../__tests__/fixtures/settings'
 
 const routes = [] as const
 
 const dataDir = path.resolve(__dirname, '../.data')
 
 const files = [
-  { name: 'authors.json', data: { authors: [author] } },
   { name: 'routes.json', data: routes },
-  { name: 'posts.json', data: { posts: [post] } },
-  { name: 'pages.json', data: { pages: [post] } },
-  { name: 'tags.json', data: { tags: [tag] } },
-  { name: 'settings.json', data: { settings: $setting } }
+  { name: 'authors.json', data: [author] },
+  { name: 'posts.json', data: [post] },
+  { name: 'pages.json', data: [post] },
+  { name: 'tags.json', data: [tag] },
+  { name: 'settings.json', data: $settings }
 ]
 
 async function main() {
@@ -29,6 +29,7 @@ async function main() {
   )
 
   await Promise.all(promises)
+  // eslint-disable-next-line no-console
   console.log('complete')
 }
 

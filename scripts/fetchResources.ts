@@ -1,18 +1,23 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
 import * as cheerio from 'cheerio'
-import {
-  PostObject,
-  TagsObject,
-  AuthorsObject,
-  PagesObject,
-  SettingsObject,
-  PostOrPage
+import GhostContentAPI, {
+  Author,
+  PostOrPage,
+  PostsOrPages,
+  Settings,
+  Tag
 } from '@tryghost/content-api'
-import fetch from 'node-fetch'
 import { configuration } from './configuration'
 import { urlPrefixRegExp, httpRegExp } from './regexpUtil'
-import { Resources } from '~/types/fetch'
+
+export interface Resources {
+  posts: PostOrPage[]
+  tags: Tag[]
+  pages: PostOrPage[]
+  authors: Author[]
+  settings: Settings
+}
 
 function getTargetImgList($: cheerio.Selector): cheerio.Cheerio {
   return $('img').filter((_, e) => {
@@ -36,21 +41,11 @@ function write<T>(resource: string) {
   }
 }
 
-async function request<T>(
-  resource: string,
-  query: { [key: string]: Array<string> | string } = {}
-): Promise<T> {
-  const queryStr = Object.entries(query)
-    .map(([key, val]) => {
-      const normalizedVal = typeof val === 'string' ? val : val.join(',')
-      return `${key}=${normalizedVal}`
-    }, {})
-    .join('&')
-  const res = await fetch(
-    `${process.env.GHOST_API_URL}/ghost/api/v3/content/${resource}?${queryStr}&key=${process.env.KEY}&formats=html,plaintext`
-  )
-  return res.json()
-}
+const client = GhostContentAPI({
+  key: process.env.KEY || '',
+  url: process.env.GHOST_API_URL || '',
+  version: 'v3'
+})
 
 function normalizeSrc(src: string | undefined): string {
   if (!src) return ''
@@ -97,11 +92,8 @@ function fixPostOrPage(post: PostOrPage): PostOrPage {
   }
 }
 
-function fixPostObject(postObject: PostObject): PostObject {
-  return {
-    ...postObject,
-    posts: postObject.posts.map(fixPostOrPage)
-  }
+function fixPostsOrPages(posts: PostsOrPages): PostOrPage[] {
+  return posts.map(fixPostOrPage)
 }
 
 export async function fetchResources(): Promise<Resources> {
@@ -110,29 +102,25 @@ export async function fetchResources(): Promise<Resources> {
     fs.mkdir(configuration.staticDir).catch(() => {}),
     fs.mkdir(configuration.cacheStaticDir).catch(() => {})
   ])
-  const [
-    postObject,
-    tagsObject,
-    pagesObject,
-    authorsObject,
-    settingsObject
-  ] = await Promise.all([
-    request<PostObject>('posts', {
-      limit: 'all',
-      include: ['tags', 'authors']
-    })
-      .then(fixPostObject)
+  const [posts, tags, pages, authors, settings] = await Promise.all([
+    client.posts
+      .browse({
+        limit: 'all',
+        formats: ['html', 'plaintext'],
+        include: ['tags', 'authors']
+      })
+      .then(fixPostsOrPages)
       .then(write('posts')),
-    request<TagsObject>('tags', { limit: 'all' }).then(write('tags')),
-    request<PagesObject>('pages', { limit: 'all' }).then(write('pages')),
-    request<AuthorsObject>('authors', { limit: 'all' }).then(write('authors')),
-    request<SettingsObject>('settings').then(write('settings'))
+    client.tags.browse({ limit: 'all' }).then(write('tags')),
+    client.pages.browse({ limit: 'all' }).then(write('pages')),
+    client.authors.browse({ limit: 'all' }).then(write('authors')),
+    client.settings.browse().then(write('settings'))
   ])
   return {
-    postObject,
-    tagsObject,
-    pagesObject,
-    authorsObject,
-    settingsObject
+    posts,
+    tags,
+    pages,
+    authors,
+    settings
   }
 }

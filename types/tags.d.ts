@@ -1,5 +1,5 @@
 declare module '~/.data/tags.json' {
-  import { TagsObject } from '@tryghost/content-api'
-  const value: TagsObject
+  import { Tags } from '@tryghost/content-api'
+  const value: Tags
   export default value
 }

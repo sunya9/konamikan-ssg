@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { Settings } from '@tryghost/content-api'
 import { Plugin } from '@nuxt/types'
-import setting from '~/.data/settings.json'
+import settings from '~/.data/settings.json'
 import {
   $resolvePostUrl,
   $createSocialMediaMeta,
@@ -11,7 +11,7 @@ import {
 
 Vue.prototype.$resolvePostUrl = $resolvePostUrl
 Vue.prototype.$resolveUrl = $resolveUrl
-Vue.prototype.$setting = setting.settings
+Vue.prototype.$settings = settings
 Vue.prototype.$createSocialMediaMeta = $createSocialMediaMeta
 Vue.prototype.$createBaseMetadata = $createBaseMetadata
 
@@ -25,7 +25,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $resolvePostUrl: typeof $resolvePostUrl
     $resolveUrl: typeof $resolveUrl
-    $setting: Settings
+    $settings: Settings
     $createSocialMediaMeta: typeof $createSocialMediaMeta
     $createBaseMetadata: typeof $createBaseMetadata
   }

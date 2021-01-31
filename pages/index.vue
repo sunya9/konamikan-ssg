@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { PostObject } from '@tryghost/content-api'
+import { PostOrPage } from '@tryghost/content-api'
 import { Component, Vue } from 'nuxt-property-decorator'
 import AppHeader from '~/components/AppHeader.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
@@ -39,9 +39,9 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
   },
   async asyncData({ $http, error }) {
     try {
-      const posts = await $http.$get<PostObject>('/resources/posts')
+      const posts = await $http.$get<PostOrPage[]>('/resources/posts')
       return {
-        posts: posts.posts.slice(0, 9).map(reducePostFieldMapper)
+        posts: posts.slice(0, 9).map(reducePostFieldMapper)
       }
     } catch (e) {
       error({
@@ -52,8 +52,8 @@ import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 })
 export default class Index extends Vue {
   posts!: PostOrPageLight[]
-  title = this.$setting.title
-  description = this.$setting.description
+  title = this.$settings.title
+  description = this.$settings.description
 
   head() {
     return {

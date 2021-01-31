@@ -4,16 +4,13 @@ import * as oldFs from 'fs'
 import * as path from 'path'
 import * as https from 'https'
 import cheerio from 'cheerio'
-import { PostObject, PostOrPage } from '@tryghost/content-api'
+import { PostOrPage } from '@tryghost/content-api'
 import fetch from 'node-fetch'
-import * as fse from 'fs-extra'
 import { configuration } from './configuration'
 import { absolutePathWithoutDomainRegExp, urlPrefixRegExp } from './regexpUtil'
-import { Resources } from '~/types/fetch'
+import { Resources } from '~/scripts/fetchResources'
 
 const fs = oldFs.promises
-
-const onNetlify = 'NETLIFY' in process.env
 
 function getCachedDirPath(urlWithoutDomain: string) {
   const relativePath = path.dirname(urlWithoutDomain).substring(1) // remove slash
@@ -54,7 +51,7 @@ async function downloadImage(urlWithoutDomain: string): Promise<string> {
   } catch (e) {
     console.error(e)
   }
-  await new Promise<never>((resolve, reject) => {
+  await new Promise<void>((resolve, reject) => {
     const url = `${process.env.GHOST_API_URL!}${urlWithoutDomain}`
     const ws = oldFs.createWriteStream(filePath, { highWaterMark: 1024 * 1024 })
     https.get(url, (res) => res.pipe(ws))
@@ -78,8 +75,8 @@ function collectImagesFromPost(post: PostOrPage): string[] {
   return postImages
 }
 
-async function downloadImages(post: PostObject): Promise<string[]> {
-  const imageUrlsWithoutDomain = post.posts.reduce<string[]>(
+async function downloadImages(post: PostOrPage[]): Promise<string[]> {
+  const imageUrlsWithoutDomain = post.reduce<string[]>(
     (images, post) => images.concat(collectImagesFromPost(post)),
     []
   )
@@ -101,19 +98,19 @@ function nonNullableUrl(url: string | null | undefined): url is string {
 }
 
 async function downloadCovers(resources: Resources) {
-  const { postObject, authorsObject, tagsObject, settingsObject } = resources
+  const { posts, authors, tags, settings } = resources
   const res: string[] = []
-  const postCoverUrls = postObject.posts
+  const postCoverUrls = posts
     .map((post) => post.feature_image)
     .filter(nonNullableUrl)
-  const authorCoverUrls = authorsObject.authors
+  const authorCoverUrls = authors
     .map((author) => author.cover_image)
     .filter(nonNullableUrl)
-  const tagCoverUrls = tagsObject.tags
+  const tagCoverUrls = tags
     .map((tag) => tag.feature_image)
     .filter(nonNullableUrl)
-  if (settingsObject.settings.cover_image) {
-    const coverUrl = settingsObject.settings.cover_image
+  if (settings.cover_image) {
+    const coverUrl = settings.cover_image
     res.push(coverUrl)
   }
   res.push(...postCoverUrls, ...authorCoverUrls, ...tagCoverUrls)
@@ -128,21 +125,18 @@ async function downloadCovers(resources: Resources) {
 }
 
 export async function fetchAssets(resources: Resources) {
-  const { postObject } = resources
+  const { posts } = resources
   const rssUrl = `${process.env.GHOST_API_URL!}/rss/`
   const rssBody = await fetch(rssUrl).then((res) => res.buffer())
   await fs.writeFile(path.resolve(configuration.staticDir, 'rss.xml'), rssBody)
   const faviconUrl = `${process.env.GHOST_API_URL!}/favicon.png`
   const faviconBody = await fetch(faviconUrl).then((res) => res.buffer())
-  await fs.writeFile(
-    path.resolve(configuration.staticDir, 'icon.png'),
-    faviconBody
-  )
-  await downloadImages(postObject)
-  await downloadCovers(resources)
-  if (onNetlify) {
-    await fse.copy(configuration.cacheStaticDir, configuration.staticDir, {
-      recursive: true
-    })
-  }
+  await Promise.all([
+    fs.writeFile(
+      path.resolve(configuration.staticDir, 'icon.png'),
+      faviconBody
+    ),
+    downloadImages(posts),
+    downloadCovers(resources)
+  ])
 }

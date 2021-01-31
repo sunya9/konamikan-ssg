@@ -146,7 +146,7 @@ import {
   ChevronRightIcon,
   Share2Icon
 } from 'vue-feather-icons'
-import { PostOrPage, PostObject } from '@tryghost/content-api'
+import { PostOrPage } from '@tryghost/content-api'
 import mediumZoom from 'medium-zoom'
 import Prism from 'prismjs'
 import AppHeader from '~/components/AppHeader.vue'
@@ -173,11 +173,11 @@ import 'prismjs/components/prism-typescript'
     },
     error
   }) {
-    const posts = await $http.$get<PostObject>('/resources/posts')
-    const index = posts.posts.findIndex((post) => post.slug === slug)
-    const newerPost = posts.posts[index - 1]
-    const post = posts.posts[index]
-    const olderPost = posts.posts[index + 1]
+    const posts = await $http.$get<PostOrPage[]>('/resources/posts')
+    const index = posts.findIndex((post) => post.slug === slug)
+    const newerPost = posts[index - 1]
+    const post = posts[index]
+    const olderPost = posts[index + 1]
     if (!post) {
       return error({ statusCode: 404 })
     }
