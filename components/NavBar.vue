@@ -4,7 +4,7 @@
       <div class="navbar-brand">
         <div v-if="homeButton" class="navbar-brand">
           <nuxt-link class="navbar-item has-text-white-bis" to="/" exact>
-            {{ $setting.title }}
+            {{ $settings.title }}
           </nuxt-link>
         </div>
         <a

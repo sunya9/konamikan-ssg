@@ -1,5 +1,5 @@
 declare module '~/.data/settings.json' {
-  import { SettingsObject } from '@tryghost/content-api'
-  const value: SettingsObject
+  import { SettingsResponse } from '@tryghost/content-api'
+  const value: SettingsResponse
   export default value
 }

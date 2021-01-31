@@ -6,7 +6,7 @@ import authors from '../.data/authors.json'
 import { FuseItem } from '~/entity/fuseItem'
 
 const list: FuseItem[] = [
-  ...posts.posts.map<FuseItem>((post) => ({
+  ...posts.map<FuseItem>((post) => ({
     title: post.title,
     content: post.plaintext,
     url: post.url,
@@ -14,14 +14,14 @@ const list: FuseItem[] = [
     slug: post.slug,
     published_at: post.published_at
   })),
-  ...tags.tags.map<FuseItem>((tag) => ({
+  ...tags.map<FuseItem>((tag) => ({
     title: tag.name,
     content: tag.description || '',
     url: tag.url,
     type: 'tag',
     slug: tag.slug
   })),
-  ...authors.authors.map<FuseItem>((author) => ({
+  ...authors.map<FuseItem>((author) => ({
     title: author.name,
     content: author.bio,
     url: author.url,

@@ -1,5 +1,5 @@
 declare module '~/.data/authors.json' {
-  import { AuthorsObject } from '@tryghost/content-api'
-  const value: AuthorsObject
+  import { Authors } from '@tryghost/content-api'
+  const value: Authors
   export default value
 }

@@ -1,5 +1,5 @@
 declare module '~/.data/posts.json' {
-  import { PostObject } from '@tryghost/content-api'
-  const value: PostObject
+  import { PostsOrPages } from '@tryghost/content-api'
+  const value: PostsOrPages
   export default value
 }

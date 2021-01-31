@@ -49,7 +49,7 @@ export default class Header extends Vue {
   @Prop({ type: Boolean, required: false, default: false })
   homeButton!: boolean
 
-  defaultCover = this.$resolveUrl(this.$setting.cover_image)
+  defaultCover = this.$resolveUrl(this.$settings.cover_image)
 
   get isIndex(): boolean {
     return this.$route.name === 'index'
