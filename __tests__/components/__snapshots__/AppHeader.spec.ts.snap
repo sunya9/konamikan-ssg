@@ -2,7 +2,7 @@
 
 exports[`AppHeader normal 1`] = `
 <header
-  class="hero is-medium fix-background"
+  class="hero is-medium fix-background lazy-bg"
   style="background-image: url(cover.png);"
 >
   <div
@@ -174,7 +174,7 @@ exports[`AppHeader normal 1`] = `
 
 exports[`AppHeader override cover 1`] = `
 <header
-  class="hero is-medium fix-background"
+  class="hero is-medium fix-background lazy-bg"
   style="background-image: url(passCoverViaProps.png);"
 >
   <div
@@ -340,7 +340,7 @@ exports[`AppHeader override cover 1`] = `
 
 exports[`AppHeader override default slot 1`] = `
 <header
-  class="hero is-medium fix-background"
+  class="hero is-medium fix-background lazy-bg"
   style="background-image: url(cover.png);"
 >
   <div
@@ -493,7 +493,7 @@ exports[`AppHeader override default slot 1`] = `
 
 exports[`AppHeader put footer slot 1`] = `
 <header
-  class="hero is-medium fix-background"
+  class="hero is-medium fix-background lazy-bg"
   style="background-image: url(cover.png);"
 >
   <div
@@ -663,7 +663,7 @@ exports[`AppHeader put footer slot 1`] = `
 
 exports[`AppHeader with home button 1`] = `
 <header
-  class="hero is-medium fix-background"
+  class="hero is-medium fix-background lazy-bg"
   style="background-image: url(cover.png);"
 >
   <div

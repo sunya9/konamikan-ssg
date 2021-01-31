@@ -17,13 +17,10 @@ import Vue from 'vue'
 import { Component, Prop } from 'nuxt-property-decorator'
 import { PostOrPage } from '@tryghost/content-api'
 
-@Component({})
-export default class PostsGroupedByYear extends Vue {
+@Component
+export default class Posts extends Vue {
   @Prop({ type: Array, required: true })
   posts!: PostOrPage[]
-
-  @Prop({ type: Number, required: true })
-  year!: number
 }
 </script>
 <style lang="scss" scoped>

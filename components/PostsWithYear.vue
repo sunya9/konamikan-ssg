@@ -7,21 +7,21 @@
           {{ groupedByYear[year].length }} posts
         </small>
       </h2>
-      <posts-grouped-by-year :year="year" :posts="groupedByYear[year]" />
+      <posts :posts="groupedByYear[year]" />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { PostOrPage } from '@tryghost/content-api'
-import PostsGroupedByYear from '~/components/PostsGroupedByYear.vue'
+import Posts from '~/components/Posts.vue'
 
 @Component({
   components: {
-    PostsGroupedByYear
+    Posts
   }
 })
-export default class PostsGroupedByYearWrapper extends Vue {
+export default class PostsWithYear extends Vue {
   @Prop({ type: Array, required: true })
   posts!: PostOrPage[]
 
@@ -30,9 +30,10 @@ export default class PostsGroupedByYearWrapper extends Vue {
       if (!post.published_at) return map
       const date = new Date(post.published_at)
       const year = date.getFullYear()
-      if (!map[year]) map[year] = []
-      map[year].push(post)
-      return map
+      return {
+        ...map,
+        [year]: [...(map[year] || []), post]
+      }
     }, {})
   }
 

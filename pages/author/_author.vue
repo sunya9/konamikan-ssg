@@ -45,7 +45,7 @@
     </app-header>
     <main class="section">
       <div class="container">
-        <posts-grouped-by-year-wrapper :posts="posts" />
+        <posts-with-year :posts="posts" />
       </div>
     </main>
   </div>
@@ -54,14 +54,14 @@
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
 import { Author, PostOrPage } from '@tryghost/content-api'
-import PostsGroupedByYearWrapper from '~/components/PostsGroupedByYearWrapper.vue'
+import PostsWithYear from '~/components/PostsWithYear.vue'
 import AppHeader from '~/components/AppHeader.vue'
 import AuthorWeb from '~/components/AuthorWeb.vue'
 import { reducePostFieldMapper, PostOrPageLight } from '~/util/util'
 
 @Component({
   components: {
-    PostsGroupedByYearWrapper,
+    PostsWithYear,
     AppHeader,
     AuthorWeb
   },

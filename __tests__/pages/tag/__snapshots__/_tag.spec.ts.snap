@@ -2,7 +2,7 @@
 
 exports[`tag page normal 1`] = `
 <div>
-  <header class="hero is-medium fix-background" style="background-image: url(cover.png);">
+  <header class="hero is-medium fix-background lazy-bg" style="background-image: url(cover.png);">
     <div class="hero-head">
       <nav class="navbar is-transparent">
         <div class="container">

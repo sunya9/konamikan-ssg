@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostsGroupedByYear normal 1`] = `
+exports[`Posts normal 1`] = `
 <ul>
   <li>
     <div class="oneline"><a><span class="has-text-grey">

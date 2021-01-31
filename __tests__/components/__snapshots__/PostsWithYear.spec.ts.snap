@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostsGroupedByYearWrapper normal 1`] = `
+exports[`PostsWithYear normal 1`] = `
 <div>
   <div class="content">
     <h2 id="#2020"><span>2020</span> <small class="has-text-grey is-size-6">

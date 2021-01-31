@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import { post } from '@/__tests__/fixtures/postOrPage'
-import PostsGroupedByYearWrapper from '@/components/PostsGroupedByYearWrapper.vue'
+import PostsWithYear from '@/components/PostsWithYear.vue'
 
-describe('PostsGroupedByYearWrapper', () => {
+describe('PostsWithYear', () => {
   it('normal', () => {
     expect(
-      mount(PostsGroupedByYearWrapper, {
+      mount(PostsWithYear, {
         propsData: {
           posts: [post]
         }

@@ -1,14 +1,13 @@
 import { mount } from '@vue/test-utils'
 import { post } from '@/__tests__/fixtures/postOrPage'
-import PostsGroupedByYear from '@/components/PostsGroupedByYear.vue'
+import Posts from '@/components/Posts.vue'
 
-describe('PostsGroupedByYear', () => {
+describe('Posts', () => {
   it('normal', () => {
     expect(
-      mount(PostsGroupedByYear, {
+      mount(Posts, {
         propsData: {
-          posts: [post],
-          year: 2020
+          posts: [post]
         }
       })
     ).toMatchSnapshot()
