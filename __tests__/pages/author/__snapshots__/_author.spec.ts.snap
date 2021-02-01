@@ -60,12 +60,12 @@ exports[`author page normal 1`] = `
             </small></h2>
           <ul>
             <li>
-              <div class="oneline"><a><span class="has-text-grey-dark">
+              <div class="oneline"><a><span class="has-text-secondary">
           04/05
         </span> <span>title</span></a></div>
             </li>
             <li>
-              <div class="oneline"><a><span class="has-text-grey-dark">
+              <div class="oneline"><a><span class="has-text-secondary">
           04/05
         </span> <span>title</span></a></div>
             </li>

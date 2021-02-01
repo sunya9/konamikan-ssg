@@ -4,7 +4,8 @@ exports[`NavBar normal 1`] = `
 <nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
-      <!----> <a href="#" aria-label="Menu" class="navbar-burger has-text-white"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+      <!----> <a href="#" aria-label="Menu" class="navbar-burger has-text-white"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a>
+    </div>
     <div class="navbar-menu is-relative">
       <div class="navbar-end">
         <div class="navbar-item">
