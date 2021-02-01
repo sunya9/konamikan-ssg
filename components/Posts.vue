@@ -3,7 +3,7 @@
     <li v-for="post in posts" :key="post.id">
       <div class="oneline">
         <nuxt-link :to="$resolvePostUrl(post)">
-          <span v-if="post.published_at" class="has-text-grey">
+          <span v-if="post.published_at" class="has-text-secondary">
             {{ $dayjs(post.published_at).format('MM/DD') }}
           </span>
           <span>{{ post.title }}</span>

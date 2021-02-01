@@ -41,12 +41,12 @@ exports[`tag page normal 1`] = `
             </small></h2>
           <ul>
             <li>
-              <div class="oneline"><a><span class="has-text-grey">
+              <div class="oneline"><a><span class="has-text-grey-dark">
           04/05
         </span> <span>title</span></a></div>
             </li>
             <li>
-              <div class="oneline"><a><span class="has-text-grey">
+              <div class="oneline"><a><span class="has-text-grey-dark">
           04/05
         </span> <span>title</span></a></div>
             </li>

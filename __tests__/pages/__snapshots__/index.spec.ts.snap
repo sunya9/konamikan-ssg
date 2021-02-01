@@ -36,12 +36,16 @@ exports[`index page normal 1`] = `
       <div class="content">
         <h2>Recent posts</h2>
         <ul>
-          <li><a><span class="has-text-grey">
-                04/05
-              </span> <span>title</span></a></li>
-          <li><a><span class="has-text-grey">
-                04/05
-              </span> <span>title</span></a></li>
+          <li>
+            <div class="oneline"><a><span class="has-text-grey-dark">
+          04/05
+        </span> <span>title</span></a></div>
+          </li>
+          <li>
+            <div class="oneline"><a><span class="has-text-grey-dark">
+          04/05
+        </span> <span>title</span></a></div>
+          </li>
         </ul>
       </div> <a class="button is-fullwidth is-rounded is-outlined is-text">
         Archives
