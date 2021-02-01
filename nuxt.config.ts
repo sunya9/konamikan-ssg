@@ -61,8 +61,7 @@ const config: NuxtConfig = {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxt/typescript-build',
-    '~/modules/generate-supporter',
-    'nuxt-purgecss'
+    '~/modules/generate-supporter'
   ],
   /*
    ** Nuxt.js modules
