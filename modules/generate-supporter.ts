@@ -11,12 +11,8 @@ const buildModule: Module<never> = function() {
       const router = express.Router()
       router.get('/api/resources/:resource', api)
       app.use('/', router)
-      await new Promise((resolve) => {
-        server = app.listen(3000, (err) => {
-          // eslint-disable-next-line no-console
-          if (err) console.error(err)
-          resolve()
-        })
+      await new Promise<void>((resolve) => {
+        server = app.listen(3000, resolve)
       })
     })
     this.nuxt.hook('generate:done', () => server?.close())
