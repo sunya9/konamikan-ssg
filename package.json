@@ -63,7 +63,7 @@
     "@nuxtjs/eslint-config": "2.0.2",
     "@nuxtjs/eslint-config-typescript": "1.0.2",
     "@nuxtjs/eslint-module": "1.2.0",
-    "@sentry/cli": "1.61.0",
+    "@sentry/cli": "1.62.0",
     "@types/cheerio": "0.22.23",
     "@types/fs-extra": "8.1.1",
     "@types/jest": "25.2.3",
