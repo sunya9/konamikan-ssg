@@ -154,6 +154,7 @@ import AuthorInfo from '~/components/AuthorInfo.vue'
 import 'prismjs/plugins/line-numbers/prism-line-numbers'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-scss'
+import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
 
