@@ -2083,16 +2083,16 @@
   resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-2.5.0.tgz#a42b25e3bc58181cb2a8fbd30d6b0fee6c36bc60"
   integrity sha512-z1F3HXb05NiZga8Cuq6k5bbowfJOScPtbSOakip0nege+1aI9pGoajzap8eR5s1qwLXAk9Ts+NcgetoUn5lwrQ==
 
-"@nuxtjs/sentry@4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/sentry/-/sentry-4.3.4.tgz#464f4f2027a30f8fe7916b88bb23ff13b43bab13"
-  integrity sha512-8haTVuXgviUNt4eLLWUhYi1TcT4mgs21+n7fFio462tqKlxgdaaQmS0UORBHYjLT4e/Y9NcxizCDPtPCrRkFkg==
+"@nuxtjs/sentry@4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/sentry/-/sentry-4.5.0.tgz#e82c722e7a45e7509711b3a3712c11048ca7a2da"
+  integrity sha512-sIquOUOQ2HUTWlR5udf2FbBFJcaakgxSmycozANV3G4b3E4dGdLYTieVm+oLqj5BcxNLv2RHRf0Wn0JFwr26Zw==
   dependencies:
-    "@sentry/browser" "^5.20.1"
-    "@sentry/integrations" "^5.20.1"
-    "@sentry/node" "^5.20.1"
-    "@sentry/webpack-plugin" "^1.12.0"
-    consola "^2.14.0"
+    "@sentry/browser" "^5.27.3"
+    "@sentry/integrations" "^5.27.3"
+    "@sentry/node" "^5.27.3"
+    "@sentry/webpack-plugin" "^1.13.0"
+    consola "^2.15.0"
     deepmerge "^4.2.2"
 
 "@nuxtjs/sitemap@2.4.0":
@@ -2124,7 +2124,7 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@sentry/browser@^5.20.1":
+"@sentry/browser@^5.27.3":
   version "5.30.0"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.30.0.tgz#c28f49d551db3172080caef9f18791a7fd39e3b3"
   integrity sha512-rOb58ZNVJWh1VuMuBG1mL9r54nZqKeaIlwSlvzJfc89vyfd7n6tQ1UXMN383QBz/MS5H5z44Hy5eE+7pCrYAfw==
@@ -2134,7 +2134,7 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/cli@1.63.2":
+"@sentry/cli@1.63.2", "@sentry/cli@^1.63.1":
   version "1.63.2"
   resolved "https://registry.yarnpkg.com/@sentry/cli/-/cli-1.63.2.tgz#b0f7fefe3c13efc5c57bb6ec042cc2b693476bd3"
   integrity sha512-oG1Cg85BI/sc7MjgmShmCp0feB+LDi7XZKpiUggrOUVUgcWy4o+hkmESAwNCJsIXg0mW8TTCjmRFU8b836c+Mw==
@@ -2143,17 +2143,6 @@
     mkdirp "^0.5.5"
     node-fetch "^2.6.0"
     npmlog "^4.1.2"
-    progress "^2.0.3"
-    proxy-from-env "^1.1.0"
-
-"@sentry/cli@^1.58.0":
-  version "1.61.0"
-  resolved "https://registry.yarnpkg.com/@sentry/cli/-/cli-1.61.0.tgz#98be4cce2d61df91a8cb42afb740b46eba029925"
-  integrity sha512-pHEhqP1bB4sdO7N5ow/IkRBrPbKT9HZRinq4PhTVIvmG+NW4VVuVZ6k4tlbp+JXmzMcUc/iXynVkTL7zJIlTQw==
-  dependencies:
-    https-proxy-agent "^5.0.0"
-    mkdirp "^0.5.5"
-    node-fetch "^2.6.0"
     progress "^2.0.3"
     proxy-from-env "^1.1.0"
 
@@ -2177,7 +2166,7 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.20.1":
+"@sentry/integrations@^5.27.3":
   version "5.30.0"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.30.0.tgz#2f25fb998cb19c76b3803d84c1a577b3d837010f"
   integrity sha512-Fqh4ALLoQWdd+1ih0iBduANWFyNmFWMxwvBu3V/wLDRi8OcquI0lEzWai1InzTJTiNhRHPnhuU++l/vkO0OCww==
@@ -2196,7 +2185,7 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/node@^5.20.1":
+"@sentry/node@^5.27.3":
   version "5.30.0"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-5.30.0.tgz#4ca479e799b1021285d7fe12ac0858951c11cd48"
   integrity sha512-Br5oyVBF0fZo6ZS9bxbJZG4ApAjRqAnqFFurMVJJdunNb80brh7a5Qva2kjhm+U6r9NJAB5OmDyPkA1Qnt+QVg==
@@ -2235,12 +2224,12 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/webpack-plugin@^1.12.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@sentry/webpack-plugin/-/webpack-plugin-1.14.0.tgz#58c51efdee731e3366dc2b40ca8eb7424b395e44"
-  integrity sha512-1cS99mnHqASYtMlHi2J107p6x3lfC5NmLOgA0iI6avaaFes8RTQMlW8YT2CyrvhtQod1bViPZOlh3NOVC8vnOA==
+"@sentry/webpack-plugin@^1.13.0":
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/@sentry/webpack-plugin/-/webpack-plugin-1.14.2.tgz#4faf3b048f24c7e615e2970199206466202adce8"
+  integrity sha512-kYiDoGyDvfkMftcfI44HMLVe/Oqj8gQEf80gpB7Dv5HE4PJO5ttEwv24zD9QFRuoebEdsuh12jHli/DqLUYZiA==
   dependencies:
-    "@sentry/cli" "^1.58.0"
+    "@sentry/cli" "^1.63.1"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
@@ -4519,7 +4508,7 @@ connect@^3.7.0:
     parseurl "~1.3.3"
     utils-merge "1.0.1"
 
-consola@^2.10.0, consola@^2.11.3, consola@^2.13.0, consola@^2.14.0, consola@^2.15.0, consola@^2.6.0, consola@^2.9.0:
+consola@^2.10.0, consola@^2.11.3, consola@^2.13.0, consola@^2.15.0, consola@^2.6.0, consola@^2.9.0:
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.0.tgz#40fc4eefa4d2f8ef2e2806147f056ea207fcc0e9"
   integrity sha512-vlcSGgdYS26mPf7qNi+dCisbhiyDnrN1zaRbw3CSuc2wGOMEGGPsp46PdRG5gqXwgtJfjxDkxRNAgRPr1B77vQ==
