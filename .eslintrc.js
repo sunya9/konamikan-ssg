@@ -18,5 +18,13 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     camelcase: 'off'
-  }
+  },
+  overrides: [
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'no-useless-constructor': 'off'
+      }
+    }
+  ]
 }

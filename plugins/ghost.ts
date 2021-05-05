@@ -6,7 +6,8 @@ import {
   $resolvePostUrl,
   $createSocialMediaMeta,
   $createBaseMetadata,
-  $resolveUrl
+  $resolveUrl,
+  $replaceHostWithOriginal
 } from '~/util/util'
 
 Vue.prototype.$resolvePostUrl = $resolvePostUrl
@@ -14,10 +15,12 @@ Vue.prototype.$resolveUrl = $resolveUrl
 Vue.prototype.$settings = settings
 Vue.prototype.$createSocialMediaMeta = $createSocialMediaMeta
 Vue.prototype.$createBaseMetadata = $createBaseMetadata
+Vue.prototype.$replaceHostWithOriginal = $replaceHostWithOriginal
 
 const plugin: Plugin = (context) => {
   context.$resolvePostUrl = $resolvePostUrl
   context.$resolveUrl = $resolveUrl
+  context.$replaceHostWithOriginal = $replaceHostWithOriginal
 }
 export default plugin
 
@@ -28,6 +31,7 @@ declare module 'vue/types/vue' {
     $settings: Settings
     $createSocialMediaMeta: typeof $createSocialMediaMeta
     $createBaseMetadata: typeof $createBaseMetadata
+    $replaceHostWithOriginal: typeof $replaceHostWithOriginal
   }
 }
 
@@ -35,5 +39,6 @@ declare module '@nuxt/types' {
   interface Context {
     $resolvePostUrl: typeof $resolvePostUrl
     $resolveUrl: typeof $resolveUrl
+    $replaceHostWithOriginal: typeof $replaceHostWithOriginal
   }
 }

@@ -41,7 +41,11 @@ const config: NuxtConfig = {
   },
 
   env: {
-    URL: process.env.URL!
+    URL: process.env.URL!,
+    GHOST_API_URL: process.env.GHOST_API_URL!
+  },
+  privateRuntimeConfig: {
+    ADMIN_KEY: process.env.ADMIN_KEY!
   },
   /*
    ** Customize the progress-bar color
@@ -54,7 +58,13 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/ghost', '~/plugins/dayjs', '~/plugins/uniqueId'],
+  plugins: [
+    '~/plugins/env',
+    '~/plugins/ghost',
+    '~/plugins/dayjs',
+    '~/plugins/uniqueId',
+    '~/plugins/preview.server'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
