@@ -1,6 +1,5 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
-import * as cheerio from 'cheerio'
 import GhostContentAPI, {
   Author,
   PostOrPage,
@@ -8,8 +7,8 @@ import GhostContentAPI, {
   Settings,
   Tag
 } from '@tryghost/content-api'
+import { fixPostOrPage } from '../util/util'
 import { configuration } from './configuration'
-import { urlPrefixRegExp, httpRegExp } from './regexpUtil'
 
 export interface Resources {
   posts: PostOrPage[]
@@ -17,14 +16,6 @@ export interface Resources {
   pages: PostOrPage[]
   authors: Author[]
   settings: Settings
-}
-
-function getTargetImgList($: cheerio.Selector): cheerio.Cheerio {
-  return $('img').filter((_, e) => {
-    const src = $(e).attr('src')
-    if (!src) return false
-    return urlPrefixRegExp.test(src)
-  })
 }
 
 function write<T>(resource: string) {
@@ -47,54 +38,8 @@ const client = GhostContentAPI({
   version: 'v3'
 })
 
-function normalizeSrc(src: string | undefined): string {
-  if (!src) return ''
-  if (httpRegExp.test(src)) {
-    return src.replace(httpRegExp, '//') || ''
-  }
-  // remove own host part
-  if (urlPrefixRegExp.test(src)) {
-    return src.replace(urlPrefixRegExp, '')
-  }
-  return src
-}
-
-function addClasses($: cheerio.Selector) {
-  $('.kg-bookmark-card').addClass('box')
-  $('.kg-bookmark-container').addClass('media has-text-dark')
-  $('.kg-bookmark-title').addClass('has-text-weight-medium')
-  $('.kg-bookmark-content').addClass('media-content has-text-left')
-  $('.kg-bookmark-thumbnail').addClass('media-left')
-  $('iframe,img').each((_, e) => {
-    const currentSrc = $(e).attr('src')
-    const newSrc = normalizeSrc(currentSrc)
-    $(e).attr('src', newSrc)
-  })
-}
-
-function fixPostOrPage(post: PostOrPage): PostOrPage {
-  if (!post.html) return post
-  const $ = cheerio.load(post.html, {
-    decodeEntities: false,
-    _useHtmlParser2: true
-  })
-  addClasses($)
-  getTargetImgList($).each((_, e) => {
-    const newSrc = $(e)
-      .attr('src')
-      ?.replace(urlPrefixRegExp, '')
-    if (!newSrc) return
-    $(e).attr('src', newSrc)
-  })
-  const html = $.html()
-  return {
-    ...post,
-    html
-  }
-}
-
-function fixPostsOrPages(posts: PostsOrPages): PostOrPage[] {
-  return posts.map(fixPostOrPage)
+export function fixPostsOrPages(posts: PostsOrPages): PostOrPage[] {
+  return posts.map((postOrPages) => fixPostOrPage(postOrPages, false))
 }
 
 export async function fetchResources(): Promise<Resources> {
