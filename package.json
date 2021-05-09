@@ -44,7 +44,7 @@
     "extract-color-properties": "1.0.3",
     "fs-extra": "8.1.0",
     "fuse.js": "6.4.6",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "medium-zoom": "1.0.6",
     "node-fetch": "2.6.1",
     "node-sass": "4.14.1",
