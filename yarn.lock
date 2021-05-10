@@ -1854,7 +1854,7 @@
   dependencies:
     type-detect "4.0.8"
 
-"@tryghost/admin-api@^1.4.1":
+"@tryghost/admin-api@1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@tryghost/admin-api/-/admin-api-1.4.1.tgz#90b3ee3396245728fe35d0aebda3edd003983f44"
   integrity sha512-Lfrxn4h8cYwPF6gdmXZyHiGuGwDALZ/hEG5uevKxUgAnaXJQ7mm5qFSSqub3zXY2HgPTUrTQi2wZakk0SlNj2Q==
