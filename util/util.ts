@@ -90,7 +90,7 @@ export function reducePostFieldMapper(post: PostOrPage): PostOrPageLight {
   }
 }
 
-function normalizeSrc($: cheerio.Selector) {
+function normalizeSrc($: cheerio.CheerioAPI) {
   $('iframe,img').each((_, e) => {
     const currentSrc = $(e).attr('src')
     if (!currentSrc) return
@@ -100,7 +100,7 @@ function normalizeSrc($: cheerio.Selector) {
   })
 }
 
-function addClasses($: cheerio.Selector) {
+function addClasses($: cheerio.CheerioAPI) {
   $('.kg-bookmark-card').addClass('box')
   $('.kg-bookmark-container').addClass('media has-text-dark')
   $('.kg-bookmark-title').addClass('has-text-weight-medium')
@@ -108,7 +108,7 @@ function addClasses($: cheerio.Selector) {
   $('.kg-bookmark-thumbnail').addClass('media-left')
 }
 
-function replaceImgSrcHost($: cheerio.Selector, preview: boolean) {
+function replaceImgSrcHost($: cheerio.CheerioAPI, preview: boolean) {
   // if preview mode, keep ghost raw url. If not, remove own host part
   const replaceValue = preview ? process.env.GHOST_API_URL! : ''
   $('img').each((_, e) => {
@@ -120,7 +120,7 @@ function replaceImgSrcHost($: cheerio.Selector, preview: boolean) {
   })
 }
 
-function removeSrcSet($: cheerio.Selector) {
+function removeSrcSet($: cheerio.CheerioAPI) {
   $('img').each((_, e) => {
     $(e).removeAttr('srcset')
     $(e).removeAttr('sizes')
@@ -135,8 +135,7 @@ export function fixPostOrPage(
 ): PostOrPage {
   if (!post.html) return post
   const $ = cheerio.load(post.html, {
-    decodeEntities: false,
-    _useHtmlParser2: true
+    decodeEntities: false
   })
   addClasses($)
   normalizeSrc($)
