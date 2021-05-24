@@ -346,14 +346,14 @@ export default class extends Vue {
   z-index: 2;
 }
 .content {
-  /deep/ .kg-image {
+  ::v-deep .kg-image {
     max-height: 50vh;
   }
-  /deep/ .twitter-tweet {
+  ::v-deep .twitter-tweet {
     margin-left: auto;
     margin-right: auto;
   }
-  /deep/ .kg-bookmark-card {
+  ::v-deep .kg-bookmark-card {
     font-size: $size-small;
     margin-left: auto;
     margin-right: auto;
@@ -361,10 +361,10 @@ export default class extends Vue {
       max-width: 80%;
     }
   }
-  /deep/ .kg-bookmark-content {
+  ::v-deep .kg-bookmark-content {
     order: 2;
   }
-  /deep/ .kg-bookmark-thumbnail {
+  ::v-deep .kg-bookmark-thumbnail {
     order: 1;
     img {
       height: 64px;
@@ -375,33 +375,33 @@ export default class extends Vue {
       max-height: 128px;
     }
   }
-  /deep/ .kg-bookmark-title {
+  ::v-deep .kg-bookmark-title {
     font-size: $size-normal;
   }
-  /deep/ .kg-bookmark-publisher,
-  /deep/ .kg-bookmark-metadata {
+  ::v-deep .kg-bookmark-publisher,
+  ::v-deep .kg-bookmark-metadata {
     display: none;
   }
-  /deep/ .kg-bookmark-description {
+  ::v-deep .kg-bookmark-description {
     display: none;
     @include desktop {
       display: block;
     }
   }
-  /deep/ img {
+  ::v-deep img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
     max-height: 50vh;
   }
-  /deep/ .instagram-media {
+  ::v-deep .instagram-media {
     margin: auto !important;
   }
-  /deep/ iframe {
+  ::v-deep iframe {
     min-width: auto !important;
   }
-  /deep/ figure {
+  ::v-deep figure {
     margin-left: auto;
     margin-right: auto;
   }
@@ -420,7 +420,7 @@ export default class extends Vue {
   outline: 0;
   padding: 0;
 }
-/deep/ pre[class*='language-'] {
+::v-deep pre[class*='language-'] {
   margin-left: calc((100% - 100vw) / 2);
   margin-right: calc((100% - 100vw) / 2);
   padding-left: calc((100vw - 100%) / 2 + 3.8em);
