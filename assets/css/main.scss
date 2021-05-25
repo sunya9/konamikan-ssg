@@ -3,8 +3,8 @@ $desktop: 960px;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 $orange: hsl(14, 100%, 40%);
-@import '~bulma/sass/utilities/initial-variables';
-@import '~animate.css';
+@import 'bulma/sass/utilities/initial-variables';
+@import 'animate.css';
 
 $primary: $orange;
 $link: $orange;
@@ -31,7 +31,7 @@ $scheme-main-bis: $white-ter;
 .page-leave-active,
 .layout-enter,
 .layout-leave-active {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 // https://www.darraghoriordan.com/2019/01/20/bulma-prismjs-in-gatsby-css-conflicts/
@@ -54,7 +54,6 @@ $scheme-main-bis: $white-ter;
 .medium-zoom-image {
   z-index: 100;
 }
-
 
 .is-text-truncated {
   text-overflow: ellipsis;
