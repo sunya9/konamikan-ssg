@@ -38,7 +38,7 @@
     "@tryghost/content-api": "1.5.6",
     "animate.css": "3.7.2",
     "cheerio": "1.0.0-rc.9",
-    "dayjs": "1.10.4",
+    "dayjs": "1.10.5",
     "escape-string-regexp": "2.0.0",
     "express": "4.17.1",
     "extract-color-properties": "1.0.3",
