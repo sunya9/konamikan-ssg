@@ -66,7 +66,7 @@
     "@sentry/cli": "1.66.0",
     "@types/cheerio": "0.22.29",
     "@types/fs-extra": "8.1.1",
-    "@types/jest": "25.2.3",
+    "@types/jest": "26.0.24",
     "@types/lodash": "4.14.170",
     "@types/node-fetch": "2.5.10",
     "@types/prismjs": "1.16.5",
