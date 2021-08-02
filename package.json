@@ -34,7 +34,7 @@
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sentry": "4.5.0",
     "@nuxtjs/sitemap": "2.4.0",
-    "@tryghost/admin-api": "1.4.2",
+    "@tryghost/admin-api": "1.4.3",
     "@tryghost/content-api": "1.5.10",
     "animate.css": "3.7.2",
     "cheerio": "1.0.0-rc.10",
