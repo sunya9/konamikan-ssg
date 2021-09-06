@@ -60,7 +60,7 @@
     "@babel/core": "7.15.5",
     "@babel/preset-env": "7.15.4",
     "@nuxt/types": "2.15.8",
-    "@nuxtjs/eslint-config": "2.0.2",
+    "@nuxtjs/eslint-config": "6.0.1",
     "@nuxtjs/eslint-config-typescript": "1.0.2",
     "@nuxtjs/eslint-module": "1.2.0",
     "@sentry/cli": "1.68.0",
