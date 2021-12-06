@@ -65,7 +65,7 @@
     "@nuxtjs/eslint-module": "1.2.0",
     "@sentry/cli": "1.71.0",
     "@types/cheerio": "0.22.30",
-    "@types/fs-extra": "8.1.2",
+    "@types/fs-extra": "9.0.13",
     "@types/jest": "25.2.3",
     "@types/lodash": "4.14.177",
     "@types/node-fetch": "2.5.12",
